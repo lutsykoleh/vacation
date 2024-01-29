@@ -1,0 +1,86 @@
+{#
+/**
+ * @file
+ * Default theme implementation for comments.
+ *
+ * Available variables:
+ * - author: Comment author. Can be a link or plain text.
+ * - content: The content-related items for the workflow transition display. Use
+ *   {{ content }} to print them all, or print a subset such as
+ *   {{ content.field_example }}. Use the following code to temporarily suppress
+ *   the printing of a given child element:
+ *   @code
+ *   {{ content|without('field_example') }}
+ *   @endcode
+ * - time: Formatted date and time for when the workflow transition was created.
+ * - from_state: State object, you can display label via from_state.label.
+ * - to_state: State object, you can display label via to_state.label.
+ * - user: User object.
+ *
+ * @see template_preprocess_workflow_transition()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{%
+  set classes = [
+    'field',
+    'field--type-workflow-transition',
+    'field--label-inline',
+  ]
+%}
+
+{%
+  set field_classes = [
+    'field--label-inline',
+    'clearfix',
+  ]
+%}
+
+{%
+  set label_classes = [
+    'field__label',
+  ]
+%}
+{%
+  set value_classes = [
+    'field__item',
+  ]
+%}
+
+<article{{ attributes }}>
+  <div class="status">
+
+    <div{{ field_attributes.addClass(field_classes) }}>
+      <div{{ label_attributes.addClass(label_classes) }}>{% trans %}From State{% endtrans %}</div>
+      <div{{ value_attributes.addClass(value_classes) }}>{{ from_state.label }}</div>
+    </div>
+
+    <div{{ field_attributes.addClass(field_classes) }}>
+      <div{{ label_attributes.addClass(title_classes) }}>{% trans %}To State{% endtrans %}</div>
+      <div{{ value_attributes.addClass(item_classes) }}>{{ to_state.label }}</div>
+    </div>
+
+    <div{{ field_attributes.addClass(field_classes) }}>
+      <div{{ label_attributes.addClass(title_classes) }}>{% trans %}Date{% endtrans %}</div>
+      <div{{ value_attributes.addClass(item_classes) }}>{{ time }}</div>
+    </div>
+
+    <div{{ field_attributes.addClass(field_classes) }}>
+      <div{{ label_attributes.addClass(title_classes) }}>{% trans %}By{% endtrans %}</div>
+      <div{{ value_attributes.addClass(item_classes) }}>{{ user.label }}</div>
+    </div>
+
+    {% if comment %}
+      <div{{ field_attributes.addClass(field_classes) }}>
+        <div{{ label_attributes.addClass(title_classes) }}>{% trans %}Comment{% endtrans %}</div>
+        <div{{ value_attributes.addClass(item_classes) }}>{{ comment }}</div>
+      </div>
+    {% endif %}
+  </div>
+
+  {% if content %}
+      {{ content }}
+  {% endif %}
+</article>

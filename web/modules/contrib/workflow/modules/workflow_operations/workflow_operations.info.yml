@@ -1,0 +1,16 @@
+name: Workflow Operations
+type: module
+description: 'Adds lesser-used Transition permissions (edit comment, revert transition). Obsolete. Incorporated in main module.'
+package: Workflow
+core: 8.x
+core_version_requirement: ^8 || ^9 || ^10
+dependencies:
+  - workflow:workflow
+
+hidden: TRUE
+
+
+# Information added by Drupal.org packaging script on 2023-03-28
+version: '8.x-1.7'
+project: 'workflow'
+datestamp: 1680019728

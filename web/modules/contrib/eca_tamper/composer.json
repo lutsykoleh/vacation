@@ -1,0 +1,15 @@
+{
+  "name": "drupal/eca_tamper",
+  "license": "GPL-2.0-or-later",
+  "type": "drupal-module",
+  "description": "Integrate ECA with the tamper module and its plugins available as actions.",
+  "support": {
+    "issues": "https://drupal.org/project/issues/eca_tamper",
+    "source": "https://drupal.org/project/eca_tamper"
+  },
+  "require": {
+    "php": ">=7.4",
+    "drupal/eca": "^1.0",
+    "drupal/tamper": "^1.0"
+  }
+}

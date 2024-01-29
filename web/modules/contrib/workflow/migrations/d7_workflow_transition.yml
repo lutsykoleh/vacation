@@ -1,0 +1,60 @@
+id: d7_workflow_transition
+label: Migrate workflow transition
+audit: true
+migration_tags:
+  - Drupal 7
+  - Workflow
+source:
+  plugin: d7_workflow_transition
+process:
+  hid: hid
+  wid: wid
+  langcode: language
+  entity_type:
+    -
+      plugin: skip_on_value
+      source: entity_type
+      method: row
+      not_equals: true
+      value: node
+  entity_id:
+    -
+      plugin: migration_lookup
+      migration: d7_node
+      source: nid
+  revision_id:
+    -
+      plugin: migration_lookup
+      migration: d7_node_revision
+      source: revision_id
+  field_name: field_name
+  delta: delta
+  from_sid:
+    -
+      plugin: migration_lookup
+      migration: d7_workflow_state
+      source: old_sid
+  to_sid:
+    -
+      plugin: migration_lookup
+      migration: d7_workflow_state
+      source: sid
+  uid:
+    plugin: migration_lookup
+    migration: d7_user
+    source: uid
+  timestamp: stamp
+  comment: comment
+destination:
+  plugin: 'entity:workflow_transition'
+migration_dependencies:
+  required:
+    - d7_node
+    - d7_node_revision
+    - d7_user
+    - d7_workflow_state
+  optional:
+    - d7_node
+    - d7_node_revision
+    - d7_user
+    - d7_workflow_state

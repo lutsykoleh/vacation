@@ -1,0 +1,18 @@
+id: d7_workflow
+label: Migrate Workflow
+audit: true
+migration_tags:
+  - Drupal 7
+  - Workflow
+source:
+  plugin: d7_workflow
+process:
+  id: name
+  status: status
+  label: name
+  module: module
+destination:
+  plugin: 'entity:workflow_type'
+migration_dependencies:
+  required: { }
+  optional: { }

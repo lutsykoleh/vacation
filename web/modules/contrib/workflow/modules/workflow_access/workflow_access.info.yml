@@ -1,0 +1,14 @@
+name: Workflow Access
+type: module
+description: 'Content access control based on workflows and roles. Depends on the node_access system, so only works for entities of type ''node''.'
+package: Workflow
+core: 8.x
+core_version_requirement: ^8 || ^9 || ^10
+dependencies:
+  - workflow:workflow
+configure: entity.workflow_type.collection
+
+# Information added by Drupal.org packaging script on 2023-03-28
+version: '8.x-1.7'
+project: 'workflow'
+datestamp: 1680019728

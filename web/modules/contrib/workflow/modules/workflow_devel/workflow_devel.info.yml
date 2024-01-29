@@ -1,0 +1,13 @@
+name: Workflow Devel
+type: module
+description: 'Tools for developing Workflow add-ons. Calls every hook in workflow.api.php and generates a user message on each call. (Do not enable in production sites.)'
+package: Workflow
+core: 8.x
+core_version_requirement: ^8 || ^9 || ^10
+dependencies:
+  - workflow:workflow
+
+# Information added by Drupal.org packaging script on 2023-03-28
+version: '8.x-1.7'
+project: 'workflow'
+datestamp: 1680019728

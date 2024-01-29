@@ -1,0 +1,13 @@
+name: 'ECA Tamper'
+type: module
+description: 'Integrate ECA with the tamper module and its plugins available as actions.'
+core_version_requirement: ^9 || ^10
+package: ECA
+dependencies:
+  - eca:eca
+  - tamper:tamper
+
+# Information added by Drupal.org packaging script on 2023-06-06
+version: '1.0.5'
+project: 'eca_tamper'
+datestamp: 1686053551
