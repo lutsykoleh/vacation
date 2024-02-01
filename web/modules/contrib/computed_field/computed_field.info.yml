@@ -1,0 +1,10 @@
+name: Computed Field
+type: module
+description: Defines a field type that allows values to be "computed" via PHP code.
+core_version_requirement: ^8 || ^9 || ^10
+package: Field types
+
+# Information added by Drupal.org packaging script on 2024-01-20
+version: '3.0.0'
+project: 'computed_field'
+datestamp: 1705775908

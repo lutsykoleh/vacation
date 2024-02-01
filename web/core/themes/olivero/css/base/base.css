@@ -156,3 +156,8 @@ ul {
   list-style-type: disc;
   list-style-image: none;
 }
+
+.form-save-default-button.workflow-button-created.button.button--primary.js-form-submit.form-submit {
+  display: none;
+}
+

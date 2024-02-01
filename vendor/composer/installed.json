@@ -1390,6 +1390,85 @@
             "install-path": "../../web/modules/contrib/bpmn_io"
         },
         {
+            "name": "drupal/computed_field",
+            "version": "3.0.0",
+            "version_normalized": "3.0.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/computed_field.git",
+                "reference": "3.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/computed_field-3.0.0.zip",
+                "reference": "3.0.0",
+                "shasum": "88f060658f30e196b177923dc12bc48df38042df"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "3.0.0",
+                    "datestamp": "1705775905",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "installation-source": "dist",
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Agileware",
+                    "homepage": "https://www.drupal.org/user/89106"
+                },
+                {
+                    "name": "colan",
+                    "homepage": "https://www.drupal.org/user/58704"
+                },
+                {
+                    "name": "dealancer",
+                    "homepage": "https://www.drupal.org/user/243418"
+                },
+                {
+                    "name": "joachim",
+                    "homepage": "https://www.drupal.org/user/107701"
+                },
+                {
+                    "name": "markus_petrux",
+                    "homepage": "https://www.drupal.org/user/39593"
+                },
+                {
+                    "name": "Moonshine",
+                    "homepage": "https://www.drupal.org/user/133705"
+                },
+                {
+                    "name": "nickcaballero",
+                    "homepage": "https://www.drupal.org/user/588336"
+                },
+                {
+                    "name": "Pedro Lozano",
+                    "homepage": "https://www.drupal.org/user/123766"
+                },
+                {
+                    "name": "ram4nd",
+                    "homepage": "https://www.drupal.org/user/601534"
+                }
+            ],
+            "description": "Defines a field type that allows values to be \"computed\" via PHP code.",
+            "homepage": "https://www.drupal.org/project/computed_field",
+            "support": {
+                "source": "https://git.drupalcode.org/project/computed_field"
+            },
+            "install-path": "../../web/modules/contrib/computed_field"
+        },
+        {
             "name": "drupal/core",
             "version": "10.1.8",
             "version_normalized": "10.1.8.0",
@@ -2163,6 +2242,75 @@
                 "source": "https://git.drupalcode.org/project/token"
             },
             "install-path": "../../web/modules/contrib/token"
+        },
+        {
+            "name": "drupal/views_bulk_operations",
+            "version": "4.2.6",
+            "version_normalized": "4.2.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/views_bulk_operations.git",
+                "reference": "4.2.6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/views_bulk_operations-4.2.6.zip",
+                "reference": "4.2.6",
+                "shasum": "20c6f77c0cebda75edfa570a8dc53fb133d6283a"
+            },
+            "require": {
+                "drupal/core": "^9.4 || ^10",
+                "php": ">=7.4.0"
+            },
+            "require-dev": {
+                "drush/drush": "^12"
+            },
+            "suggest": {
+                "drush/drush": "^11 || ^12"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "4.2.6",
+                    "datestamp": "1704281842",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^10 || ^11"
+                    }
+                }
+            },
+            "installation-source": "dist",
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Marcin Grabias",
+                    "homepage": "https://www.drupal.org/u/graber"
+                },
+                {
+                    "name": "Graber",
+                    "homepage": "https://www.drupal.org/user/1599440"
+                },
+                {
+                    "name": "joelpittet",
+                    "homepage": "https://www.drupal.org/user/160302"
+                }
+            ],
+            "description": "Adds an ability to perform bulk operations on selected entities from view results. Provides an API to create such operations.",
+            "homepage": "https://www.drupal.org/project/views_bulk_operations",
+            "support": {
+                "source": "https://git.drupalcode.org/project/views_bulk_operations/-/tree/8.x-3.x",
+                "issues": "https://www.drupal.org/project/issues/views_bulk_operations?version=8.x",
+                "docs": "https://www.drupal.org/docs/8/modules/views-bulk-operations-vbo"
+            },
+            "install-path": "../../web/modules/contrib/views_bulk_operations"
         },
         {
             "name": "drupal/workflow",
