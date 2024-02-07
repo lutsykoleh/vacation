@@ -1,0 +1,20 @@
+uuid: 5f37685e-07d7-46c3-976e-d188d21315d9
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.state.request_status_creation
+    - workflow.state.request_status_disapprove
+id: request_status_creation_disapprove
+label: null
+module: workflow
+from_sid: request_status_creation
+to_sid: request_status_disapprove
+roles:
+  workflow_author: workflow_author
+  pm: pm
+  shief_pm: shief_pm
+  teamlead: teamlead
+  seo: seo
+  client: client
+  administrator: '0'

@@ -1,0 +1,12 @@
+uuid: baa58315-50fa-40c8-bbae-8ef7cb310ce6
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.workflow.request_status
+id: request_status_waiting
+label: Waiting
+module: workflow
+wid: request_status
+weight: -8
+sysid: 0

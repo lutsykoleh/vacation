@@ -1,0 +1,25 @@
+uuid: ac8ae9a5-a1bc-44b4-8acd-360b1fd1c2e6
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.state.certificate_status_invalid
+    - workflow.state.certificate_status_valid
+id: certificate_status_invalid_valid
+label: null
+module: workflow
+from_sid: certificate_status_invalid
+to_sid: certificate_status_valid
+roles:
+  administrator: administrator
+  workflow_author: '0'
+  anonymous: '0'
+  authenticated: '0'
+  junior: '0'
+  middle: '0'
+  senior: '0'
+  pm: '0'
+  shief_pm: '0'
+  teamlead: '0'
+  seo: '0'
+  client: '0'

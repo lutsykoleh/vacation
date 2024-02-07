@@ -1,0 +1,20 @@
+uuid: db87a09a-ee69-4d62-a4c4-2772b091d0cf
+langcode: en
+status: true
+dependencies:
+  theme:
+    - vacation
+_core:
+  default_config_hash: Q9_2whdOj1YIomfvsIfopROW4FT_X5pY0DjdOiOaQ5U
+id: vacation_primary_admin_actions
+theme: vacation
+region: highlighted
+weight: -5
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

@@ -1,0 +1,12 @@
+uuid: 6477bd1d-9e46-4c71-a53b-fa76b1053ac1
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.state.request_type_paid
+id: request_type_paid_paid
+label: null
+module: workflow
+from_sid: request_type_paid
+to_sid: request_type_paid
+roles: {  }

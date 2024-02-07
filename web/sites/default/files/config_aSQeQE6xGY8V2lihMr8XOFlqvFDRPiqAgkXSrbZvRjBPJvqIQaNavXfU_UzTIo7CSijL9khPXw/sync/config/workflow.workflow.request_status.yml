@@ -1,0 +1,16 @@
+uuid: 32b28f1d-05fa-4aa3-b194-ca921b2d66bb
+langcode: en
+status: true
+dependencies: {  }
+id: request_status
+label: 'Request status'
+module: workflow
+options:
+  name_as_title: 0
+  fieldset: 0
+  options: buttons
+  schedule_enable: false
+  schedule_timezone: 0
+  always_update_entity: 0
+  comment_log_node: 0
+  watchdog_log: 1

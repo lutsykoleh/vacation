@@ -1,0 +1,14 @@
+_core:
+  default_config_hash: VDJxTZtQR21qB4lvOq8zszJZLvLKrSPQpdn2E3T71Ww
+langcode: en
+uuid: 9ef91830-ad0e-4cea-9c09-9d6c5c862750
+name: Vacation
+mail: admin@example.com
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /node/5705
+admin_compact_mode: false
+weight_select_max: 100
+default_langcode: en

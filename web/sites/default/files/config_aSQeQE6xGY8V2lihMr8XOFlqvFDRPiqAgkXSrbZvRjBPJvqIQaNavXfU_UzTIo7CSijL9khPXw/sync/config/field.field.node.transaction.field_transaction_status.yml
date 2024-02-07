@@ -1,0 +1,21 @@
+uuid: 49fcd40d-26e6-4be6-82b0-c8e4b9b8aac8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_transaction_status
+    - node.type.transaction
+  module:
+    - options
+id: node.transaction.field_transaction_status
+field_name: field_transaction_status
+entity_type: node
+bundle: transaction
+label: 'Transaction status'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

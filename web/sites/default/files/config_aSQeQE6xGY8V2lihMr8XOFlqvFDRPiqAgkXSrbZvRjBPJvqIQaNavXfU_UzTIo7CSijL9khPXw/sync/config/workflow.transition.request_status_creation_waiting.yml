@@ -1,0 +1,20 @@
+uuid: a3344213-9407-40d8-aef7-34f0e7fa76be
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.state.request_status_creation
+    - workflow.state.request_status_waiting
+id: request_status_creation_waiting
+label: null
+module: workflow
+from_sid: request_status_creation
+to_sid: request_status_waiting
+roles:
+  workflow_author: workflow_author
+  administrator: '0'
+  pm: '0'
+  shief_pm: '0'
+  teamlead: '0'
+  seo: '0'
+  client: '0'

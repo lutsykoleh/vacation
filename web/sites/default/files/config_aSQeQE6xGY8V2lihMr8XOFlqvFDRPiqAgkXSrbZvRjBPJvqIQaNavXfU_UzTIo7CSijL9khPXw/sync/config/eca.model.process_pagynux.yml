@@ -1,0 +1,885 @@
+uuid: be071116-b1e9-4a30-beef-067d17771ea8
+langcode: en
+status: true
+dependencies:
+  config:
+    - eca.eca.process_pagynux
+id: process_pagynux
+label: 'Validation for bonus certificate'
+tags:
+  - untagged
+documentation: ''
+filename: ''
+modeldata: |
+  <?xml version="1.0" encoding="UTF-8"?>
+  <bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:qa="http://some-company/schema/bpmn/qa" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+    <bpmn2:process id="Process_pAGYNUx" name="Validation for bonus certificate" isExecutable="true">
+      <bpmn2:startEvent id="Event_10j3asr" camunda:modelerTemplate="org.drupal.event.form:form_validate">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="form:form_validate"/>
+          </camunda:properties>
+          <camunda:field name="form_id">
+            <camunda:string>node-bonus-certificate-form</camunda:string>
+          </camunda:field>
+          <camunda:field name="entity_type_id">
+            <camunda:string>node</camunda:string>
+          </camunda:field>
+          <camunda:field name="bundle">
+            <camunda:string>bonus_certificate</camunda:string>
+          </camunda:field>
+          <camunda:field name="operation">
+            <camunda:string>default, save, delete, edit</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:outgoing>Flow_0j1xy8h</bpmn2:outgoing>
+      </bpmn2:startEvent>
+      <bpmn2:task id="Activity_19mqy3l" camunda:modelerTemplate="org.drupal.action.eca_form_field_get_value">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_form_field_get_value"/>
+          </camunda:properties>
+          <camunda:field name="field_name">
+            <camunda:string>field_accrual_date[0][value][date]</camunda:string>
+          </camunda:field>
+          <camunda:field name="token_name">
+            <camunda:string>start_day</camunda:string>
+          </camunda:field>
+          <camunda:field name="strip_tags">
+            <camunda:string>yes</camunda:string>
+          </camunda:field>
+          <camunda:field name="trim">
+            <camunda:string>yes</camunda:string>
+          </camunda:field>
+          <camunda:field name="xss_filter">
+            <camunda:string>yes</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_0j1xy8h</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_0r90nuj</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:task id="Activity_178p7tc" camunda:modelerTemplate="org.drupal.action.eca_tamper:strtotime">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_tamper:strtotime"/>
+          </camunda:properties>
+          <camunda:field name="eca_data">
+            <camunda:string>[start_day]</camunda:string>
+          </camunda:field>
+          <camunda:field name="eca_token_name">
+            <camunda:string>start_day_ts</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_0r90nuj</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_11sh4dt</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:task id="Activity_1daut4g" camunda:modelerTemplate="org.drupal.action.eca_form_field_get_value">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_form_field_get_value"/>
+          </camunda:properties>
+          <camunda:field name="field_name">
+            <camunda:string>field_expiration_date[0][value][date]</camunda:string>
+          </camunda:field>
+          <camunda:field name="token_name">
+            <camunda:string>end_day</camunda:string>
+          </camunda:field>
+          <camunda:field name="strip_tags">
+            <camunda:string>yes</camunda:string>
+          </camunda:field>
+          <camunda:field name="trim">
+            <camunda:string>yes</camunda:string>
+          </camunda:field>
+          <camunda:field name="xss_filter">
+            <camunda:string>yes</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_11sh4dt</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_16p3n44</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_0r90nuj" sourceRef="Activity_19mqy3l" targetRef="Activity_178p7tc"/>
+      <bpmn2:sequenceFlow id="Flow_11sh4dt" sourceRef="Activity_178p7tc" targetRef="Activity_1daut4g"/>
+      <bpmn2:task id="Activity_0zyowpx" camunda:modelerTemplate="org.drupal.action.eca_tamper:strtotime">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_tamper:strtotime"/>
+          </camunda:properties>
+          <camunda:field name="eca_data">
+            <camunda:string>[end_day]</camunda:string>
+          </camunda:field>
+          <camunda:field name="eca_token_name">
+            <camunda:string>end_day_ts</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_16p3n44</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_0c5mkuj</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_16p3n44" sourceRef="Activity_1daut4g" targetRef="Activity_0zyowpx"/>
+      <bpmn2:task id="Activity_193h225" camunda:modelerTemplate="org.drupal.action.eca_tamper:strtotime">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_tamper:strtotime"/>
+          </camunda:properties>
+          <camunda:field name="eca_data">
+            <camunda:string>[current-date:html_date]</camunda:string>
+          </camunda:field>
+          <camunda:field name="eca_token_name">
+            <camunda:string>current_ts</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_0c5mkuj</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_0bgzzoo</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_0c5mkuj" sourceRef="Activity_0zyowpx" targetRef="Activity_193h225"/>
+      <bpmn2:exclusiveGateway id="Gateway_0algxq7">
+        <bpmn2:incoming>Flow_0bgzzoo</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_0gdt5l3</bpmn2:outgoing>
+        <bpmn2:outgoing>Flow_0nd7cfp</bpmn2:outgoing>
+        <bpmn2:outgoing>Flow_1xhtr6u</bpmn2:outgoing>
+      </bpmn2:exclusiveGateway>
+      <bpmn2:sequenceFlow id="Flow_0bgzzoo" sourceRef="Activity_193h225" targetRef="Gateway_0algxq7"/>
+      <bpmn2:task id="Activity_1l1pyqj" camunda:modelerTemplate="org.drupal.action.eca_form_field_set_error">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_form_field_set_error"/>
+          </camunda:properties>
+          <camunda:field name="field_name">
+            <camunda:string>submit</camunda:string>
+          </camunda:field>
+          <camunda:field name="message">
+            <camunda:string>You cannot take a vacation earlier than today</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_0gdt5l3</bpmn2:incoming>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_0gdt5l3" camunda:modelerTemplate="org.drupal.condition.eca_scalar" sourceRef="Gateway_0algxq7" targetRef="Activity_1l1pyqj">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_scalar"/>
+          </camunda:properties>
+          <camunda:field name="left">
+            <camunda:string>[start_day_ts]</camunda:string>
+          </camunda:field>
+          <camunda:field name="operator">
+            <camunda:string>lessthan</camunda:string>
+          </camunda:field>
+          <camunda:field name="right">
+            <camunda:string>[current_ts]</camunda:string>
+          </camunda:field>
+          <camunda:field name="type">
+            <camunda:string>value</camunda:string>
+          </camunda:field>
+          <camunda:field name="case">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="negate">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+      </bpmn2:sequenceFlow>
+      <bpmn2:sequenceFlow id="Flow_0nd7cfp" camunda:modelerTemplate="org.drupal.condition.eca_scalar" sourceRef="Gateway_0algxq7" targetRef="Gateway_0okuvgs">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_scalar"/>
+          </camunda:properties>
+          <camunda:field name="left">
+            <camunda:string>[start_day_ts]</camunda:string>
+          </camunda:field>
+          <camunda:field name="operator">
+            <camunda:string>greaterthan</camunda:string>
+          </camunda:field>
+          <camunda:field name="right">
+            <camunda:string>[current_ts]</camunda:string>
+          </camunda:field>
+          <camunda:field name="type">
+            <camunda:string>value</camunda:string>
+          </camunda:field>
+          <camunda:field name="case">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="negate">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+      </bpmn2:sequenceFlow>
+      <bpmn2:sequenceFlow id="Flow_1xhtr6u" camunda:modelerTemplate="org.drupal.condition.eca_scalar" sourceRef="Gateway_0algxq7" targetRef="Gateway_0okuvgs">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_scalar"/>
+          </camunda:properties>
+          <camunda:field name="left">
+            <camunda:string>[start_day_ts]</camunda:string>
+          </camunda:field>
+          <camunda:field name="operator">
+            <camunda:string>equal</camunda:string>
+          </camunda:field>
+          <camunda:field name="right">
+            <camunda:string>[current_ts]</camunda:string>
+          </camunda:field>
+          <camunda:field name="type">
+            <camunda:string>value</camunda:string>
+          </camunda:field>
+          <camunda:field name="case">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="negate">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+      </bpmn2:sequenceFlow>
+      <bpmn2:exclusiveGateway id="Gateway_030325l">
+        <bpmn2:incoming>Flow_0t2jz44</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_160bxyc</bpmn2:outgoing>
+        <bpmn2:outgoing>Flow_0252bel</bpmn2:outgoing>
+        <bpmn2:outgoing>Flow_01s0c9l</bpmn2:outgoing>
+      </bpmn2:exclusiveGateway>
+      <bpmn2:task id="Activity_1fyzhhq" camunda:modelerTemplate="org.drupal.action.eca_form_field_set_error">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_form_field_set_error"/>
+          </camunda:properties>
+          <camunda:field name="field_name">
+            <camunda:string>submit</camunda:string>
+          </camunda:field>
+          <camunda:field name="message">
+            <camunda:string>The end date may not be equal to or less than the start date</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_160bxyc</bpmn2:incoming>
+        <bpmn2:incoming>Flow_0252bel</bpmn2:incoming>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_160bxyc" camunda:modelerTemplate="org.drupal.condition.eca_scalar" sourceRef="Gateway_030325l" targetRef="Activity_1fyzhhq">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_scalar"/>
+          </camunda:properties>
+          <camunda:field name="left">
+            <camunda:string>[end_day_ts]</camunda:string>
+          </camunda:field>
+          <camunda:field name="operator">
+            <camunda:string>equal</camunda:string>
+          </camunda:field>
+          <camunda:field name="right">
+            <camunda:string>[start_day_ts]</camunda:string>
+          </camunda:field>
+          <camunda:field name="type">
+            <camunda:string>value</camunda:string>
+          </camunda:field>
+          <camunda:field name="case">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="negate">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+      </bpmn2:sequenceFlow>
+      <bpmn2:task id="Activity_1p7ewjz" camunda:modelerTemplate="org.drupal.action.eca_tamper:math">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_tamper:math"/>
+          </camunda:properties>
+          <camunda:field name="eca_data">
+            <camunda:string>[end_day_ts]</camunda:string>
+          </camunda:field>
+          <camunda:field name="operation">
+            <camunda:string>subtraction</camunda:string>
+          </camunda:field>
+          <camunda:field name="flip">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="value">
+            <camunda:string>[start_day_ts]</camunda:string>
+          </camunda:field>
+          <camunda:field name="eca_token_name">
+            <camunda:string>vac_day</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_01s0c9l</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_0p40swr</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_0252bel" camunda:modelerTemplate="org.drupal.condition.eca_scalar" sourceRef="Gateway_030325l" targetRef="Activity_1fyzhhq">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_scalar"/>
+          </camunda:properties>
+          <camunda:field name="left">
+            <camunda:string>[end_day_ts]</camunda:string>
+          </camunda:field>
+          <camunda:field name="operator">
+            <camunda:string>lessthan</camunda:string>
+          </camunda:field>
+          <camunda:field name="right">
+            <camunda:string>[start_day_ts]</camunda:string>
+          </camunda:field>
+          <camunda:field name="type">
+            <camunda:string>value</camunda:string>
+          </camunda:field>
+          <camunda:field name="case">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="negate">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+      </bpmn2:sequenceFlow>
+      <bpmn2:sequenceFlow id="Flow_01s0c9l" camunda:modelerTemplate="org.drupal.condition.eca_scalar" sourceRef="Gateway_030325l" targetRef="Activity_1p7ewjz">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_scalar"/>
+          </camunda:properties>
+          <camunda:field name="left">
+            <camunda:string>[end_day_ts]</camunda:string>
+          </camunda:field>
+          <camunda:field name="operator">
+            <camunda:string>greaterthan</camunda:string>
+          </camunda:field>
+          <camunda:field name="right">
+            <camunda:string>[start_day_ts]</camunda:string>
+          </camunda:field>
+          <camunda:field name="type">
+            <camunda:string>value</camunda:string>
+          </camunda:field>
+          <camunda:field name="case">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="negate">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+      </bpmn2:sequenceFlow>
+      <bpmn2:exclusiveGateway id="Gateway_0okuvgs">
+        <bpmn2:incoming>Flow_0nd7cfp</bpmn2:incoming>
+        <bpmn2:incoming>Flow_1xhtr6u</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_0t2jz44</bpmn2:outgoing>
+      </bpmn2:exclusiveGateway>
+      <bpmn2:sequenceFlow id="Flow_0t2jz44" sourceRef="Gateway_0okuvgs" targetRef="Gateway_030325l"/>
+      <bpmn2:task id="Activity_065rja4" camunda:modelerTemplate="org.drupal.action.eca_tamper:math">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_tamper:math"/>
+          </camunda:properties>
+          <camunda:field name="eca_data">
+            <camunda:string>[vac_day]</camunda:string>
+          </camunda:field>
+          <camunda:field name="operation">
+            <camunda:string>division</camunda:string>
+          </camunda:field>
+          <camunda:field name="flip">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="value">
+            <camunda:string>86400</camunda:string>
+          </camunda:field>
+          <camunda:field name="eca_token_name">
+            <camunda:string>res</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_0p40swr</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_1l2y9ag</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_0p40swr" sourceRef="Activity_1p7ewjz" targetRef="Activity_065rja4"/>
+      <bpmn2:task id="Activity_14fn929" camunda:modelerTemplate="org.drupal.action.eca_tamper:cast_to_int">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_tamper:cast_to_int"/>
+          </camunda:properties>
+          <camunda:field name="eca_data">
+            <camunda:string>[res]</camunda:string>
+          </camunda:field>
+          <camunda:field name="eca_token_name">
+            <camunda:string>int</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_1l2y9ag</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_0venen4</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_1l2y9ag" sourceRef="Activity_065rja4" targetRef="Activity_14fn929"/>
+      <bpmn2:exclusiveGateway id="Gateway_12y2x94">
+        <bpmn2:incoming>Flow_0venen4</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_0h6wi07</bpmn2:outgoing>
+        <bpmn2:outgoing>Flow_11fx6yl</bpmn2:outgoing>
+        <bpmn2:outgoing>Flow_04kes9x</bpmn2:outgoing>
+      </bpmn2:exclusiveGateway>
+      <bpmn2:sequenceFlow id="Flow_0venen4" sourceRef="Activity_14fn929" targetRef="Gateway_12y2x94"/>
+      <bpmn2:task id="Activity_14k7p62" camunda:modelerTemplate="org.drupal.action.eca_form_field_set_error">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_form_field_set_error"/>
+          </camunda:properties>
+          <camunda:field name="field_name">
+            <camunda:string>submit</camunda:string>
+          </camunda:field>
+          <camunda:field name="message">
+            <camunda:string>The certificate should not be valid for more than 30 days</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_0h6wi07</bpmn2:incoming>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_0h6wi07" camunda:modelerTemplate="org.drupal.condition.eca_scalar" sourceRef="Gateway_12y2x94" targetRef="Activity_14k7p62">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_scalar"/>
+          </camunda:properties>
+          <camunda:field name="left">
+            <camunda:string>[int]</camunda:string>
+          </camunda:field>
+          <camunda:field name="operator">
+            <camunda:string>greaterthan</camunda:string>
+          </camunda:field>
+          <camunda:field name="right">
+            <camunda:string>30</camunda:string>
+          </camunda:field>
+          <camunda:field name="type">
+            <camunda:string>value</camunda:string>
+          </camunda:field>
+          <camunda:field name="case">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="negate">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+      </bpmn2:sequenceFlow>
+      <bpmn2:task id="Activity_089t2j3" camunda:modelerTemplate="org.drupal.action.eca_form_field_get_value">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_form_field_get_value"/>
+          </camunda:properties>
+          <camunda:field name="field_name">
+            <camunda:string>field_number_of_accrued_days[0][value]</camunda:string>
+          </camunda:field>
+          <camunda:field name="token_name">
+            <camunda:string>number_of_accrued_days</camunda:string>
+          </camunda:field>
+          <camunda:field name="strip_tags">
+            <camunda:string>yes</camunda:string>
+          </camunda:field>
+          <camunda:field name="trim">
+            <camunda:string>yes</camunda:string>
+          </camunda:field>
+          <camunda:field name="xss_filter">
+            <camunda:string>yes</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_11fx6yl</bpmn2:incoming>
+        <bpmn2:incoming>Flow_04kes9x</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_1e57615</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_11fx6yl" camunda:modelerTemplate="org.drupal.condition.eca_scalar" sourceRef="Gateway_12y2x94" targetRef="Activity_089t2j3">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_scalar"/>
+          </camunda:properties>
+          <camunda:field name="left">
+            <camunda:string>[int]</camunda:string>
+          </camunda:field>
+          <camunda:field name="operator">
+            <camunda:string>equal</camunda:string>
+          </camunda:field>
+          <camunda:field name="right">
+            <camunda:string>30</camunda:string>
+          </camunda:field>
+          <camunda:field name="type">
+            <camunda:string>value</camunda:string>
+          </camunda:field>
+          <camunda:field name="case">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="negate">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+      </bpmn2:sequenceFlow>
+      <bpmn2:sequenceFlow id="Flow_04kes9x" camunda:modelerTemplate="org.drupal.condition.eca_scalar" sourceRef="Gateway_12y2x94" targetRef="Activity_089t2j3">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_scalar"/>
+          </camunda:properties>
+          <camunda:field name="left">
+            <camunda:string>[int]</camunda:string>
+          </camunda:field>
+          <camunda:field name="operator">
+            <camunda:string>lessthan</camunda:string>
+          </camunda:field>
+          <camunda:field name="right">
+            <camunda:string>30</camunda:string>
+          </camunda:field>
+          <camunda:field name="type">
+            <camunda:string>value</camunda:string>
+          </camunda:field>
+          <camunda:field name="case">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="negate">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+      </bpmn2:sequenceFlow>
+      <bpmn2:exclusiveGateway id="Gateway_1yl427j">
+        <bpmn2:incoming>Flow_1e57615</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_1ghrrre</bpmn2:outgoing>
+        <bpmn2:outgoing>Flow_0qjem7n</bpmn2:outgoing>
+        <bpmn2:outgoing>Flow_0wkzfr8</bpmn2:outgoing>
+      </bpmn2:exclusiveGateway>
+      <bpmn2:sequenceFlow id="Flow_1e57615" sourceRef="Activity_089t2j3" targetRef="Gateway_1yl427j"/>
+      <bpmn2:sequenceFlow id="Flow_1ghrrre" camunda:modelerTemplate="org.drupal.condition.eca_scalar" sourceRef="Gateway_1yl427j" targetRef="Activity_07q3wpd">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_scalar"/>
+          </camunda:properties>
+          <camunda:field name="left">
+            <camunda:string>[number_of_accrued_days]</camunda:string>
+          </camunda:field>
+          <camunda:field name="operator">
+            <camunda:string>greaterthan</camunda:string>
+          </camunda:field>
+          <camunda:field name="right">
+            <camunda:string>14</camunda:string>
+          </camunda:field>
+          <camunda:field name="type">
+            <camunda:string>value</camunda:string>
+          </camunda:field>
+          <camunda:field name="case">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="negate">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+      </bpmn2:sequenceFlow>
+      <bpmn2:task id="Activity_07q3wpd" camunda:modelerTemplate="org.drupal.action.eca_form_field_set_error">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_form_field_set_error"/>
+          </camunda:properties>
+          <camunda:field name="field_name">
+            <camunda:string>submit</camunda:string>
+          </camunda:field>
+          <camunda:field name="message">
+            <camunda:string>The number of bonus days should not exceed 14 days</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_1ghrrre</bpmn2:incoming>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_0j1xy8h" sourceRef="Event_10j3asr" targetRef="Activity_19mqy3l"/>
+      <bpmn2:exclusiveGateway id="Gateway_1crtotf">
+        <bpmn2:incoming>Flow_0qjem7n</bpmn2:incoming>
+        <bpmn2:incoming>Flow_0wkzfr8</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_0kwt518</bpmn2:outgoing>
+      </bpmn2:exclusiveGateway>
+      <bpmn2:sequenceFlow id="Flow_0qjem7n" camunda:modelerTemplate="org.drupal.condition.eca_scalar" sourceRef="Gateway_1yl427j" targetRef="Gateway_1crtotf">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_scalar"/>
+          </camunda:properties>
+          <camunda:field name="left">
+            <camunda:string>[number_of_accrued_days]</camunda:string>
+          </camunda:field>
+          <camunda:field name="operator">
+            <camunda:string>equal</camunda:string>
+          </camunda:field>
+          <camunda:field name="right">
+            <camunda:string>14</camunda:string>
+          </camunda:field>
+          <camunda:field name="type">
+            <camunda:string>value</camunda:string>
+          </camunda:field>
+          <camunda:field name="case">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="negate">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+      </bpmn2:sequenceFlow>
+      <bpmn2:sequenceFlow id="Flow_0wkzfr8" camunda:modelerTemplate="org.drupal.condition.eca_scalar" sourceRef="Gateway_1yl427j" targetRef="Gateway_1crtotf">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_scalar"/>
+          </camunda:properties>
+          <camunda:field name="left">
+            <camunda:string>[number_of_accrued_days]</camunda:string>
+          </camunda:field>
+          <camunda:field name="operator">
+            <camunda:string>lessthan</camunda:string>
+          </camunda:field>
+          <camunda:field name="right">
+            <camunda:string>14</camunda:string>
+          </camunda:field>
+          <camunda:field name="type">
+            <camunda:string>value</camunda:string>
+          </camunda:field>
+          <camunda:field name="case">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="negate">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+      </bpmn2:sequenceFlow>
+      <bpmn2:sequenceFlow id="Flow_0kwt518" sourceRef="Gateway_1crtotf" targetRef="Activity_0a95pje"/>
+      <bpmn2:task id="Activity_0a95pje" camunda:modelerTemplate="org.drupal.action.eca_form_field_get_value">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_form_field_get_value"/>
+          </camunda:properties>
+          <camunda:field name="field_name">
+            <camunda:string>field_user[0][target_id]</camunda:string>
+          </camunda:field>
+          <camunda:field name="token_name">
+            <camunda:string>receiver</camunda:string>
+          </camunda:field>
+          <camunda:field name="strip_tags">
+            <camunda:string>yes</camunda:string>
+          </camunda:field>
+          <camunda:field name="trim">
+            <camunda:string>yes</camunda:string>
+          </camunda:field>
+          <camunda:field name="xss_filter">
+            <camunda:string>yes</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_0kwt518</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_01zt3et</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:task id="Activity_0op12we" camunda:modelerTemplate="org.drupal.action.eca_token_load_user_current">
+        <bpmn2:extensionElements>
+          <camunda:field name="token_name">
+            <camunda:string>user</camunda:string>
+          </camunda:field>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_token_load_user_current"/>
+          </camunda:properties>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_01zt3et</bpmn2:incoming>
+        <bpmn2:outgoing>Flow_1ib4quk</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_01zt3et" sourceRef="Activity_0a95pje" targetRef="Activity_0op12we"/>
+      <bpmn2:task id="Activity_0kh9efg" camunda:modelerTemplate="org.drupal.action.eca_form_field_set_error">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_form_field_set_error"/>
+          </camunda:properties>
+          <camunda:field name="field_name">
+            <camunda:string>submit</camunda:string>
+          </camunda:field>
+          <camunda:field name="message">
+            <camunda:string>You cannot issue a bonus certificate to yourself</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+        <bpmn2:incoming>Flow_1ib4quk</bpmn2:incoming>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="Flow_1ib4quk" camunda:modelerTemplate="org.drupal.condition.eca_scalar" sourceRef="Activity_0op12we" targetRef="Activity_0kh9efg">
+        <bpmn2:extensionElements>
+          <camunda:properties>
+            <camunda:property name="pluginid" value="eca_scalar"/>
+          </camunda:properties>
+          <camunda:field name="left">
+            <camunda:string>[receiver]</camunda:string>
+          </camunda:field>
+          <camunda:field name="operator">
+            <camunda:string>equal</camunda:string>
+          </camunda:field>
+          <camunda:field name="right">
+            <camunda:string>[user:uid]</camunda:string>
+          </camunda:field>
+          <camunda:field name="type">
+            <camunda:string>value</camunda:string>
+          </camunda:field>
+          <camunda:field name="case">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+          <camunda:field name="negate">
+            <camunda:string>no</camunda:string>
+          </camunda:field>
+        </bpmn2:extensionElements>
+      </bpmn2:sequenceFlow>
+    </bpmn2:process>
+    <bpmndi:BPMNDiagram id="sid-ce079cce-d6aa-4276-9af5-aeb844417b3d">
+      <bpmndi:BPMNPlane id="sid-63332273-962d-449b-902a-f7dd2ea025d3" bpmnElement="Process_pAGYNUx">
+        <bpmndi:BPMNShape id="Event_10j3asr_di" bpmnElement="Event_10j3asr">
+          <dc:Bounds x="442" y="342" width="36" height="36"/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_19mqy3l_di" bpmnElement="Activity_19mqy3l">
+          <dc:Bounds x="550" y="320" width="100" height="80"/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_178p7tc_di" bpmnElement="Activity_178p7tc">
+          <dc:Bounds x="730" y="320" width="100" height="80"/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_1daut4g_di" bpmnElement="Activity_1daut4g">
+          <dc:Bounds x="920" y="320" width="100" height="80"/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_0zyowpx_di" bpmnElement="Activity_0zyowpx">
+          <dc:Bounds x="1110" y="320" width="100" height="80"/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_193h225_di" bpmnElement="Activity_193h225">
+          <dc:Bounds x="1300" y="320" width="100" height="80"/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Gateway_0algxq7_di" bpmnElement="Gateway_0algxq7" isMarkerVisible="true">
+          <dc:Bounds x="1325" y="465" width="50" height="50"/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_1l1pyqj_di" bpmnElement="Activity_1l1pyqj">
+          <dc:Bounds x="1480" y="450" width="100" height="80"/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Gateway_030325l_di" bpmnElement="Gateway_030325l" isMarkerVisible="true">
+          <dc:Bounds x="1325" y="775" width="50" height="50"/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_1fyzhhq_di" bpmnElement="Activity_1fyzhhq">
+          <dc:Bounds x="1480" y="760" width="100" height="80"/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_1p7ewjz_di" bpmnElement="Activity_1p7ewjz">
+          <dc:Bounds x="1300" y="910" width="100" height="80"/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Gateway_0okuvgs_di" bpmnElement="Gateway_0okuvgs" isMarkerVisible="true">
+          <dc:Bounds x="1325" y="615" width="50" height="50"/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_065rja4_di" bpmnElement="Activity_065rja4">
+          <dc:Bounds x="1480" y="910" width="100" height="80"/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_14fn929_di" bpmnElement="Activity_14fn929">
+          <dc:Bounds x="1660" y="910" width="100" height="80"/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Gateway_12y2x94_di" bpmnElement="Gateway_12y2x94" isMarkerVisible="true">
+          <dc:Bounds x="1845" y="925" width="50" height="50"/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_14k7p62_di" bpmnElement="Activity_14k7p62">
+          <dc:Bounds x="1820" y="1040" width="100" height="80"/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_089t2j3_di" bpmnElement="Activity_089t2j3">
+          <dc:Bounds x="1980" y="910" width="100" height="80"/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Gateway_1yl427j_di" bpmnElement="Gateway_1yl427j" isMarkerVisible="true">
+          <dc:Bounds x="2165" y="925" width="50" height="50"/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_1tvooav_di" bpmnElement="Activity_07q3wpd">
+          <dc:Bounds x="2140" y="1040" width="100" height="80"/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Gateway_1crtotf_di" bpmnElement="Gateway_1crtotf" isMarkerVisible="true">
+          <dc:Bounds x="2305" y="925" width="50" height="50"/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_0oi5xru_di" bpmnElement="Activity_0a95pje">
+          <dc:Bounds x="2450" y="910" width="100" height="80"/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_0op12we_di" bpmnElement="Activity_0op12we">
+          <dc:Bounds x="2650" y="910" width="100" height="80"/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNShape id="Activity_0kh9efg_di" bpmnElement="Activity_0kh9efg">
+          <dc:Bounds x="2850" y="910" width="100" height="80"/>
+        </bpmndi:BPMNShape>
+        <bpmndi:BPMNEdge id="Flow_0r90nuj_di" bpmnElement="Flow_0r90nuj">
+          <di:waypoint x="650" y="360"/>
+          <di:waypoint x="730" y="360"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_11sh4dt_di" bpmnElement="Flow_11sh4dt">
+          <di:waypoint x="830" y="360"/>
+          <di:waypoint x="920" y="360"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_16p3n44_di" bpmnElement="Flow_16p3n44">
+          <di:waypoint x="1020" y="360"/>
+          <di:waypoint x="1110" y="360"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_0c5mkuj_di" bpmnElement="Flow_0c5mkuj">
+          <di:waypoint x="1210" y="360"/>
+          <di:waypoint x="1300" y="360"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_0bgzzoo_di" bpmnElement="Flow_0bgzzoo">
+          <di:waypoint x="1350" y="400"/>
+          <di:waypoint x="1350" y="465"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_0gdt5l3_di" bpmnElement="Flow_0gdt5l3">
+          <di:waypoint x="1375" y="490"/>
+          <di:waypoint x="1480" y="490"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_0nd7cfp_di" bpmnElement="Flow_0nd7cfp">
+          <di:waypoint x="1350" y="515"/>
+          <di:waypoint x="1350" y="615"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_1xhtr6u_di" bpmnElement="Flow_1xhtr6u">
+          <di:waypoint x="1325" y="490"/>
+          <di:waypoint x="1250" y="490"/>
+          <di:waypoint x="1250" y="640"/>
+          <di:waypoint x="1325" y="640"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_160bxyc_di" bpmnElement="Flow_160bxyc">
+          <di:waypoint x="1350" y="825"/>
+          <di:waypoint x="1350" y="880"/>
+          <di:waypoint x="1530" y="880"/>
+          <di:waypoint x="1530" y="840"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_0252bel_di" bpmnElement="Flow_0252bel">
+          <di:waypoint x="1375" y="800"/>
+          <di:waypoint x="1480" y="800"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_01s0c9l_di" bpmnElement="Flow_01s0c9l">
+          <di:waypoint x="1325" y="800"/>
+          <di:waypoint x="1250" y="800"/>
+          <di:waypoint x="1250" y="950"/>
+          <di:waypoint x="1300" y="950"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_0t2jz44_di" bpmnElement="Flow_0t2jz44">
+          <di:waypoint x="1350" y="665"/>
+          <di:waypoint x="1350" y="775"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_0p40swr_di" bpmnElement="Flow_0p40swr">
+          <di:waypoint x="1400" y="950"/>
+          <di:waypoint x="1480" y="950"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_1l2y9ag_di" bpmnElement="Flow_1l2y9ag">
+          <di:waypoint x="1580" y="950"/>
+          <di:waypoint x="1660" y="950"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_0venen4_di" bpmnElement="Flow_0venen4">
+          <di:waypoint x="1760" y="950"/>
+          <di:waypoint x="1845" y="950"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_0h6wi07_di" bpmnElement="Flow_0h6wi07">
+          <di:waypoint x="1870" y="975"/>
+          <di:waypoint x="1870" y="1040"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_11fx6yl_di" bpmnElement="Flow_11fx6yl">
+          <di:waypoint x="1895" y="950"/>
+          <di:waypoint x="1980" y="950"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_04kes9x_di" bpmnElement="Flow_04kes9x">
+          <di:waypoint x="1870" y="925"/>
+          <di:waypoint x="1870" y="870"/>
+          <di:waypoint x="2030" y="870"/>
+          <di:waypoint x="2030" y="910"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_1e57615_di" bpmnElement="Flow_1e57615">
+          <di:waypoint x="2080" y="950"/>
+          <di:waypoint x="2165" y="950"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_1ghrrre_di" bpmnElement="Flow_1ghrrre">
+          <di:waypoint x="2190" y="975"/>
+          <di:waypoint x="2190" y="1040"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_0j1xy8h_di" bpmnElement="Flow_0j1xy8h">
+          <di:waypoint x="478" y="360"/>
+          <di:waypoint x="550" y="360"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_0qjem7n_di" bpmnElement="Flow_0qjem7n">
+          <di:waypoint x="2215" y="950"/>
+          <di:waypoint x="2305" y="950"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_0wkzfr8_di" bpmnElement="Flow_0wkzfr8">
+          <di:waypoint x="2190" y="925"/>
+          <di:waypoint x="2190" y="870"/>
+          <di:waypoint x="2330" y="870"/>
+          <di:waypoint x="2330" y="925"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_0kwt518_di" bpmnElement="Flow_0kwt518">
+          <di:waypoint x="2355" y="950"/>
+          <di:waypoint x="2450" y="950"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_01zt3et_di" bpmnElement="Flow_01zt3et">
+          <di:waypoint x="2550" y="950"/>
+          <di:waypoint x="2650" y="950"/>
+        </bpmndi:BPMNEdge>
+        <bpmndi:BPMNEdge id="Flow_1ib4quk_di" bpmnElement="Flow_1ib4quk">
+          <di:waypoint x="2750" y="950"/>
+          <di:waypoint x="2850" y="950"/>
+        </bpmndi:BPMNEdge>
+      </bpmndi:BPMNPlane>
+    </bpmndi:BPMNDiagram>
+  </bpmn2:definitions>

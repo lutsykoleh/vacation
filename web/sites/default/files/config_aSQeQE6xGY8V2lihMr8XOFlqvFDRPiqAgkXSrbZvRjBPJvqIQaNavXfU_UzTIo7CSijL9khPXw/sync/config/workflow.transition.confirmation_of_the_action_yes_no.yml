@@ -1,0 +1,25 @@
+uuid: fb65706f-2bbd-49a8-80b4-208336f23c0d
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.state.confirmation_of_the_action_no
+    - workflow.state.confirmation_of_the_action_yes
+id: confirmation_of_the_action_yes_no
+label: null
+module: workflow
+from_sid: confirmation_of_the_action_yes
+to_sid: confirmation_of_the_action_no
+roles:
+  workflow_author: '0'
+  anonymous: '0'
+  authenticated: '0'
+  administrator: '0'
+  junior: '0'
+  middle: '0'
+  senior: '0'
+  pm: '0'
+  shief_pm: '0'
+  teamlead: '0'
+  seo: '0'
+  client: '0'

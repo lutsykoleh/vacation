@@ -1,0 +1,12 @@
+uuid: 8a056486-8517-4713-ba33-ee007c4b597d
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.workflow.vacation_status
+id: vacation_status_not_relevant
+label: 'Not relevant'
+module: workflow
+wid: vacation_status
+weight: -8
+sysid: 0

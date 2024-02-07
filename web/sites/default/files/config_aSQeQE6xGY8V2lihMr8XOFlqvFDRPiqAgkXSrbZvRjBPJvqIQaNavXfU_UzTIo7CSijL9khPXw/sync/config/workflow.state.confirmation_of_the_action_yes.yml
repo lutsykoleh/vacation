@@ -1,0 +1,12 @@
+uuid: b46ddcd1-f565-4518-b5ac-d952d22272fd
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.workflow.confirmation_of_the_action
+id: confirmation_of_the_action_yes
+label: 'No'
+module: workflow
+wid: confirmation_of_the_action
+weight: -8
+sysid: 0

@@ -1,0 +1,25 @@
+uuid: eb737967-0a76-4b11-8103-7dbf24e5b53e
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.state.request_type_creation
+    - workflow.state.request_type_unpaid
+id: request_type_creation_unpaid
+label: null
+module: workflow
+from_sid: request_type_creation
+to_sid: request_type_unpaid
+roles:
+  workflow_author: workflow_author
+  anonymous: '0'
+  authenticated: '0'
+  administrator: '0'
+  junior: '0'
+  middle: '0'
+  senior: '0'
+  pm: '0'
+  shief_pm: '0'
+  teamlead: '0'
+  seo: '0'
+  client: '0'

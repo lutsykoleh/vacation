@@ -1,0 +1,293 @@
+uuid: b4184591-1573-497b-9115-080a34444993
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.request.field_cancellation
+    - field.field.node.request.field_certificate
+    - field.field.node.request.field_confirmation_of_the_action
+    - field.field.node.request.field_range_for_unpaid_days
+    - field.field.node.request.field_range_of_unpaid_time
+    - field.field.node.request.field_range_of_vacation_days
+    - field.field.node.request.field_reason
+    - field.field.node.request.field_request_status
+    - field.field.node.request.field_request_type
+    - field.field.node.request.field_unpaid_type
+    - field.field.node.request.field_user
+    - field.field.node.request.field_user_checker
+    - field.field.node.request.field_user_memory
+    - field.field.node.request.field_vacation_status
+    - node.type.request
+  module:
+    - conditional_fields
+    - datetime_range
+    - text
+id: node.request.default
+targetEntityType: node
+bundle: request
+mode: default
+content:
+  field_range_for_unpaid_days:
+    type: daterange_default
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings:
+      conditional_fields:
+        617e1888-6d16-4136-afee-7a9143f27508:
+          entity_type: node
+          bundle: request
+          dependee: field_unpaid_type
+          settings:
+            state: visible
+            reset: true
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: 'Full day'
+            effect: show
+            effect_options: {  }
+            selector: ''
+        0f074317-3f2c-4366-bb7b-f26cbfed9667:
+          entity_type: node
+          bundle: request
+          dependee: field_unpaid_type
+          settings:
+            state: required
+            reset: true
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: 'Full day'
+            effect: show
+            effect_options: {  }
+            selector: ''
+        1a740f71-e97a-4a87-bf02-c8f089e78b95:
+          entity_type: node
+          bundle: request
+          dependee: field_request_type
+          settings:
+            state: visible
+            reset: true
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: Unpaid
+            effect: show
+            effect_options: {  }
+            selector: ''
+  field_range_of_unpaid_time:
+    type: daterange_default
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings:
+      conditional_fields:
+        6050cdef-fbaa-4868-bad4-83597b7742c0:
+          entity_type: node
+          bundle: request
+          dependee: field_unpaid_type
+          settings:
+            state: visible
+            reset: true
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: 'Not a full day'
+            effect: show
+            effect_options: {  }
+            selector: ''
+        7b0239aa-f90d-41cb-9ba2-ed78a9875d71:
+          entity_type: node
+          bundle: request
+          dependee: field_unpaid_type
+          settings:
+            state: required
+            reset: true
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: 'Not a full day'
+            effect: show
+            effect_options: {  }
+            selector: ''
+        383f667e-cbb4-4d08-97c1-f2ff33bb86f8:
+          entity_type: node
+          bundle: request
+          dependee: field_request_type
+          settings:
+            state: visible
+            reset: true
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: Unpaid
+            effect: show
+            effect_options: {  }
+            selector: ''
+  field_range_of_vacation_days:
+    type: daterange_default
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings:
+      conditional_fields:
+        2555af1c-dc0c-49d0-a925-12eaf11d9fd2:
+          entity_type: node
+          bundle: request
+          dependee: field_request_type
+          settings:
+            state: visible
+            reset: true
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: Paid
+            effect: show
+            effect_options: {  }
+            selector: ''
+        d363912a-bfba-415b-9be2-76980d41bef4:
+          entity_type: node
+          bundle: request
+          dependee: field_request_type
+          settings:
+            state: required
+            reset: true
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: Paid
+            effect: show
+            effect_options: {  }
+            selector: ''
+  field_reason:
+    type: text_textarea
+    weight: 7
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_request_type:
+    type: options_buttons
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings:
+      conditional_fields: {  }
+  field_unpaid_type:
+    type: options_select
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings:
+      conditional_fields:
+        88ec7c54-f266-4ceb-aad8-2aee67699d08:
+          entity_type: node
+          bundle: request
+          dependee: field_request_type
+          settings:
+            state: visible
+            reset: true
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: Unpaid
+            effect: show
+            effect_options: {  }
+            selector: ''
+        26c7b326-e091-4842-97ba-3fb7f49e4b6a:
+          entity_type: node
+          bundle: request
+          dependee: field_request_type
+          settings:
+            state: required
+            reset: true
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: Unpaid
+            effect: show
+            effect_options: {  }
+            selector: ''
+  field_user:
+    type: entity_reference_autocomplete
+    weight: 8
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 1
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_cancellation: true
+  field_certificate: true
+  field_confirmation_of_the_action: true
+  field_request_status: true
+  field_user_checker: true
+  field_user_memory: true
+  field_vacation_status: true
+  path: true
+  promote: true
+  status: true
+  sticky: true

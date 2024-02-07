@@ -1,0 +1,21 @@
+uuid: 4bd6d88f-6c65-419f-b4a6-f20fbc7d014e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_accrual_date
+    - node.type.bonus_certificate
+  module:
+    - datetime
+id: node.bonus_certificate.field_accrual_date
+field_name: field_accrual_date
+entity_type: node
+bundle: bonus_certificate
+label: 'Accrual date'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

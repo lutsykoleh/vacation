@@ -1,0 +1,14 @@
+uuid: 0ccf8db7-f3d3-436c-b53a-5621b903d503
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.junior
+  module:
+    - user
+id: user_add_role_action.junior
+label: 'Add the Junior role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: junior

@@ -1,0 +1,20 @@
+uuid: d63eed24-532f-4533-8ba7-51129bd70f09
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime_range
+    - node
+id: node.field_range_of_unpaid_time
+field_name: field_range_of_unpaid_time
+entity_type: node
+type: daterange
+settings:
+  datetime_type: datetime
+module: datetime_range
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

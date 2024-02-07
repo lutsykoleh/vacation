@@ -1,0 +1,455 @@
+uuid: cbf5b734-fd69-4465-874b-90632d2c2db7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.bonus_certificate.field_number_of_accrued_days
+    - field.field.node.certificate.field_number_of_accrued_days
+    - field.field.node.request.field_certificate
+    - field.field.node.request.field_request_status
+    - field.field.node.request.field_vacation_status
+    - field.field.node.transaction.field_certificate
+    - field.field.node.transaction.field_number_of_accrued_days
+    - field.field.node.transaction.field_number_of_days
+    - field.storage.node.field_certificate
+    - field.storage.node.field_number_of_accrued_days
+    - field.storage.node.field_number_of_days
+    - field.storage.node.field_request_status
+    - field.storage.node.field_vacation_status
+    - node.type.request
+  module:
+    - eca_base
+    - eca_content
+    - eca_tamper
+    - eca_user
+id: process_bfrsaai
+modeller: bpmn_io
+label: Cancellation
+version: ''
+weight: -10
+events:
+  Event_1l7uc88:
+    plugin: 'content_entity:update'
+    label: Event_1l7uc88
+    configuration:
+      type: 'node request'
+    successors:
+      -
+        id: Activity_00hd1g9
+        condition: ''
+conditions:
+  Flow_0m0tjwz:
+    plugin: eca_scalar
+    configuration:
+      case: false
+      left: '[vacreq:field_request_status:value]'
+      right: request_status_approve
+      operator: equal
+      type: value
+      negate: true
+  Flow_0nfj7c9:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[vacreq:field_request_status:value]'
+      right: request_status_approve
+      operator: equal
+      type: value
+  Flow_0m0iczw:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[vacreq:field_request_type]'
+      right: Paid
+      operator: equal
+      type: value
+  Flow_1j5o8aa:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[vacreq:field_request_type]'
+      right: Unpaid
+      operator: equal
+      type: value
+  Flow_1214pfj:
+    plugin: eca_entity_field_value
+    configuration:
+      negate: false
+      case: false
+      expected_value: '1'
+      field_name: status.value
+      operator: equal
+      type: value
+      entity: '[vacreq]'
+  Flow_0io8rag:
+    plugin: eca_entity_field_value
+    configuration:
+      negate: false
+      case: false
+      expected_value: '0'
+      field_name: status.value
+      operator: equal
+      type: value
+      entity: '[vacreq]'
+  Flow_15vokmv:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[vacreq:field_confirmation_of_the_action:value]'
+      right: confirmation_of_the_action_no
+      operator: equal
+      type: value
+  Flow_1aqtmtu:
+    plugin: eca_scalar
+    configuration:
+      case: false
+      left: '[vacreq:field_request_status]'
+      right: request_status_creation
+      operator: equal
+      type: value
+      negate: true
+  Flow_039w4sj:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[transaction_list_item_count]'
+      right: '0'
+      operator: greaterthan
+      type: value
+  Flow_1tfpqjp:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[transaction_list_item_count]'
+      right: '0'
+      operator: equal
+      type: value
+gateways:
+  Gateway_076e50l:
+    type: 0
+    successors:
+      -
+        id: Activity_0vsaf0u
+        condition: Flow_0m0tjwz
+      -
+        id: Gateway_155xvvk
+        condition: Flow_0nfj7c9
+  Gateway_155xvvk:
+    type: 0
+    successors:
+      -
+        id: Activity_0nfueer
+        condition: Flow_0m0iczw
+      -
+        id: Activity_0u3hloe
+        condition: Flow_1j5o8aa
+  Gateway_1d0ojb9:
+    type: 0
+    successors:
+      -
+        id: Gateway_076e50l
+        condition: Flow_1214pfj
+      -
+        id: Activity_1tns6vu
+        condition: Flow_0io8rag
+  Gateway_13pg0qs:
+    type: 0
+    successors:
+      -
+        id: Gateway_1d0ojb9
+        condition: Flow_15vokmv
+  Gateway_11p5u6z:
+    type: 0
+    successors:
+      -
+        id: Activity_0du3q9t
+        condition: ''
+  Gateway_1b90tuy:
+    type: 0
+    successors:
+      -
+        id: Activity_0dskyr6
+        condition: Flow_039w4sj
+      -
+        id: Activity_053hl2y
+        condition: Flow_1tfpqjp
+actions:
+  Activity_0nui6jo:
+    plugin: eca_token_load_entity
+    label: Activity_0nui6jo
+    configuration:
+      token_name: vacreq
+      from: current
+      entity_type: _none
+      entity_id: ''
+      revision_id: ''
+      properties: ''
+      langcode: _interface
+      latest_revision: false
+      unchanged: false
+      object: ''
+    successors:
+      -
+        id: Gateway_13pg0qs
+        condition: Flow_1aqtmtu
+  Activity_0vsaf0u:
+    plugin: eca_set_field_value
+    label: Activity_0vsaf0u
+    configuration:
+      field_name: field_request_status
+      field_value: request_status_creation
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: '[vacreq]'
+    successors:
+      -
+        id: Activity_1fzyrnj
+        condition: ''
+  Activity_1tns6vu:
+    plugin: eca_set_field_value
+    label: Activity_1tns6vu
+    configuration:
+      field_name: status.value
+      field_value: '1'
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: true
+      object: '[vacreq]'
+    successors: {  }
+  Activity_0u3hloe:
+    plugin: eca_set_field_value
+    label: Activity_0u3hloe
+    configuration:
+      field_name: field_request_status
+      field_value: request_status_creation
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: '[vacreq]'
+    successors:
+      -
+        id: Activity_1psbyli
+        condition: ''
+  Activity_1psbyli:
+    plugin: eca_set_field_value
+    label: Activity_1psbyli
+    configuration:
+      field_name: field_vacation_status
+      field_value: vacation_status_not_relevant
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: '[vacreq]'
+    successors:
+      -
+        id: Activity_0gow5uf
+        condition: ''
+  Activity_1fzyrnj:
+    plugin: eca_set_field_value
+    label: Activity_1fzyrnj
+    configuration:
+      field_name: field_vacation_status
+      field_value: vacation_status_not_relevant
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: '[vacreq]'
+    successors:
+      -
+        id: Activity_1xdsh2u
+        condition: ''
+  Activity_1xdsh2u:
+    plugin: eca_save_entity
+    label: Activity_1xdsh2u
+    configuration:
+      object: '[vacreq]'
+    successors: {  }
+  Activity_0gow5uf:
+    plugin: eca_save_entity
+    label: Activity_0gow5uf
+    configuration:
+      object: '[vacreq]'
+    successors: {  }
+  Activity_053hl2y:
+    plugin: eca_set_field_value
+    label: Activity_053hl2y
+    configuration:
+      field_name: field_request_status
+      field_value: request_status_creation
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: '[vacreq]'
+    successors:
+      -
+        id: Activity_04td45v
+        condition: ''
+  Activity_04td45v:
+    plugin: eca_set_field_value
+    label: Activity_04td45v
+    configuration:
+      field_name: field_vacation_status
+      field_value: vacation_status_not_relevant
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: '[vacreq]'
+    successors:
+      -
+        id: Activity_1q6cilb
+        condition: ''
+  Activity_1q6cilb:
+    plugin: eca_save_entity
+    label: Activity_1q6cilb
+    configuration:
+      object: '[vacreq]'
+    successors: {  }
+  Activity_00hd1g9:
+    plugin: eca_token_load_user_current
+    label: Activity_00hd1g9
+    configuration:
+      token_name: user
+    successors:
+      -
+        id: Activity_1lcr1w0
+        condition: ''
+  Activity_1lcr1w0:
+    plugin: eca_switch_account
+    label: Activity_1lcr1w0
+    configuration:
+      user_id: '1'
+    successors:
+      -
+        id: Activity_0nui6jo
+        condition: ''
+  Activity_0dskyr6:
+    plugin: eca_list_remove
+    label: Activity_0dskyr6
+    configuration:
+      value: ''
+      token_name: transaction_list_first
+      method: first
+      index: ''
+      list_token: transaction_list
+    successors:
+      -
+        id: Activity_1y78h8j
+        condition: ''
+  Activity_0du3q9t:
+    plugin: eca_count
+    label: Activity_0du3q9t
+    configuration:
+      token_name: transaction_list_item_count
+      list_token: transaction_list
+    successors:
+      -
+        id: Gateway_1b90tuy
+        condition: ''
+  Activity_1xcw2hx:
+    plugin: eca_token_load_entity
+    label: Activity_1xcw2hx
+    configuration:
+      token_name: certificate
+      from: id
+      entity_type: node
+      entity_id: '[transaction:field_certificate:target_id]'
+      revision_id: ''
+      properties: ''
+      langcode: _interface
+      latest_revision: false
+      unchanged: false
+      object: ''
+    successors:
+      -
+        id: Activity_01f6nlf
+        condition: ''
+  Activity_01f6nlf:
+    plugin: 'eca_tamper:math'
+    label: Activity_01f6nlf
+    configuration:
+      operation: addition
+      flip: false
+      value: '[certificate:field_number_of_accrued_days]'
+      eca_data: '[transaction:field_number_of_days]'
+      eca_token_name: '[days]'
+    successors:
+      -
+        id: Activity_1dploxu
+        condition: ''
+  Activity_1dploxu:
+    plugin: eca_set_field_value
+    label: Activity_1dploxu
+    configuration:
+      field_name: field_number_of_accrued_days
+      field_value: '[days]'
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: true
+      object: '[certificate]'
+    successors:
+      -
+        id: Activity_17dcmbk
+        condition: ''
+  Activity_17dcmbk:
+    plugin: eca_delete_entity
+    label: Activity_17dcmbk
+    configuration:
+      object: transaction
+    successors:
+      -
+        id: Gateway_11p5u6z
+        condition: ''
+  Activity_0nfueer:
+    plugin: eca_token_set_value
+    label: Activity_0nfueer
+    configuration:
+      token_name: transaction_list
+      token_value: '[vacreq:field_certificate]'
+      use_yaml: false
+    successors:
+      -
+        id: Gateway_11p5u6z
+        condition: ''
+      -
+        id: Activity_1vfo63z
+        condition: ''
+  Activity_1y78h8j:
+    plugin: eca_token_load_entity
+    label: Activity_1y78h8j
+    configuration:
+      token_name: transaction
+      from: id
+      entity_type: node
+      entity_id: '[transaction_list_first:target_id]'
+      revision_id: ''
+      properties: ''
+      langcode: _interface
+      latest_revision: false
+      unchanged: false
+      object: ''
+    successors:
+      -
+        id: Activity_1xcw2hx
+        condition: ''
+  Activity_1vfo63z:
+    plugin: action_message_action
+    label: Activity_1vfo63z
+    configuration:
+      replace_tokens: false
+      message: '[transaction_list]'
+    successors: {  }

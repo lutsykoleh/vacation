@@ -1,0 +1,20 @@
+uuid: 2fa56eb1-bf2b-4f89-8e39-c2c1e73923be
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.state.request_status_approve
+    - workflow.state.request_status_disapprove
+id: request_status_disapprove_approve
+label: null
+module: workflow
+from_sid: request_status_disapprove
+to_sid: request_status_approve
+roles:
+  workflow_author: '0'
+  administrator: '0'
+  pm: '0'
+  shief_pm: '0'
+  teamlead: '0'
+  seo: '0'
+  client: '0'

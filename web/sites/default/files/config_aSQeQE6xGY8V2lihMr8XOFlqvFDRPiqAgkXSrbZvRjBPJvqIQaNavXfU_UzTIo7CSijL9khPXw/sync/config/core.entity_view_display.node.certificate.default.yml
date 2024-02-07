@@ -1,0 +1,68 @@
+uuid: b6e57953-794c-4745-9110-b67b2abb34ee
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.certificate.field_accrual_date
+    - field.field.node.certificate.field_certificate_status
+    - field.field.node.certificate.field_expiration_date
+    - field.field.node.certificate.field_number_of_accrued_days
+    - field.field.node.certificate.field_user
+    - node.type.certificate
+  module:
+    - datetime
+    - options
+    - user
+id: node.certificate.default
+targetEntityType: node
+bundle: certificate
+mode: default
+content:
+  field_accrual_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: UTC
+      format_type: medium
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_certificate_status:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_expiration_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: UTC
+      format_type: medium
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_number_of_accrued_days:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_user:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

@@ -1,0 +1,21 @@
+uuid: 3f90bde9-15df-4761-83a8-cdaef282b3a7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_range_of_unpaid_time
+    - node.type.request
+  module:
+    - datetime_range
+id: node.request.field_range_of_unpaid_time
+field_name: field_range_of_unpaid_time
+entity_type: node
+bundle: request
+label: 'Range of unpaid time'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: daterange

@@ -1,0 +1,22 @@
+uuid: e8796aae-7543-466b-9e7a-c10d9eb819a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_confirmation_of_the_action
+    - node.type.request
+  module:
+    - workflow
+id: node.request.field_confirmation_of_the_action
+field_name: field_confirmation_of_the_action
+entity_type: node
+bundle: request
+label: 'Confirmation of the action'
+description: ''
+required: true
+translatable: false
+default_value:
+  - {  }
+default_value_callback: ''
+settings: {  }
+field_type: workflow

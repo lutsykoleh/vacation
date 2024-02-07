@@ -1,0 +1,21 @@
+uuid: eeca1df6-8ac8-4f8e-aa32-2ec4cfb1ae14
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_expiration_date
+    - node.type.bonus_certificate
+  module:
+    - datetime
+id: node.bonus_certificate.field_expiration_date
+field_name: field_expiration_date
+entity_type: node
+bundle: bonus_certificate
+label: 'Expiration date'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

@@ -1,0 +1,23 @@
+uuid: 4d26f9db-1db5-4297-b06b-4a05491bc242
+langcode: en
+status: true
+dependencies:
+  module:
+    - search
+  theme:
+    - exam
+_core:
+  default_config_hash: yEBET0cqDbk8dkWzaJw-8CKft0961VBflsISoSR6Lj8
+id: exam_search_form_narrow
+theme: exam
+region: primary_menu
+weight: -6
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Search form (narrow)'
+  label_display: '0'
+  provider: search
+  page_id: ''
+visibility: {  }

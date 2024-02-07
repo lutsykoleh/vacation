@@ -1,0 +1,12 @@
+uuid: af646153-235a-497c-b27c-0da8bfd71e89
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.state.cancellation_not_cancel
+id: cancellation_not_cancel_not_cancel
+label: null
+module: workflow
+from_sid: cancellation_not_cancel
+to_sid: cancellation_not_cancel
+roles: {  }

@@ -1,0 +1,16 @@
+uuid: a25fdac4-dfa2-40ea-ae8b-b0e54f23f275
+langcode: en
+status: true
+dependencies: {  }
+id: confirmation_of_the_action
+label: 'Confirmation of the action'
+module: workflow
+options:
+  name_as_title: 0
+  fieldset: 0
+  options: buttons
+  schedule_enable: false
+  schedule_timezone: 0
+  always_update_entity: 0
+  comment_log_node: 0
+  watchdog_log: 1

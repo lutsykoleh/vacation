@@ -1,0 +1,12 @@
+uuid: 63a303ab-8cd8-4942-bb0e-50bbd82b182a
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.workflow.cancellation
+id: cancellation_creation
+label: Creation
+module: workflow
+wid: cancellation
+weight: -11
+sysid: 1

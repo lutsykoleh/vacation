@@ -1,0 +1,12 @@
+uuid: c1c598b3-50eb-4da7-b92d-d72eeb7a2224
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.state.vacation_status_not_relevant
+id: vacation_status_not_relevant_not_relevant
+label: null
+module: workflow
+from_sid: vacation_status_not_relevant
+to_sid: vacation_status_not_relevant
+roles: {  }

@@ -1,0 +1,760 @@
+uuid: cde1122b-e62d-4d11-b6b8-6cc5e9798291
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.bonus_certificate.field_certificate_status
+    - field.field.node.bonus_certificate.field_expiration_date
+    - field.field.node.bonus_certificate.field_number_of_accrued_days
+    - field.field.node.bonus_certificate.field_user
+    - field.field.node.certificate.field_certificate_status
+    - field.field.node.certificate.field_expiration_date
+    - field.field.node.certificate.field_number_of_accrued_days
+    - field.field.node.certificate.field_user
+    - field.field.node.request.field_certificate
+    - field.field.node.request.field_user
+    - field.field.node.transaction.field_certificate
+    - field.field.node.transaction.field_number_of_accrued_days
+    - field.field.node.transaction.field_number_of_days
+    - field.field.node.transaction.field_transaction_status
+    - field.field.node.transaction.field_user
+    - field.storage.node.field_certificate
+    - field.storage.node.field_certificate_status
+    - field.storage.node.field_expiration_date
+    - field.storage.node.field_number_of_accrued_days
+    - field.storage.node.field_number_of_days
+    - field.storage.node.field_transaction_status
+    - field.storage.node.field_user
+    - node.type.bonus_certificate
+    - node.type.transaction
+    - views.view.burning_certificates
+    - views.view.my_certificate
+  module:
+    - eca_base
+    - eca_content
+    - eca_queue
+    - eca_tamper
+    - eca_user
+    - eca_views
+id: process_trfunah
+modeller: bpmn_io
+label: 'Bonus certificate'
+version: ''
+weight: -10
+events:
+  Event_0ecf1wm:
+    plugin: 'content_entity:insert'
+    label: Event_0ecf1wm
+    configuration:
+      type: 'node bonus_certificate'
+    successors:
+      -
+        id: Activity_0qi0imc
+        condition: ''
+  Event_0gw09no:
+    plugin: 'eca_queue:processing_task'
+    label: Event_0gw09no
+    configuration:
+      distribute: false
+      task_name: 'Burning of bonus certificates'
+      task_value: ''
+      cron: ''
+    successors:
+      -
+        id: Activity_0f0vksr
+        condition: ''
+  Event_065ddch:
+    plugin: 'eca_queue:processing_task'
+    label: Event_065ddch
+    configuration:
+      distribute: false
+      task_name: Re-checking
+      task_value: ''
+      cron: ''
+    successors:
+      -
+        id: Activity_0f0vksr
+        condition: ''
+conditions:
+  Flow_1aeq9ex:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[balance_item_count]'
+      right: '0'
+      operator: greaterthan
+      type: value
+  Flow_1dngtqc:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[balance_item_count]'
+      right: '0'
+      operator: equal
+      type: value
+  Flow_1tmvtg2:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[burboncer_item_count]'
+      right: '0'
+      operator: greaterthan
+      type: value
+  Flow_0m5mlq3:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[burboncer_zero_expiration_date]'
+      right: '[current-date:raw]'
+      operator: equal
+      type: value
+  Flow_0szsaas:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[burboncer_zero_expiration_date]'
+      right: '[current-date:raw]'
+      operator: lessthan
+      type: value
+  Flow_1tgit4f:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[burboncer_zero_expiration_date]'
+      right: '[current-date:raw]'
+      operator: greaterthan
+      type: value
+  Flow_03g9hee:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[burboncer_item_count]'
+      right: '0'
+      operator: equal
+      type: value
+  Flow_0llr0kf:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[bon_balance_item_count]'
+      right: '0'
+      operator: greaterthan
+      type: value
+  Flow_0l0vsju:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[bon_balance_item_count]'
+      right: '0'
+      operator: equal
+      type: value
+gateways:
+  Gateway_16nnupt:
+    type: 0
+    successors:
+      -
+        id: Activity_1r2wgwa
+        condition: ''
+  Gateway_1fbnjbe:
+    type: 0
+    successors:
+      -
+        id: Activity_0rgok9u
+        condition: Flow_1aeq9ex
+      -
+        id: Activity_1j2oyrt
+        condition: Flow_1dngtqc
+  Gateway_1pncwlm:
+    type: 0
+    successors:
+      -
+        id: Activity_09kusd8
+        condition: Flow_1tmvtg2
+      -
+        id: Activity_00vtcfz
+        condition: Flow_03g9hee
+  Gateway_1xaq305:
+    type: 0
+    successors:
+      -
+        id: Activity_1curke4
+        condition: Flow_0m5mlq3
+      -
+        id: Activity_1curke4
+        condition: Flow_0szsaas
+      -
+        id: Gateway_0kwao30
+        condition: Flow_1tgit4f
+  Gateway_06kzcji:
+    type: 0
+    successors:
+      -
+        id: Activity_1pjuwyv
+        condition: ''
+  Gateway_0kwao30:
+    type: 0
+    successors:
+      -
+        id: Gateway_06kzcji
+        condition: ''
+  Gateway_1az952b:
+    type: 0
+    successors:
+      -
+        id: Activity_0vm7uac
+        condition: ''
+  Gateway_04sjdzs:
+    type: 0
+    successors:
+      -
+        id: Activity_1e8zp19
+        condition: Flow_0llr0kf
+      -
+        id: Activity_13h1rnt
+        condition: Flow_0l0vsju
+actions:
+  Activity_0t9id01:
+    plugin: eca_token_load_entity
+    label: 'Loading entity'
+    configuration:
+      token_name: bonus_certificate
+      from: current
+      entity_type: _none
+      entity_id: ''
+      revision_id: ''
+      properties: ''
+      langcode: _interface
+      latest_revision: false
+      unchanged: false
+      object: ''
+    successors:
+      -
+        id: Activity_17v2u8l
+        condition: ''
+  Activity_098s0z0:
+    plugin: eca_new_entity
+    label: 'Create new transaction'
+    configuration:
+      token_name: transaction
+      type: 'node transaction'
+      langcode: en
+      label: 'Transaction #[bonus_certificate:nid]'
+      published: true
+      owner: '1'
+    successors:
+      -
+        id: Activity_0cvj5lb
+        condition: ''
+  Activity_0cvj5lb:
+    plugin: eca_set_field_value
+    label: Certificate
+    configuration:
+      field_name: field_certificate
+      field_value: '[bonus_certificate:nid]'
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: '[transaction]'
+    successors:
+      -
+        id: Activity_1j4lu8r
+        condition: ''
+  Activity_1brnksl:
+    plugin: eca_set_field_value
+    label: 'Number of accrued days'
+    configuration:
+      field_name: field_number_of_accrued_days
+      field_value: '[balance]'
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: '[transaction]'
+    successors:
+      -
+        id: Activity_023p3ap
+        condition: ''
+  Activity_0p1dm7y:
+    plugin: eca_set_field_value
+    label: Title
+    configuration:
+      field_name: title
+      field_value: 'Bonus certificate from [bonus_certificate:author:name] | [current-date:short]'
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: '[bonus_certificate]'
+    successors:
+      -
+        id: Activity_098s0z0
+        condition: ''
+  Activity_023p3ap:
+    plugin: eca_set_field_value
+    label: 'Number of days'
+    configuration:
+      field_name: field_number_of_days
+      field_value: '[bonus_certificate:field_number_of_accrued_days]'
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: '[transaction]'
+    successors:
+      -
+        id: Activity_1tgusbs
+        condition: ''
+  Activity_1tgusbs:
+    plugin: eca_set_field_value
+    label: 'Transaction status'
+    configuration:
+      field_name: field_transaction_status
+      field_value: 'Provided by'
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: '[transaction]'
+    successors:
+      -
+        id: Activity_1s2132f
+        condition: ''
+  Activity_1s2132f:
+    plugin: eca_set_field_value
+    label: User
+    configuration:
+      field_name: field_user
+      field_value: '[bonus_certificate:field_user]'
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: '[transaction]'
+    successors:
+      -
+        id: Activity_15k65yp
+        condition: ''
+  Activity_15k65yp:
+    plugin: eca_save_entity
+    label: 'Saving entity'
+    configuration:
+      object: '[transaction]'
+    successors:
+      -
+        id: Activity_0i33xci
+        condition: ''
+  Activity_1j2oyrt:
+    plugin: eca_set_field_value
+    label: 'Certificate status'
+    configuration:
+      field_name: field_certificate_status
+      field_value: certificate_status_valid
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: '[bonus_certificate]'
+    successors:
+      -
+        id: Activity_0p1dm7y
+        condition: ''
+  Activity_0i33xci:
+    plugin: eca_save_entity
+    label: 'Saving entity'
+    configuration:
+      object: '[bonus_certificate]'
+    successors:
+      -
+        id: Activity_1nhvfrl
+        condition: ''
+  Activity_06vnco1:
+    plugin: eca_views_query
+    label: 'Loading the view'
+    configuration:
+      token_name: balance
+      view_id: my_certificate
+      display_id: balance_sheet_for_calculations
+      arguments: '[bonus_certificate:field_user:0:target_id]'
+    successors:
+      -
+        id: Gateway_16nnupt
+        condition: ''
+  Activity_17v2u8l:
+    plugin: eca_token_set_value
+    label: 'Balance token'
+    configuration:
+      token_name: balance
+      token_value: '0'
+      use_yaml: false
+    successors:
+      -
+        id: Activity_1tfgwfn
+        condition: ''
+  Activity_1r2wgwa:
+    plugin: eca_count
+    label: 'Number of list items'
+    configuration:
+      token_name: balance_item_count
+      list_token: balance
+    successors:
+      -
+        id: Gateway_1fbnjbe
+        condition: ''
+  Activity_0rgok9u:
+    plugin: eca_list_remove
+    label: 'Drop first view element'
+    configuration:
+      value: ''
+      token_name: my_balance
+      method: first
+      index: ''
+      list_token: balance
+    successors:
+      -
+        id: Activity_0qcik1m
+        condition: ''
+  Activity_0qcik1m:
+    plugin: 'eca_tamper:math'
+    label: 'Calculating the current balance'
+    configuration:
+      operation: addition
+      flip: false
+      value: '[balance]'
+      eca_data: '[my_balance:field_number_of_accrued_days]'
+      eca_token_name: balance
+    successors:
+      -
+        id: Gateway_16nnupt
+        condition: ''
+  Activity_1j4lu8r:
+    plugin: 'eca_tamper:math'
+    label: 'Balance after adding current days'
+    configuration:
+      operation: addition
+      flip: false
+      value: '[bonus_certificate:field_number_of_accrued_days]'
+      eca_data: '[balance]'
+      eca_token_name: balance
+    successors:
+      -
+        id: Activity_1brnksl
+        condition: ''
+  Activity_13h1rnt:
+    plugin: eca_views_query
+    label: Activity_13h1rnt
+    configuration:
+      token_name: burboncer
+      view_id: burning_certificates
+      display_id: burning_bonus_certificates
+      arguments: '[info_user]'
+    successors:
+      -
+        id: Gateway_06kzcji
+        condition: ''
+  Activity_1pjuwyv:
+    plugin: eca_count
+    label: Activity_1pjuwyv
+    configuration:
+      token_name: burboncer_item_count
+      list_token: burboncer
+    successors:
+      -
+        id: Gateway_1pncwlm
+        condition: ''
+  Activity_09kusd8:
+    plugin: eca_list_remove
+    label: Activity_09kusd8
+    configuration:
+      value: ''
+      token_name: burboncer_zero
+      method: first
+      index: ''
+      list_token: burboncer
+    successors:
+      -
+        id: Activity_0yfmlqw
+        condition: ''
+  Activity_0yfmlqw:
+    plugin: 'eca_tamper:strtotime'
+    label: Activity_0yfmlqw
+    configuration:
+      eca_data: '[burboncer_zero:field_expiration_date:value]'
+      eca_token_name: burboncer_zero_expiration_date
+    successors:
+      -
+        id: Gateway_1xaq305
+        condition: ''
+  Activity_1curke4:
+    plugin: 'eca_tamper:math'
+    label: Activity_1curke4
+    configuration:
+      operation: subtraction
+      flip: false
+      value: '[burboncer_zero:field_number_of_accrued_days]'
+      eca_data: '[balance]'
+      eca_token_name: balance
+    successors:
+      -
+        id: Activity_0ba08ck
+        condition: ''
+  Activity_0ba08ck:
+    plugin: eca_new_entity
+    label: Activity_0ba08ck
+    configuration:
+      token_name: transaction_bur
+      type: 'node transaction'
+      langcode: en
+      label: 'Transaction #[burboncer_zero:nid]'
+      published: true
+      owner: '1'
+    successors:
+      -
+        id: Activity_0vkpyfq
+        condition: ''
+  Activity_0vkpyfq:
+    plugin: eca_set_field_value
+    label: Activity_0vkpyfq
+    configuration:
+      field_name: field_certificate
+      field_value: '[burboncer_zero:nid]'
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: '[transaction_bur]'
+    successors:
+      -
+        id: Activity_1cmpmwt
+        condition: ''
+  Activity_1nhvfrl:
+    plugin: eca_enqueue_task_delayed
+    label: 'Burning of bonus certificates'
+    configuration:
+      delay_value: '60'
+      delay_unit: '1'
+      task_name: 'Burning of bonus certificates'
+      task_value: ''
+      tokens: 'balance,info_user'
+    successors:
+      -
+        id: Activity_0d1ppdk
+        condition: ''
+  Activity_1tfgwfn:
+    plugin: eca_token_set_value
+    label: Activity_1tfgwfn
+    configuration:
+      token_name: info_user
+      token_value: '[bonus_certificate:field_user:0:target_id]'
+      use_yaml: false
+    successors:
+      -
+        id: Activity_06vnco1
+        condition: ''
+  Activity_1cmpmwt:
+    plugin: eca_set_field_value
+    label: Activity_1cmpmwt
+    configuration:
+      field_name: field_number_of_accrued_days
+      field_value: '[balance]'
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: '[transaction_bur]'
+    successors:
+      -
+        id: Activity_0lxm82f
+        condition: ''
+  Activity_0lxm82f:
+    plugin: eca_set_field_value
+    label: Activity_0lxm82f
+    configuration:
+      field_name: field_number_of_days
+      field_value: '[burboncer_zero:field_number_of_accrued_days]'
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: '[transaction_bur]'
+    successors:
+      -
+        id: Activity_0bk5hck
+        condition: ''
+  Activity_0bk5hck:
+    plugin: eca_set_field_value
+    label: Activity_0bk5hck
+    configuration:
+      field_name: field_transaction_status
+      field_value: Written-off
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: '[transaction_bur]'
+    successors:
+      -
+        id: Activity_0vxzfrm
+        condition: ''
+  Activity_0vxzfrm:
+    plugin: eca_set_field_value
+    label: Activity_0vxzfrm
+    configuration:
+      field_name: field_user
+      field_value: '[info_user]'
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: '[transaction_bur]'
+    successors:
+      -
+        id: Activity_1l91unj
+        condition: ''
+  Activity_12b0iic:
+    plugin: eca_set_field_value
+    label: Activity_12b0iic
+    configuration:
+      field_name: field_certificate_status
+      field_value: certificate_status_invalid
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: true
+      object: '[burboncer_zero]'
+    successors:
+      -
+        id: Activity_1ndok8i
+        condition: ''
+  Activity_1l91unj:
+    plugin: eca_save_entity
+    label: Activity_1l91unj
+    configuration:
+      object: '[transaction_bur]'
+    successors:
+      -
+        id: Activity_12b0iic
+        condition: ''
+  Activity_0d1ppdk:
+    plugin: action_message_action
+    label: Activity_0d1ppdk
+    configuration:
+      replace_tokens: false
+      message: 'Bonus certificate has been created'
+    successors: {  }
+  Activity_0f0vksr:
+    plugin: eca_switch_account
+    label: Activity_0f0vksr
+    configuration:
+      user_id: '1'
+    successors:
+      -
+        id: Activity_0uniqcc
+        condition: ''
+  Activity_0qi0imc:
+    plugin: eca_switch_account
+    label: Activity_0qi0imc
+    configuration:
+      user_id: '1'
+    successors:
+      -
+        id: Activity_0t9id01
+        condition: ''
+  Activity_00vtcfz:
+    plugin: eca_enqueue_task_delayed
+    label: Re-checking
+    configuration:
+      delay_value: '1'
+      delay_unit: '60'
+      task_name: Re-checking
+      task_value: ''
+      tokens: info_user
+    successors:
+      -
+        id: Activity_0pbhr7c
+        condition: ''
+  Activity_0uniqcc:
+    plugin: eca_token_set_value
+    label: Activity_0uniqcc
+    configuration:
+      token_name: balance
+      token_value: '0'
+      use_yaml: false
+    successors:
+      -
+        id: Activity_0cjren2
+        condition: ''
+  Activity_0cjren2:
+    plugin: eca_views_query
+    label: Activity_0cjren2
+    configuration:
+      token_name: bon_balance
+      view_id: my_certificate
+      display_id: balance_sheet_for_calculations
+      arguments: '[info_user]'
+    successors:
+      -
+        id: Gateway_1az952b
+        condition: ''
+  Activity_0vm7uac:
+    plugin: eca_count
+    label: Activity_0vm7uac
+    configuration:
+      token_name: bon_balance_item_count
+      list_token: bon_balance
+    successors:
+      -
+        id: Gateway_04sjdzs
+        condition: ''
+  Activity_1e8zp19:
+    plugin: eca_list_remove
+    label: Activity_1e8zp19
+    configuration:
+      value: ''
+      token_name: bon_balance_first
+      method: first
+      index: ''
+      list_token: bon_balance
+    successors:
+      -
+        id: Activity_0ifg05s
+        condition: ''
+  Activity_0ifg05s:
+    plugin: 'eca_tamper:math'
+    label: Activity_0ifg05s
+    configuration:
+      operation: addition
+      flip: false
+      value: '[balance]'
+      eca_data: '[bon_balance_first:field_number_of_accrued_days]'
+      eca_token_name: balance
+    successors:
+      -
+        id: Gateway_1az952b
+        condition: ''
+  Activity_1ndok8i:
+    plugin: action_message_action
+    label: Activity_1ndok8i
+    configuration:
+      replace_tokens: false
+      message: 'One of the bonus certificates was burned'
+    successors:
+      -
+        id: Gateway_0kwao30
+        condition: ''
+  Activity_0pbhr7c:
+    plugin: action_message_action
+    label: Activity_0pbhr7c
+    configuration:
+      replace_tokens: false
+      message: 'Re-inspection is pending'
+    successors: {  }

@@ -1,0 +1,22 @@
+uuid: 969621e3-f4f1-42b2-ae91-b3318336c3f8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cancellation
+    - node.type.request
+  module:
+    - workflow
+id: node.request.field_cancellation
+field_name: field_cancellation
+entity_type: node
+bundle: request
+label: Cancellation
+description: ''
+required: true
+translatable: false
+default_value:
+  - {  }
+default_value_callback: ''
+settings: {  }
+field_type: workflow

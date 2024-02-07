@@ -1,0 +1,16 @@
+uuid: 31ccc0e0-8844-410c-aea4-35a3c6c5172a
+langcode: en
+status: true
+dependencies: {  }
+id: certificate_status
+label: 'Certificate status'
+module: workflow
+options:
+  name_as_title: 0
+  fieldset: 0
+  options: select
+  schedule_enable: false
+  schedule_timezone: 0
+  always_update_entity: 0
+  comment_log_node: 0
+  watchdog_log: 1

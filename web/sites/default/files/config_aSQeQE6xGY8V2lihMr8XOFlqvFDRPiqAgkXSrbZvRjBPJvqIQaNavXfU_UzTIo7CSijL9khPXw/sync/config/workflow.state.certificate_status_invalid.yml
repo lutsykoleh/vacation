@@ -1,0 +1,12 @@
+uuid: 5ac3a1a4-28a4-4bbd-b9b2-ae41fa311763
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.workflow.certificate_status
+id: certificate_status_invalid
+label: Invalid
+module: workflow
+wid: certificate_status
+weight: -9
+sysid: 0

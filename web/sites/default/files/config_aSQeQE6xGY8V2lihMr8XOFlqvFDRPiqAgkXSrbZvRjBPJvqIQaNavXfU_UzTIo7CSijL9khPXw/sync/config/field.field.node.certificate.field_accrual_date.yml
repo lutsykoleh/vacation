@@ -1,0 +1,21 @@
+uuid: a65553ec-f6dd-4d8e-a0c0-b6a0ad956edd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_accrual_date
+    - node.type.certificate
+  module:
+    - datetime
+id: node.certificate.field_accrual_date
+field_name: field_accrual_date
+entity_type: node
+bundle: certificate
+label: 'Accrual date'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

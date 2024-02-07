@@ -1,0 +1,12 @@
+uuid: 61994ee4-5195-4806-a2ae-0cdb339ab431
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.state.confirmation_of_the_action_yes
+id: confirmation_of_the_action_yes_yes
+label: null
+module: workflow
+from_sid: confirmation_of_the_action_yes
+to_sid: confirmation_of_the_action_yes
+roles: {  }

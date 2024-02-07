@@ -1,0 +1,8 @@
+uuid: 443f572f-4e79-41f2-b5ab-eea4885bd441
+langcode: en
+status: true
+dependencies: {  }
+id: for_dates_that_do_not_contain_time
+label: 'For dates that do not contain time'
+locked: false
+pattern: 'D, m/d/Y'

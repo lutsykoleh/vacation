@@ -1,0 +1,35 @@
+uuid: 41c4afc7-2983-4623-b1b0-f027bbc82e31
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.bonus_certificate
+    - node.type.request
+  module:
+    - node
+    - system
+    - view_unpublished
+    - workflow
+id: shief_pm
+label: 'Сhief PM'
+weight: 8
+is_admin: null
+permissions:
+  - 'access content'
+  - 'access request_status workflow_transition form'
+  - 'bypass request_status workflow_transition access'
+  - 'create bonus_certificate content'
+  - 'create calculations workflow_transition'
+  - 'create cancellation workflow_transition'
+  - 'create certificate_status workflow_transition'
+  - 'create confirmation_of_the_action workflow_transition'
+  - 'create request content'
+  - 'create request workflow_transition'
+  - 'create request_state workflow_transition'
+  - 'create request_status workflow_transition'
+  - 'create request_type workflow_transition'
+  - 'create user_status workflow_transition'
+  - 'create vacation_status workflow_transition'
+  - 'edit any request content'
+  - 'view any unpublished request content'
+  - 'view own unpublished content'

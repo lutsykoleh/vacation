@@ -1,0 +1,25 @@
+uuid: f1aa8cad-986c-44c3-9a4a-3dae96f8c8b1
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.state.vacation_status_expecting
+    - workflow.state.vacation_status_not_relevant
+id: vacation_status_expecting_not_relevant
+label: null
+module: workflow
+from_sid: vacation_status_expecting
+to_sid: vacation_status_not_relevant
+roles:
+  workflow_author: '0'
+  anonymous: '0'
+  authenticated: '0'
+  administrator: '0'
+  junior: '0'
+  middle: '0'
+  senior: '0'
+  pm: '0'
+  shief_pm: '0'
+  teamlead: '0'
+  seo: '0'
+  client: '0'

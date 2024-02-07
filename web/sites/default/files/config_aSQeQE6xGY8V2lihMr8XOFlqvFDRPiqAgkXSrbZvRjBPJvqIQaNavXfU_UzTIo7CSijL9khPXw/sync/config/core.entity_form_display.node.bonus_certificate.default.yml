@@ -1,0 +1,72 @@
+uuid: c464453a-9d6c-46cc-9439-d94e9761a5ef
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.bonus_certificate.field_accrual_date
+    - field.field.node.bonus_certificate.field_certificate_status
+    - field.field.node.bonus_certificate.field_expiration_date
+    - field.field.node.bonus_certificate.field_number_of_accrued_days
+    - field.field.node.bonus_certificate.field_user
+    - node.type.bonus_certificate
+  module:
+    - datetime
+id: node.bonus_certificate.default
+targetEntityType: node
+bundle: bonus_certificate
+mode: default
+content:
+  field_accrual_date:
+    type: datetime_default
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_expiration_date:
+    type: datetime_default
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_number_of_accrued_days:
+    type: number
+    weight: 5
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_user:
+    type: entity_reference_autocomplete
+    weight: 4
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 1
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_certificate_status: true
+  path: true
+  promote: true
+  status: true
+  sticky: true

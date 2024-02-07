@@ -1,0 +1,29 @@
+uuid: b3cb52fb-109e-4064-8c13-21d85ad9c066
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.user-cabinet-menu
+  module:
+    - system
+  theme:
+    - vacation
+id: vacation_user_cabinet_menu
+theme: vacation
+region: highlighted
+weight: -6
+provider: null
+plugin: 'system_menu_block:user-cabinet-menu'
+settings:
+  id: 'system_menu_block:user-cabinet-menu'
+  label: 'User cabinet menu'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '*'

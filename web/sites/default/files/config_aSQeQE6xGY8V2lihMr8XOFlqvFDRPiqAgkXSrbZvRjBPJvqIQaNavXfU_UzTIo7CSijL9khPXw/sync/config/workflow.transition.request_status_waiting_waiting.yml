@@ -1,0 +1,12 @@
+uuid: 404bee98-ac07-4f2d-93d5-352792421a20
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.state.request_status_waiting
+id: request_status_waiting_waiting
+label: null
+module: workflow
+from_sid: request_status_waiting
+to_sid: request_status_waiting
+roles: {  }

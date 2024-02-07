@@ -1,0 +1,18 @@
+uuid: fd944481-47d3-4a47-b073-99f680536a2b
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: Transaction
+type: transaction
+description: ''
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

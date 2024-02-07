@@ -1,0 +1,23 @@
+uuid: 93a9d66c-6a0e-4dfa-b007-a83a8bae2ae2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_number_of_days
+    - node.type.transaction
+id: node.transaction.field_number_of_days
+field_name: field_number_of_days
+entity_type: node
+bundle: transaction
+label: 'Number of days'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: 255
+  prefix: ''
+  suffix: ''
+field_type: integer

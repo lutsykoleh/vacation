@@ -1,0 +1,156 @@
+uuid: ba6105ed-50e3-4576-bd41-7e2b87b861e1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.user.user.user_picture
+    - image.style.thumbnail
+    - views.view.my_certificate
+  module:
+    - image
+    - layout_builder
+    - layout_discovery
+    - user
+    - views
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: layout_twocol_section
+        layout_settings:
+          label: ''
+          context_mapping: {  }
+          column_widths: 50-50
+        components:
+          c74acbec-a12d-418b-89e8-f633860bf41a:
+            uuid: c74acbec-a12d-418b-89e8-f633860bf41a
+            region: first
+            configuration:
+              id: 'field_block:user:user:user_picture'
+              label: Picture
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: image
+                label: hidden
+                settings:
+                  image_link: ''
+                  image_style: profile_150x150
+                  image_loading:
+                    attribute: lazy
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          011ff73e-3976-4e2b-92b7-11fb582859c5:
+            uuid: 011ff73e-3976-4e2b-92b7-11fb582859c5
+            region: second
+            configuration:
+              id: 'field_block:user:user:mail'
+              label: Email
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: email_mailto
+                label: inline
+                settings: {  }
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
+          cbc370e8-1e39-4381-b4fb-3b32419358ea:
+            uuid: cbc370e8-1e39-4381-b4fb-3b32419358ea
+            region: second
+            configuration:
+              id: 'field_block:user:user:roles'
+              label: Roles
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_label
+                label: inline
+                settings:
+                  link: false
+                third_party_settings: {  }
+            weight: 3
+            additional: {  }
+          922d3370-8389-419f-9b2e-312e96dfcfdf:
+            uuid: 922d3370-8389-419f-9b2e-312e96dfcfdf
+            region: second
+            configuration:
+              id: 'field_block:user:user:name'
+              label: Name
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: string
+                label: inline
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+          context_mapping: {  }
+        components:
+          f51672fc-ce96-4902-95f0-ebacb2e998f1:
+            uuid: f51672fc-ce96-4902-95f0-ebacb2e998f1
+            region: content
+            configuration:
+              id: 'views_block:my_certificate-all_cerificate'
+              label: 'My cerificate'
+              label_display: visible
+              provider: views
+              context_mapping: {  }
+              views_label: 'My cerificate'
+              items_per_page: '6'
+              exposed: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+_core:
+  default_config_hash: mZLyuWM9CQx2ZJVqFGSbzgFnHzudVbHBYmdU256A5Wk
+id: user.user.default
+targetEntityType: user
+bundle: user
+mode: default
+content:
+  masquerade:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 50
+    region: first
+  member_for:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  user_picture:
+    type: image
+    label: hidden
+    settings:
+      image_link: content
+      image_style: thumbnail
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  layout_builder__layout: true

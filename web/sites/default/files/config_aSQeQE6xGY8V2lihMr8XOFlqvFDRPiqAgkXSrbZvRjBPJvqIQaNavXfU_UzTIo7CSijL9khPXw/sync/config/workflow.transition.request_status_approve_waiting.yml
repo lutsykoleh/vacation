@@ -1,0 +1,20 @@
+uuid: 3884f0a3-9759-4d28-bec1-b6a2567d1f10
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.state.request_status_approve
+    - workflow.state.request_status_waiting
+id: request_status_approve_waiting
+label: null
+module: workflow
+from_sid: request_status_approve
+to_sid: request_status_waiting
+roles:
+  workflow_author: '0'
+  administrator: '0'
+  pm: '0'
+  shief_pm: '0'
+  teamlead: '0'
+  seo: '0'
+  client: '0'

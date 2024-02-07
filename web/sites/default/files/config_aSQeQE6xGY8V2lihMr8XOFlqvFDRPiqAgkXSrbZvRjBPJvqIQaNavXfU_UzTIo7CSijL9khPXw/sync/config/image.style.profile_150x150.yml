@@ -1,0 +1,15 @@
+uuid: 2f131a17-45c7-478d-9163-9c1b56b7613d
+langcode: en
+status: true
+dependencies: {  }
+name: profile_150x150
+label: 'Profile (150x150)'
+effects:
+  c1d932b6-cf77-4bbf-9aa9-f4079b7508c0:
+    uuid: c1d932b6-cf77-4bbf-9aa9-f4079b7508c0
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 150
+      height: 150
+      anchor: center-center

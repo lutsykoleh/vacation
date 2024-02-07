@@ -1,0 +1,39 @@
+uuid: d7701866-7504-48fd-99f7-1883e12b19d1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_user
+    - node.type.request
+id: node.request.field_user
+field_name: field_user
+entity_type: node
+bundle: request
+label: Prover`s
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    filter:
+      type: role
+      role:
+        pm: pm
+        shief_pm: shief_pm
+        teamlead: teamlead
+        seo: seo
+        client: client
+        administrator: '0'
+        junior: '0'
+        middle: '0'
+        senior: '0'
+    include_anonymous: true
+field_type: entity_reference

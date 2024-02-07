@@ -1,0 +1,746 @@
+uuid: 5b22e5e7-5d2f-473a-8c78-f59491b77c7c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.request.field_range_of_vacation_days
+    - field.storage.node.field_range_of_vacation_days
+    - views.view.vacation_request
+  module:
+    - eca_base
+    - eca_form
+    - eca_tamper
+    - eca_user
+    - eca_views
+id: process_l6idfos
+modeller: bpmn_io
+label: 'Overlay on previous requests'
+version: ''
+weight: -7
+events:
+  Event_00cxc1v:
+    plugin: 'form:form_validate'
+    label: Event_00cxc1v
+    configuration:
+      form_id: node-request-form
+      entity_type_id: node
+      bundle: request
+      operation: 'default, save, delete, edit'
+    successors:
+      -
+        id: Activity_1jzteel
+        condition: Flow_03zzces
+conditions:
+  Flow_1rnu9bl:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_ts]'
+      right: '[my_start_day]'
+      operator: equal
+      type: value
+  Flow_0u62m4a:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_ts]'
+      right: '[my_start_day]'
+      operator: greaterthan
+      type: value
+  Flow_1ejp4z9:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_ts]'
+      right: '[my_end_day]'
+      operator: equal
+      type: value
+  Flow_0fpr0de:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_ts]'
+      right: '[my_end_day]'
+      operator: greaterthan
+      type: value
+  Flow_11aymgn:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_ts]'
+      right: '[my_start_day]'
+      operator: lessthan
+      type: value
+  Flow_03zzces:
+    plugin: eca_form_field_value
+    configuration:
+      negate: false
+      case: false
+      field_value: Paid
+      field_name: field_request_type
+      strip_tags: true
+      trim: true
+      xss_filter: true
+      operator: equal
+      type: value
+  Flow_0z496cc:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_ts]'
+      right: '[my_end_day]'
+      operator: lessthan
+      type: value
+  Flow_05pa1co:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_day_ts]'
+      right: '[my_start_day]'
+      operator: greaterthan
+      type: value
+  Flow_1iobn5s:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_day_ts]'
+      right: '[my_start_day]'
+      operator: equal
+      type: value
+  Flow_18a7jbo:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_day_ts]'
+      right: '[my_start_day]'
+      operator: lessthan
+      type: value
+  Flow_12xjjk8:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_day_ts]'
+      right: '[my_end_day]'
+      operator: equal
+      type: value
+  Flow_1aqt0tk:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_day_ts]'
+      right: '[my_end_day]'
+      operator: greaterthan
+      type: value
+  Flow_167lel9:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_day_ts]'
+      right: '[my_end_day]'
+      operator: lessthan
+      type: value
+  Flow_0pau9s5:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_ts]'
+      right: '[his_start_day]'
+      operator: greaterthan
+      type: value
+  Flow_0of01nb:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_ts]'
+      right: '[his_start_day]'
+      operator: equal
+      type: value
+  Flow_1uwmt76:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_ts]'
+      right: '[his_end_day]'
+      operator: equal
+      type: value
+  Flow_0yh6nt4:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_ts]'
+      right: '[his_end_day]'
+      operator: lessthan
+      type: value
+  Flow_096cc8r:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_ts]'
+      right: '[his_end_day]'
+      operator: greaterthan
+      type: value
+  Flow_17i0s62:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_ts]'
+      right: '[his_start_day]'
+      operator: lessthan
+      type: value
+  Flow_1mff6os:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_day_ts]'
+      right: '[his_start_day]'
+      operator: greaterthan
+      type: value
+  Flow_1dslrp6:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_day_ts]'
+      right: '[his_start_day]'
+      operator: equal
+      type: value
+  Flow_1msv2a5:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_day_ts]'
+      right: '[his_start_day]'
+      operator: lessthan
+      type: value
+  Flow_1wtju7b:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_day_ts]'
+      right: '[his_end_day]'
+      operator: equal
+      type: value
+  Flow_1onuc1r:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_day_ts]'
+      right: '[his_end_day]'
+      operator: lessthan
+      type: value
+  Flow_0tygkyv:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_day_ts]'
+      right: '[his_end_day]'
+      operator: greaterthan
+      type: value
+  Flow_0e2crb7:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[my_vac_req_item_count]'
+      right: '0'
+      operator: equal
+      type: value
+  Flow_1ua9oct:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[my_vac_req_item_count]'
+      right: '0'
+      operator: greaterthan
+      type: value
+  Flow_1x9z0f0:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[his_vac_req_item_count]'
+      right: '0'
+      operator: greaterthan
+      type: value
+  Flow_0pyqdb9:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_ts]'
+      right: '[my_start_day]'
+      operator: lessthan
+      type: value
+  Flow_0k3wzl1:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_day_ts]'
+      right: '[my_end_day]'
+      operator: greaterthan
+      type: value
+  Flow_07446be:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_ts]'
+      right: '[his_start_day]'
+      operator: lessthan
+      type: value
+  Flow_1vzx5v0:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_day_ts]'
+      right: '[his_end_day]'
+      operator: greaterthan
+      type: value
+gateways:
+  Gateway_0df3fuw:
+    type: 0
+    successors:
+      -
+        id: Activity_0aci30z
+        condition: Flow_1rnu9bl
+      -
+        id: Activity_0aci30z
+        condition: Flow_0u62m4a
+      -
+        id: Gateway_14wbsp4
+        condition: Flow_11aymgn
+  Gateway_05v245c:
+    type: 0
+    successors:
+      -
+        id: Activity_022ruwv
+        condition: Flow_1ejp4z9
+      -
+        id: Gateway_14wbsp4
+        condition: Flow_0fpr0de
+      -
+        id: Activity_022ruwv
+        condition: Flow_0z496cc
+  Gateway_14wbsp4:
+    type: 0
+    successors:
+      -
+        id: Gateway_0ltl3fb
+        condition: ''
+  Gateway_0ltl3fb:
+    type: 0
+    successors:
+      -
+        id: Activity_16ndrbt
+        condition: Flow_05pa1co
+      -
+        id: Activity_16ndrbt
+        condition: Flow_1iobn5s
+      -
+        id: Gateway_1s8nwk9
+        condition: Flow_18a7jbo
+  Gateway_1ux83k9:
+    type: 0
+    successors:
+      -
+        id: Activity_0ey4jfp
+        condition: Flow_12xjjk8
+      -
+        id: Gateway_1s8nwk9
+        condition: Flow_1aqt0tk
+      -
+        id: Activity_0ey4jfp
+        condition: Flow_167lel9
+  Gateway_07atu91:
+    type: 0
+    successors:
+      -
+        id: Activity_06id6c9
+        condition: Flow_0pau9s5
+      -
+        id: Activity_06id6c9
+        condition: Flow_0of01nb
+      -
+        id: Gateway_1y4ed3n
+        condition: Flow_17i0s62
+  Gateway_07hkz3k:
+    type: 0
+    successors:
+      -
+        id: Activity_1dsf9jg
+        condition: Flow_1uwmt76
+      -
+        id: Activity_1dsf9jg
+        condition: Flow_0yh6nt4
+      -
+        id: Gateway_1y4ed3n
+        condition: Flow_096cc8r
+  Gateway_1y4ed3n:
+    type: 0
+    successors:
+      -
+        id: Gateway_0xb0xpv
+        condition: ''
+  Gateway_0xb0xpv:
+    type: 0
+    successors:
+      -
+        id: Activity_1yl0oe6
+        condition: Flow_1mff6os
+      -
+        id: Activity_1yl0oe6
+        condition: Flow_1dslrp6
+      -
+        id: Gateway_0zg1xjy
+        condition: Flow_1msv2a5
+  Gateway_1sf4x32:
+    type: 0
+    successors:
+      -
+        id: Activity_0qo8y3l
+        condition: Flow_1wtju7b
+      -
+        id: Activity_0qo8y3l
+        condition: Flow_1onuc1r
+      -
+        id: Gateway_0zg1xjy
+        condition: Flow_0tygkyv
+  Gateway_16ezkzb:
+    type: 0
+    successors:
+      -
+        id: Activity_0magsr6
+        condition: Flow_0e2crb7
+      -
+        id: Activity_1x5d0pd
+        condition: Flow_1ua9oct
+  Gateway_1kt1k24:
+    type: 0
+    successors:
+      -
+        id: Activity_1jcuxjy
+        condition: Flow_1x9z0f0
+  Gateway_08bhtiu:
+    type: 0
+    successors:
+      -
+        id: Activity_1fa6u6w
+        condition: ''
+  Gateway_1s8nwk9:
+    type: 0
+    successors:
+      -
+        id: Gateway_0c00esg
+        condition: ''
+  Gateway_0c00esg:
+    type: 0
+    successors:
+      -
+        id: Activity_09cf5n2
+        condition: Flow_0pyqdb9
+      -
+        id: Gateway_08bhtiu
+        condition: ''
+  Gateway_0zg1xjy:
+    type: 0
+    successors:
+      -
+        id: Gateway_1865j4w
+        condition: ''
+  Gateway_0g0bcrg:
+    type: 0
+    successors:
+      -
+        id: Activity_0jwbzlw
+        condition: ''
+  Gateway_1865j4w:
+    type: 0
+    successors:
+      -
+        id: Gateway_0g0bcrg
+        condition: ''
+      -
+        id: Activity_07l0cxw
+        condition: Flow_07446be
+actions:
+  Activity_02c8vp2:
+    plugin: eca_form_field_get_value
+    label: Activity_02c8vp2
+    configuration:
+      token_name: start_day
+      field_name: 'field_range_of_vacation_days[0][value][date]'
+      strip_tags: true
+      trim: true
+      xss_filter: true
+    successors:
+      -
+        id: Activity_1g5u60x
+        condition: ''
+  Activity_0tvq83s:
+    plugin: eca_form_field_get_value
+    label: Activity_0tvq83s
+    configuration:
+      token_name: end_day
+      field_name: 'field_range_of_vacation_days[0][end_value][date]'
+      strip_tags: true
+      trim: true
+      xss_filter: true
+    successors:
+      -
+        id: Activity_0kupxm4
+        condition: ''
+  Activity_0kupxm4:
+    plugin: 'eca_tamper:strtotime'
+    label: Activity_0kupxm4
+    configuration:
+      eca_data: '[end_day]'
+      eca_token_name: end_day_ts
+    successors:
+      -
+        id: Activity_1xtkkct
+        condition: ''
+  Activity_1xtkkct:
+    plugin: eca_views_query
+    label: Activity_1xtkkct
+    configuration:
+      token_name: my_vac_req
+      view_id: vacation_request
+      display_id: my_vacation_request
+      arguments: '[user]'
+    successors:
+      -
+        id: Gateway_08bhtiu
+        condition: ''
+  Activity_1x5d0pd:
+    plugin: eca_list_remove
+    label: Activity_1x5d0pd
+    configuration:
+      value: ''
+      token_name: my_range_day
+      method: first
+      index: ''
+      list_token: my_vac_req
+    successors:
+      -
+        id: Activity_0bag4ns
+        condition: ''
+  Activity_03ap43o:
+    plugin: 'eca_tamper:strtotime'
+    label: Activity_03ap43o
+    configuration:
+      eca_data: '[my_range_day:field_range_of_vacation_days:end_value]'
+      eca_token_name: my_end_day
+    successors:
+      -
+        id: Gateway_0df3fuw
+        condition: ''
+  Activity_0aci30z:
+    plugin: eca_void_and_condition
+    label: Activity_0aci30z
+    configuration: {  }
+    successors:
+      -
+        id: Gateway_05v245c
+        condition: ''
+  Activity_1g5u60x:
+    plugin: 'eca_tamper:strtotime'
+    label: Activity_1g5u60x
+    configuration:
+      eca_data: '[start_day]'
+      eca_token_name: start_day_ts
+    successors:
+      -
+        id: Activity_0tvq83s
+        condition: ''
+  Activity_1jzteel:
+    plugin: eca_token_load_user_current
+    label: Activity_1jzteel
+    configuration:
+      token_name: user
+    successors:
+      -
+        id: Activity_02c8vp2
+        condition: ''
+  Activity_0bag4ns:
+    plugin: 'eca_tamper:strtotime'
+    label: Activity_0bag4ns
+    configuration:
+      eca_data: '[my_range_day:field_range_of_vacation_days:value]'
+      eca_token_name: my_start_day
+    successors:
+      -
+        id: Activity_03ap43o
+        condition: ''
+  Activity_022ruwv:
+    plugin: eca_form_field_set_error
+    label: Activity_022ruwv
+    configuration:
+      message: 'There is an overlap between the start date and the pending vacation'
+      field_name: submit
+    successors: {  }
+  Activity_16ndrbt:
+    plugin: eca_void_and_condition
+    label: Activity_16ndrbt
+    configuration: {  }
+    successors:
+      -
+        id: Gateway_1ux83k9
+        condition: ''
+  Activity_0magsr6:
+    plugin: eca_views_query
+    label: Activity_0magsr6
+    configuration:
+      token_name: his_vac_req
+      view_id: vacation_request
+      display_id: history_with_status_of_paid
+      arguments: '[user]'
+    successors:
+      -
+        id: Gateway_0g0bcrg
+        condition: ''
+  Activity_0ey4jfp:
+    plugin: eca_form_field_set_error
+    label: Activity_0ey4jfp
+    configuration:
+      message: 'There is an overlap between the end date and the pending vacation'
+      field_name: submit
+    successors: {  }
+  Activity_1jcuxjy:
+    plugin: eca_list_remove
+    label: Activity_1jcuxjy
+    configuration:
+      value: ''
+      token_name: his_range_day
+      method: first
+      index: ''
+      list_token: his_vac_req
+    successors:
+      -
+        id: Activity_19l2wqe
+        condition: ''
+  Activity_19l2wqe:
+    plugin: 'eca_tamper:strtotime'
+    label: Activity_19l2wqe
+    configuration:
+      eca_data: '[his_range_day:field_range_of_vacation_days:value]'
+      eca_token_name: his_start_day
+    successors:
+      -
+        id: Activity_1rvh1ce
+        condition: ''
+  Activity_1rvh1ce:
+    plugin: 'eca_tamper:strtotime'
+    label: Activity_1rvh1ce
+    configuration:
+      eca_data: '[his_range_day:field_range_of_vacation_days:end_value]'
+      eca_token_name: his_end_day
+    successors:
+      -
+        id: Gateway_07atu91
+        condition: ''
+  Activity_06id6c9:
+    plugin: eca_void_and_condition
+    label: Activity_06id6c9
+    configuration: {  }
+    successors:
+      -
+        id: Gateway_07hkz3k
+        condition: ''
+  Activity_1dsf9jg:
+    plugin: eca_form_field_set_error
+    label: Activity_1dsf9jg
+    configuration:
+      message: 'The start date is superimposed on the vacation, which is approved'
+      field_name: submit
+    successors: {  }
+  Activity_1yl0oe6:
+    plugin: eca_void_and_condition
+    label: Activity_1yl0oe6
+    configuration: {  }
+    successors:
+      -
+        id: Gateway_1sf4x32
+        condition: ''
+  Activity_0qo8y3l:
+    plugin: eca_form_field_set_error
+    label: Activity_0qo8y3l
+    configuration:
+      message: 'The end date is superimposed on the vacation, which is approved'
+      field_name: submit
+    successors: {  }
+  Activity_1fa6u6w:
+    plugin: eca_count
+    label: Activity_1fa6u6w
+    configuration:
+      token_name: my_vac_req_item_count
+      list_token: my_vac_req
+    successors:
+      -
+        id: Gateway_16ezkzb
+        condition: ''
+  Activity_0jwbzlw:
+    plugin: eca_count
+    label: Activity_0jwbzlw
+    configuration:
+      token_name: his_vac_req_item_count
+      list_token: his_vac_req
+    successors:
+      -
+        id: Gateway_1kt1k24
+        condition: ''
+  Activity_09cf5n2:
+    plugin: eca_void_and_condition
+    label: Activity_09cf5n2
+    configuration: {  }
+    successors:
+      -
+        id: Activity_0cocxz2
+        condition: Flow_0k3wzl1
+  Activity_0cocxz2:
+    plugin: eca_form_field_set_error
+    label: Activity_0cocxz2
+    configuration:
+      message: 'There is an overlay on a vacation that is pending approval'
+      field_name: submit
+    successors: {  }
+  Activity_07l0cxw:
+    plugin: eca_void_and_condition
+    label: Activity_07l0cxw
+    configuration: {  }
+    successors:
+      -
+        id: Activity_0sdqaot
+        condition: Flow_1vzx5v0
+  Activity_0sdqaot:
+    plugin: eca_form_field_set_error
+    label: Activity_0sdqaot
+    configuration:
+      message: 'There is an overlap with a vacation that is approved'
+      field_name: submit
+    successors: {  }

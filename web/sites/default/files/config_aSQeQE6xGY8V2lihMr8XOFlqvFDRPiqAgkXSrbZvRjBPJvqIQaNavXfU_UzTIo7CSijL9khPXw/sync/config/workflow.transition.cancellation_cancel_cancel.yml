@@ -1,0 +1,12 @@
+uuid: b4f39673-213c-4e88-b294-d1674d8c1062
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.state.cancellation_cancel
+id: cancellation_cancel_cancel
+label: null
+module: workflow
+from_sid: cancellation_cancel
+to_sid: cancellation_cancel
+roles: {  }

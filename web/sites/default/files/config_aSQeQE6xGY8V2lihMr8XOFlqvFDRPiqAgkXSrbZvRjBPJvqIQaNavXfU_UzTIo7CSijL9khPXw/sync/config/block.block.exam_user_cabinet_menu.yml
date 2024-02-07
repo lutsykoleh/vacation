@@ -1,0 +1,29 @@
+uuid: 3c934cbf-5a5d-4021-a189-e4b2b387c5ba
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.user-cabinet-menu
+  module:
+    - system
+  theme:
+    - exam
+id: exam_user_cabinet_menu
+theme: exam
+region: highlighted
+weight: -6
+provider: null
+plugin: 'system_menu_block:user-cabinet-menu'
+settings:
+  id: 'system_menu_block:user-cabinet-menu'
+  label: 'User cabinet menu'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '*'

@@ -1,0 +1,25 @@
+uuid: 75409f51-5676-4a46-adc8-31c15d840950
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.state.certificate_status_creation
+    - workflow.state.certificate_status_valid
+id: certificate_status_creation_valid
+label: null
+module: workflow
+from_sid: certificate_status_creation
+to_sid: certificate_status_valid
+roles:
+  workflow_author: workflow_author
+  administrator: administrator
+  anonymous: '0'
+  authenticated: '0'
+  junior: '0'
+  middle: '0'
+  senior: '0'
+  pm: '0'
+  shief_pm: '0'
+  teamlead: '0'
+  seo: '0'
+  client: '0'

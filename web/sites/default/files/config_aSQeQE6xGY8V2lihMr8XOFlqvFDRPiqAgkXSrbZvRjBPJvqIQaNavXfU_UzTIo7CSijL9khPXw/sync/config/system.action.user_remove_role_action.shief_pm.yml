@@ -1,0 +1,14 @@
+uuid: 2ea22592-8273-477a-8399-b707f9506056
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.shief_pm
+  module:
+    - user
+id: user_remove_role_action.shief_pm
+label: 'Remove the Сhief PM role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: shief_pm

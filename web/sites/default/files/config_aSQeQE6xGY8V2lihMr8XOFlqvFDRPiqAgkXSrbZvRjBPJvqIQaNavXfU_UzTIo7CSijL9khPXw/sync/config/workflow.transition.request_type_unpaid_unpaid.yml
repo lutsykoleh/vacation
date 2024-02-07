@@ -1,0 +1,12 @@
+uuid: 7fe03310-9d3c-445d-8a9a-b09787c0f5ac
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.state.request_type_unpaid
+id: request_type_unpaid_unpaid
+label: null
+module: workflow
+from_sid: request_type_unpaid
+to_sid: request_type_unpaid
+roles: {  }

@@ -1,0 +1,14 @@
+uuid: d2add3c8-77cb-4c18-aa6c-4e415609fa13
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.middle
+  module:
+    - user
+id: user_remove_role_action.middle
+label: 'Remove the Middle role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: middle

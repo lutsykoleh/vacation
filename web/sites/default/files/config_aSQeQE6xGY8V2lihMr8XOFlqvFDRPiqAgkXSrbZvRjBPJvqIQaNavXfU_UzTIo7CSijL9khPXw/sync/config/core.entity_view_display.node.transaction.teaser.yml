@@ -1,0 +1,30 @@
+uuid: e278fc0a-1f8a-40ad-8ae7-3250ef134365
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.transaction.field_certificate
+    - field.field.node.transaction.field_number_of_accrued_days
+    - field.field.node.transaction.field_number_of_days
+    - field.field.node.transaction.field_transaction_status
+    - field.field.node.transaction.field_user
+    - node.type.transaction
+  module:
+    - user
+id: node.transaction.teaser
+targetEntityType: node
+bundle: transaction
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_certificate: true
+  field_number_of_accrued_days: true
+  field_number_of_days: true
+  field_transaction_status: true
+  field_user: true

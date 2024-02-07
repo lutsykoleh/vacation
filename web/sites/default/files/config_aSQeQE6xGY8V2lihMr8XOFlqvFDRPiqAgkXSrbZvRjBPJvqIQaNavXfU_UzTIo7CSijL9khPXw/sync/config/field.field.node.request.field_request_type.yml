@@ -1,0 +1,21 @@
+uuid: 7ac8551e-4cf2-48fc-894c-7e0f4b0a5524
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_request_type
+    - node.type.request
+  module:
+    - options
+id: node.request.field_request_type
+field_name: field_request_type
+entity_type: node
+bundle: request
+label: 'Request type'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

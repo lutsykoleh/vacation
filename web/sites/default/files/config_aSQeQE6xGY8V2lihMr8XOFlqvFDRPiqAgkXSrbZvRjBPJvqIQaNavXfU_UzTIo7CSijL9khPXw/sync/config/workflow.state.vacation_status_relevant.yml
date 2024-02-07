@@ -1,0 +1,12 @@
+uuid: c60d3c1e-215d-4c87-8996-4e335e5c50b0
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.workflow.vacation_status
+id: vacation_status_relevant
+label: Relevant
+module: workflow
+wid: vacation_status
+weight: -8
+sysid: 0

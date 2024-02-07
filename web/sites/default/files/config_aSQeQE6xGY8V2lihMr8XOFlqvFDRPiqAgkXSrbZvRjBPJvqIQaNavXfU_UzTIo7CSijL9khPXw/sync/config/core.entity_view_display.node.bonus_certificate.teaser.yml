@@ -1,0 +1,30 @@
+uuid: 3b50836d-243e-4e3a-baa6-eaa1e29d8ad5
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.bonus_certificate.field_accrual_date
+    - field.field.node.bonus_certificate.field_certificate_status
+    - field.field.node.bonus_certificate.field_expiration_date
+    - field.field.node.bonus_certificate.field_number_of_accrued_days
+    - field.field.node.bonus_certificate.field_user
+    - node.type.bonus_certificate
+  module:
+    - user
+id: node.bonus_certificate.teaser
+targetEntityType: node
+bundle: bonus_certificate
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_accrual_date: true
+  field_certificate_status: true
+  field_expiration_date: true
+  field_number_of_accrued_days: true
+  field_user: true

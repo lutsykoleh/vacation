@@ -1,0 +1,22 @@
+uuid: 084f9e63-bd11-42de-b778-ceb81af7579b
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - workflow
+id: node.field_certificate_status
+field_name: field_certificate_status
+entity_type: node
+type: workflow
+settings:
+  workflow_type: certificate_status
+  allowed_values: {  }
+  allowed_values_function: ''
+module: workflow
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

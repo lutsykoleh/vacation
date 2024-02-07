@@ -1,0 +1,12 @@
+uuid: 50c1af13-0236-4331-b990-6a714dfdc758
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.workflow.request_type
+id: request_type_paid
+label: Paid
+module: workflow
+wid: request_type
+weight: -8
+sysid: 0

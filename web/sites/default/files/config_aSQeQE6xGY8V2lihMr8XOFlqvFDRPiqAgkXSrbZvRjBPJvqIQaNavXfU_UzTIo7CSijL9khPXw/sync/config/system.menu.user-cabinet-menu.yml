@@ -1,0 +1,8 @@
+uuid: e5ce3a3e-567f-43b1-a1f9-58eb3a913544
+langcode: en
+status: true
+dependencies: {  }
+id: user-cabinet-menu
+label: 'User cabinet menu'
+description: ''
+locked: false

@@ -1,0 +1,21 @@
+uuid: 457a16b8-50fd-4d00-916f-74e9a467ebed
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_range_of_vacation_days
+    - node.type.request
+  module:
+    - datetime_range
+id: node.request.field_range_of_vacation_days
+field_name: field_range_of_vacation_days
+entity_type: node
+bundle: request
+label: 'Range of vacation days'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: daterange

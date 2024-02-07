@@ -1,0 +1,14 @@
+uuid: bf4df1f3-3695-4536-8f03-499fcd9fcd30
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.senior
+  module:
+    - user
+id: user_remove_role_action.senior
+label: 'Remove the Senior role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: senior

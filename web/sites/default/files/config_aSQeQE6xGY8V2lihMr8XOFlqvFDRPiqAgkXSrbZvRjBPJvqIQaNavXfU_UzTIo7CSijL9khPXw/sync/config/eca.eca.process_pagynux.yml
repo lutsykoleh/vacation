@@ -1,0 +1,369 @@
+uuid: 9828ea8b-1f21-4252-b540-8b5f7e1ccec6
+langcode: en
+status: true
+dependencies:
+  module:
+    - eca_base
+    - eca_form
+    - eca_tamper
+    - eca_user
+id: process_pagynux
+modeller: bpmn_io
+label: 'Validation for bonus certificate'
+version: ''
+weight: -6
+events:
+  Event_10j3asr:
+    plugin: 'form:form_validate'
+    label: Event_10j3asr
+    configuration:
+      form_id: node-bonus-certificate-form
+      entity_type_id: node
+      bundle: bonus_certificate
+      operation: 'default, save, delete, edit'
+    successors:
+      -
+        id: Activity_19mqy3l
+        condition: ''
+conditions:
+  Flow_0gdt5l3:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_ts]'
+      right: '[current_ts]'
+      operator: lessthan
+      type: value
+  Flow_0nd7cfp:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_ts]'
+      right: '[current_ts]'
+      operator: greaterthan
+      type: value
+  Flow_1xhtr6u:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_ts]'
+      right: '[current_ts]'
+      operator: equal
+      type: value
+  Flow_160bxyc:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_day_ts]'
+      right: '[start_day_ts]'
+      operator: equal
+      type: value
+  Flow_0252bel:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_day_ts]'
+      right: '[start_day_ts]'
+      operator: lessthan
+      type: value
+  Flow_01s0c9l:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_day_ts]'
+      right: '[start_day_ts]'
+      operator: greaterthan
+      type: value
+  Flow_0h6wi07:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[int]'
+      right: '30'
+      operator: greaterthan
+      type: value
+  Flow_11fx6yl:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[int]'
+      right: '30'
+      operator: equal
+      type: value
+  Flow_04kes9x:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[int]'
+      right: '30'
+      operator: lessthan
+      type: value
+  Flow_1ghrrre:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[number_of_accrued_days]'
+      right: '14'
+      operator: greaterthan
+      type: value
+  Flow_0qjem7n:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[number_of_accrued_days]'
+      right: '14'
+      operator: equal
+      type: value
+  Flow_0wkzfr8:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[number_of_accrued_days]'
+      right: '14'
+      operator: lessthan
+      type: value
+  Flow_1ib4quk:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[receiver]'
+      right: '[user:uid]'
+      operator: equal
+      type: value
+gateways:
+  Gateway_0algxq7:
+    type: 0
+    successors:
+      -
+        id: Activity_1l1pyqj
+        condition: Flow_0gdt5l3
+      -
+        id: Gateway_0okuvgs
+        condition: Flow_0nd7cfp
+      -
+        id: Gateway_0okuvgs
+        condition: Flow_1xhtr6u
+  Gateway_030325l:
+    type: 0
+    successors:
+      -
+        id: Activity_1fyzhhq
+        condition: Flow_160bxyc
+      -
+        id: Activity_1fyzhhq
+        condition: Flow_0252bel
+      -
+        id: Activity_1p7ewjz
+        condition: Flow_01s0c9l
+  Gateway_0okuvgs:
+    type: 0
+    successors:
+      -
+        id: Gateway_030325l
+        condition: ''
+  Gateway_12y2x94:
+    type: 0
+    successors:
+      -
+        id: Activity_14k7p62
+        condition: Flow_0h6wi07
+      -
+        id: Activity_089t2j3
+        condition: Flow_11fx6yl
+      -
+        id: Activity_089t2j3
+        condition: Flow_04kes9x
+  Gateway_1yl427j:
+    type: 0
+    successors:
+      -
+        id: Activity_07q3wpd
+        condition: Flow_1ghrrre
+      -
+        id: Gateway_1crtotf
+        condition: Flow_0qjem7n
+      -
+        id: Gateway_1crtotf
+        condition: Flow_0wkzfr8
+  Gateway_1crtotf:
+    type: 0
+    successors:
+      -
+        id: Activity_0a95pje
+        condition: ''
+actions:
+  Activity_19mqy3l:
+    plugin: eca_form_field_get_value
+    label: Activity_19mqy3l
+    configuration:
+      token_name: start_day
+      field_name: 'field_accrual_date[0][value][date]'
+      strip_tags: true
+      trim: true
+      xss_filter: true
+    successors:
+      -
+        id: Activity_178p7tc
+        condition: ''
+  Activity_178p7tc:
+    plugin: 'eca_tamper:strtotime'
+    label: Activity_178p7tc
+    configuration:
+      eca_data: '[start_day]'
+      eca_token_name: start_day_ts
+    successors:
+      -
+        id: Activity_1daut4g
+        condition: ''
+  Activity_1daut4g:
+    plugin: eca_form_field_get_value
+    label: Activity_1daut4g
+    configuration:
+      token_name: end_day
+      field_name: 'field_expiration_date[0][value][date]'
+      strip_tags: true
+      trim: true
+      xss_filter: true
+    successors:
+      -
+        id: Activity_0zyowpx
+        condition: ''
+  Activity_0zyowpx:
+    plugin: 'eca_tamper:strtotime'
+    label: Activity_0zyowpx
+    configuration:
+      eca_data: '[end_day]'
+      eca_token_name: end_day_ts
+    successors:
+      -
+        id: Activity_193h225
+        condition: ''
+  Activity_193h225:
+    plugin: 'eca_tamper:strtotime'
+    label: Activity_193h225
+    configuration:
+      eca_data: '[current-date:html_date]'
+      eca_token_name: current_ts
+    successors:
+      -
+        id: Gateway_0algxq7
+        condition: ''
+  Activity_1l1pyqj:
+    plugin: eca_form_field_set_error
+    label: Activity_1l1pyqj
+    configuration:
+      message: 'You cannot take a vacation earlier than today'
+      field_name: submit
+    successors: {  }
+  Activity_1fyzhhq:
+    plugin: eca_form_field_set_error
+    label: Activity_1fyzhhq
+    configuration:
+      message: 'The end date may not be equal to or less than the start date'
+      field_name: submit
+    successors: {  }
+  Activity_1p7ewjz:
+    plugin: 'eca_tamper:math'
+    label: Activity_1p7ewjz
+    configuration:
+      operation: subtraction
+      flip: false
+      value: '[start_day_ts]'
+      eca_data: '[end_day_ts]'
+      eca_token_name: vac_day
+    successors:
+      -
+        id: Activity_065rja4
+        condition: ''
+  Activity_065rja4:
+    plugin: 'eca_tamper:math'
+    label: Activity_065rja4
+    configuration:
+      operation: division
+      flip: false
+      value: '86400'
+      eca_data: '[vac_day]'
+      eca_token_name: res
+    successors:
+      -
+        id: Activity_14fn929
+        condition: ''
+  Activity_14fn929:
+    plugin: 'eca_tamper:cast_to_int'
+    label: Activity_14fn929
+    configuration:
+      eca_data: '[res]'
+      eca_token_name: int
+    successors:
+      -
+        id: Gateway_12y2x94
+        condition: ''
+  Activity_14k7p62:
+    plugin: eca_form_field_set_error
+    label: Activity_14k7p62
+    configuration:
+      message: 'The certificate should not be valid for more than 30 days'
+      field_name: submit
+    successors: {  }
+  Activity_089t2j3:
+    plugin: eca_form_field_get_value
+    label: Activity_089t2j3
+    configuration:
+      token_name: number_of_accrued_days
+      field_name: 'field_number_of_accrued_days[0][value]'
+      strip_tags: true
+      trim: true
+      xss_filter: true
+    successors:
+      -
+        id: Gateway_1yl427j
+        condition: ''
+  Activity_07q3wpd:
+    plugin: eca_form_field_set_error
+    label: Activity_07q3wpd
+    configuration:
+      message: 'The number of bonus days should not exceed 14 days'
+      field_name: submit
+    successors: {  }
+  Activity_0a95pje:
+    plugin: eca_form_field_get_value
+    label: Activity_0a95pje
+    configuration:
+      token_name: receiver
+      field_name: 'field_user[0][target_id]'
+      strip_tags: true
+      trim: true
+      xss_filter: true
+    successors:
+      -
+        id: Activity_0op12we
+        condition: ''
+  Activity_0op12we:
+    plugin: eca_token_load_user_current
+    label: Activity_0op12we
+    configuration:
+      token_name: user
+    successors:
+      -
+        id: Activity_0kh9efg
+        condition: Flow_1ib4quk
+  Activity_0kh9efg:
+    plugin: eca_form_field_set_error
+    label: Activity_0kh9efg
+    configuration:
+      message: 'You cannot issue a bonus certificate to yourself'
+      field_name: submit
+    successors: {  }

@@ -1,0 +1,12 @@
+uuid: 2a2f269b-9f73-43ea-b278-725e5dad664d
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.workflow.vacation_status
+id: vacation_status_creation
+label: Creation
+module: workflow
+wid: vacation_status
+weight: -11
+sysid: 1

@@ -1,0 +1,137 @@
+uuid: f6c3f22b-ce8f-4bbb-a17a-5c607df3c41c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.request.field_cancellation
+    - field.field.node.request.field_certificate
+    - field.field.node.request.field_confirmation_of_the_action
+    - field.field.node.request.field_range_for_unpaid_days
+    - field.field.node.request.field_range_of_unpaid_time
+    - field.field.node.request.field_range_of_vacation_days
+    - field.field.node.request.field_reason
+    - field.field.node.request.field_request_status
+    - field.field.node.request.field_request_type
+    - field.field.node.request.field_unpaid_type
+    - field.field.node.request.field_user
+    - field.field.node.request.field_user_checker
+    - field.field.node.request.field_user_memory
+    - field.field.node.request.field_vacation_status
+    - node.type.request
+  module:
+    - datetime_range
+    - options
+    - text
+    - user
+id: node.request.default
+targetEntityType: node
+bundle: request
+mode: default
+content:
+  field_certificate:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  field_confirmation_of_the_action:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_range_for_unpaid_days:
+    type: daterange_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+      separator: '-'
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_range_of_unpaid_time:
+    type: daterange_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+      separator: '-'
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_range_of_vacation_days:
+    type: daterange_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+      separator: '-'
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_reason:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_request_status:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_request_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_unpaid_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_user:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_user_checker:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_user_memory:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_vacation_status:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 8
+    region: content
+hidden:
+  field_cancellation: true
+  links: true

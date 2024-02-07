@@ -1,0 +1,29 @@
+uuid: bbe70aca-3904-4baa-b5c4-37f21bd88762
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_user
+    - node.type.certificate
+id: node.certificate.field_user
+field_name: field_user
+entity_type: node
+bundle: certificate
+label: User
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    filter:
+      type: _none
+    include_anonymous: true
+field_type: entity_reference

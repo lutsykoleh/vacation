@@ -1,0 +1,48 @@
+uuid: f2106ee7-dc60-4c01-90db-493b693ae364
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.request.field_cancellation
+    - field.field.node.request.field_certificate
+    - field.field.node.request.field_confirmation_of_the_action
+    - field.field.node.request.field_range_for_unpaid_days
+    - field.field.node.request.field_range_of_unpaid_time
+    - field.field.node.request.field_range_of_vacation_days
+    - field.field.node.request.field_reason
+    - field.field.node.request.field_request_status
+    - field.field.node.request.field_request_type
+    - field.field.node.request.field_unpaid_type
+    - field.field.node.request.field_user
+    - field.field.node.request.field_user_checker
+    - field.field.node.request.field_user_memory
+    - field.field.node.request.field_vacation_status
+    - node.type.request
+  module:
+    - user
+id: node.request.teaser
+targetEntityType: node
+bundle: request
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_cancellation: true
+  field_certificate: true
+  field_confirmation_of_the_action: true
+  field_range_for_unpaid_days: true
+  field_range_of_unpaid_time: true
+  field_range_of_vacation_days: true
+  field_reason: true
+  field_request_status: true
+  field_request_type: true
+  field_unpaid_type: true
+  field_user: true
+  field_user_checker: true
+  field_user_memory: true
+  field_vacation_status: true

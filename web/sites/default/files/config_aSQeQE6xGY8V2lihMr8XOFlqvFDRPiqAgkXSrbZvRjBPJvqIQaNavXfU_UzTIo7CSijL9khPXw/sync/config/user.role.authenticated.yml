@@ -1,0 +1,45 @@
+uuid: 801bda1c-030b-492c-969a-0a8f0d1e3056
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.basic_html
+  module:
+    - comment
+    - contact
+    - filter
+    - node
+    - search
+    - shortcut
+    - system
+    - workflow
+_core:
+  default_config_hash: I44QAB4es39lNzMQWiJLq2dfjX7VRSOzT_5KzAcUq_M
+id: authenticated
+label: 'Authenticated user'
+weight: 1
+is_admin: false
+permissions:
+  - 'access cancellation workflow_transition form'
+  - 'access comments'
+  - 'access confirmation_of_the_action workflow_transition form'
+  - 'access content'
+  - 'access shortcuts'
+  - 'access site-wide contact form'
+  - 'access user profiles'
+  - 'bypass cancellation workflow_transition access'
+  - 'bypass confirmation_of_the_action workflow_transition access'
+  - 'bypass request_status workflow_transition access'
+  - 'create calculations workflow_transition'
+  - 'create cancellation workflow_transition'
+  - 'create confirmation_of_the_action workflow_transition'
+  - 'create request workflow_transition'
+  - 'create request_type workflow_transition'
+  - 'create user_status workflow_transition'
+  - 'create vacation_status workflow_transition'
+  - 'post comments'
+  - 'search content'
+  - 'skip comment approval'
+  - 'use text format basic_html'
+  - 'view own unpublished content'
+  - 'view user email addresses'

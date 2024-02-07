@@ -1,0 +1,33 @@
+uuid: b0dfce84-4a22-42a6-9199-d939d430001c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_certificate
+    - node.type.bonus_certificate
+    - node.type.certificate
+    - node.type.request
+    - node.type.transaction
+id: node.request.field_certificate
+field_name: field_certificate
+entity_type: node
+bundle: request
+label: Certificate
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      bonus_certificate: bonus_certificate
+      certificate: certificate
+      transaction: transaction
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: certificate
+field_type: entity_reference

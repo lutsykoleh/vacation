@@ -1,0 +1,12 @@
+uuid: c746a833-805d-4ef1-af15-0a00e637c5fa
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.workflow.request_status
+id: request_status_creation
+label: Canceled
+module: workflow
+wid: request_status
+weight: -11
+sysid: 1

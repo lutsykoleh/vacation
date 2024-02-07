@@ -1,0 +1,92 @@
+uuid: 26105837-db41-48f7-a9ea-fa96cb647461
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.bonus_certificate.field_user
+    - field.field.node.certificate.field_user
+    - field.field.node.request.field_user
+    - field.field.node.request.field_user_checker
+    - field.field.node.request.field_user_memory
+    - field.field.node.transaction.field_user
+    - field.storage.node.field_user
+    - field.storage.node.field_user_checker
+    - field.storage.node.field_user_memory
+    - node.type.request
+  module:
+    - eca_base
+    - eca_content
+id: process_ery8sz6
+modeller: bpmn_io
+label: 'Downloading lists'
+version: ''
+weight: -10
+events:
+  Event_0og9ju8:
+    plugin: 'content_entity:insert'
+    label: Event_0og9ju8
+    configuration:
+      type: 'node request'
+    successors:
+      -
+        id: Activity_104spgy
+        condition: ''
+conditions: {  }
+gateways: {  }
+actions:
+  Activity_104spgy:
+    plugin: eca_token_load_entity
+    label: Activity_104spgy
+    configuration:
+      token_name: vacreq
+      from: current
+      entity_type: _none
+      entity_id: ''
+      revision_id: ''
+      properties: ''
+      langcode: _interface
+      latest_revision: false
+      unchanged: false
+      object: ''
+    successors:
+      -
+        id: Activity_1j930bg
+        condition: ''
+  Activity_0iosf3k:
+    plugin: eca_set_field_value
+    label: Activity_0iosf3k
+    configuration:
+      field_name: field_user_checker
+      field_value: '[list]'
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: true
+      object: '[vacreq]'
+    successors:
+      -
+        id: Activity_1jn7t8x
+        condition: ''
+  Activity_1j930bg:
+    plugin: eca_token_set_value
+    label: Activity_1j930bg
+    configuration:
+      token_name: list
+      token_value: '[vacreq:field_user]'
+      use_yaml: false
+    successors:
+      -
+        id: Activity_0iosf3k
+        condition: ''
+  Activity_1jn7t8x:
+    plugin: eca_set_field_value
+    label: Activity_1jn7t8x
+    configuration:
+      field_name: field_user_memory
+      field_value: '[list]'
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: true
+      object: '[vacreq]'
+    successors: {  }

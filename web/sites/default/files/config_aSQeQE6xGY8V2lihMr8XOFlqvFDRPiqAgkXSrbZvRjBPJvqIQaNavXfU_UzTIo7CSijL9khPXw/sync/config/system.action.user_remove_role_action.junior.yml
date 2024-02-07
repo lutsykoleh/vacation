@@ -1,0 +1,14 @@
+uuid: ff546d51-5897-41a7-af02-4d5516ce3f6c
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.junior
+  module:
+    - user
+id: user_remove_role_action.junior
+label: 'Remove the Junior role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: junior

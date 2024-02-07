@@ -1,0 +1,29 @@
+uuid: 97bcf09c-9e35-4545-bbcb-c05b061b2a24
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_certificate
+    - node.type.certificate
+    - node.type.transaction
+id: node.transaction.field_certificate
+field_name: field_certificate
+entity_type: node
+bundle: transaction
+label: Certificate
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      certificate: certificate
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,12 @@
+uuid: 31085540-6506-4b72-8f81-16f8a2c7a64d
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.state.vacation_status_expecting
+id: vacation_status_expecting_expecting
+label: null
+module: workflow
+from_sid: vacation_status_expecting
+to_sid: vacation_status_expecting
+roles: {  }

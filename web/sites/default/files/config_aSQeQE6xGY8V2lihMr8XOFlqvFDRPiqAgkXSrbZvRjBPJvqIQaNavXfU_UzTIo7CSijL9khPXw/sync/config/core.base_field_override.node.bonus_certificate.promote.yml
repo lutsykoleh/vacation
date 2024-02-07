@@ -1,0 +1,22 @@
+uuid: a822ba5d-10b3-42cf-ab3b-44c3e56a7240
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.bonus_certificate
+id: node.bonus_certificate.promote
+field_name: promote
+entity_type: node
+bundle: bonus_certificate
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

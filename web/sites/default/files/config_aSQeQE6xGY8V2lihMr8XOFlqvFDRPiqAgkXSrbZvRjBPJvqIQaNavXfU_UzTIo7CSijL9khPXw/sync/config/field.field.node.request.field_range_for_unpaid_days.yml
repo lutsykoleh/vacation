@@ -1,0 +1,21 @@
+uuid: b262fc1c-d3ee-406b-b728-1682a739529f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_range_for_unpaid_days
+    - node.type.request
+  module:
+    - datetime_range
+id: node.request.field_range_for_unpaid_days
+field_name: field_range_for_unpaid_days
+entity_type: node
+bundle: request
+label: 'Range for unpaid days'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: daterange

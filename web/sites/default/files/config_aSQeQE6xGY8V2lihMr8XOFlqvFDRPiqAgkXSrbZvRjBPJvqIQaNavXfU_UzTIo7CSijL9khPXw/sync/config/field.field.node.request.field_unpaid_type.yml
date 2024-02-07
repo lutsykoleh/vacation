@@ -1,0 +1,21 @@
+uuid: 2aba41f6-1cc9-4411-91e3-e57f101e0fa8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_unpaid_type
+    - node.type.request
+  module:
+    - options
+id: node.request.field_unpaid_type
+field_name: field_unpaid_type
+entity_type: node
+bundle: request
+label: 'Unpaid type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

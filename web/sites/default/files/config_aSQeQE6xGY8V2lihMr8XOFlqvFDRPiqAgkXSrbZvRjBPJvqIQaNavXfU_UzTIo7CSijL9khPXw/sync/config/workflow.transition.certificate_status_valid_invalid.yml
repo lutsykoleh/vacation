@@ -1,0 +1,25 @@
+uuid: fee2734c-36b6-4d2d-91fe-b1453c415977
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.state.certificate_status_invalid
+    - workflow.state.certificate_status_valid
+id: certificate_status_valid_invalid
+label: null
+module: workflow
+from_sid: certificate_status_valid
+to_sid: certificate_status_invalid
+roles:
+  administrator: administrator
+  workflow_author: '0'
+  anonymous: '0'
+  authenticated: '0'
+  junior: '0'
+  middle: '0'
+  senior: '0'
+  pm: '0'
+  shief_pm: '0'
+  teamlead: '0'
+  seo: '0'
+  client: '0'

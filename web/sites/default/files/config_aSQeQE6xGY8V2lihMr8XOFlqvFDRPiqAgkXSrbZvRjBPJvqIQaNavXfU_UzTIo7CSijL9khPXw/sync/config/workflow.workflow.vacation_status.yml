@@ -1,0 +1,16 @@
+uuid: b0af0f8e-d50f-4066-82ec-070cbd6363c5
+langcode: en
+status: true
+dependencies: {  }
+id: vacation_status
+label: 'Vacation status'
+module: workflow
+options:
+  name_as_title: 0
+  fieldset: 0
+  options: radios
+  schedule_enable: false
+  schedule_timezone: 0
+  always_update_entity: 0
+  comment_log_node: 0
+  watchdog_log: 1

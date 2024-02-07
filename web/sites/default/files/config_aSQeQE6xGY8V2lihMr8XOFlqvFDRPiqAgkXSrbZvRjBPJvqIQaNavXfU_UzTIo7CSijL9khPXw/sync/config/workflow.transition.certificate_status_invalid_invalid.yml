@@ -1,0 +1,12 @@
+uuid: d98bd1aa-9bdc-4bb2-89a6-4c65a0ebfde0
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.state.certificate_status_invalid
+id: certificate_status_invalid_invalid
+label: null
+module: workflow
+from_sid: certificate_status_invalid
+to_sid: certificate_status_invalid
+roles: {  }

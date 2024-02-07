@@ -1,0 +1,850 @@
+uuid: 7e79780d-97a3-4f34-9664-bf9e61cfd411
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.bonus_certificate.field_number_of_accrued_days
+    - field.field.node.certificate.field_number_of_accrued_days
+    - field.field.node.request.field_range_of_vacation_days
+    - field.field.node.transaction.field_number_of_accrued_days
+    - field.storage.node.field_number_of_accrued_days
+    - field.storage.node.field_range_of_vacation_days
+    - views.view.my_certificate
+    - views.view.vacation_request
+  module:
+    - eca_base
+    - eca_form
+    - eca_tamper
+    - eca_user
+    - eca_views
+id: process_mf52hfo
+modeller: bpmn_io
+label: 'Validation for Paid'
+version: ''
+weight: -4
+events:
+  Event_10qa727:
+    plugin: 'form:form_validate'
+    label: Event_10qa727
+    configuration:
+      form_id: node-request-form
+      entity_type_id: node
+      bundle: request
+      operation: 'default, save, delete, edit'
+    successors:
+      -
+        id: Activity_1fhvrio
+        condition: Flow_0gqm6me
+conditions:
+  Flow_0gqm6me:
+    plugin: eca_form_field_value
+    configuration:
+      negate: false
+      case: false
+      field_value: Paid
+      field_name: field_request_type
+      strip_tags: true
+      trim: true
+      xss_filter: true
+      operator: equal
+      type: value
+  Flow_1rf1z7e:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_ts]'
+      right: '[current_ts]'
+      operator: lessthan
+      type: value
+  Flow_1ql2ha0:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_ts]'
+      right: '[current_ts]'
+      operator: greaterthan
+      type: value
+  Flow_012xkzv:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_ts]'
+      right: '[current_ts]'
+      operator: equal
+      type: value
+  Flow_1q5xqma:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[int]'
+      right: '7'
+      operator: lessthan
+      type: value
+  Flow_1j5zskf:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[int]'
+      right: '7'
+      operator: greaterthan
+      type: value
+  Flow_1rh6or1:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[int]'
+      right: '7'
+      operator: equal
+      type: value
+  Flow_01ka2kb:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_d]'
+      right: Sat
+      operator: equal
+      type: value
+  Flow_07afybf:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_d]'
+      right: Sun
+      operator: equal
+      type: value
+  Flow_1f9r1al:
+    plugin: eca_scalar
+    configuration:
+      case: false
+      left: '[start_day_d]'
+      right: Sat
+      operator: equal
+      type: value
+      negate: true
+  Flow_13p97uo:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_day_d]'
+      right: Sun
+      operator: equal
+      type: value
+  Flow_1thdss4:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_day_d]'
+      right: Sat
+      operator: equal
+      type: value
+  Flow_02jxldj:
+    plugin: eca_scalar
+    configuration:
+      case: false
+      left: '[end_day_d]'
+      right: Sat
+      operator: equal
+      type: value
+      negate: true
+  Flow_1sj4xcb:
+    plugin: eca_scalar
+    configuration:
+      case: false
+      left: '[end_day_d]'
+      right: San
+      operator: equal
+      type: value
+      negate: true
+  Flow_1dr9ive:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[int]'
+      right: '14'
+      operator: lessthan
+      type: value
+  Flow_1wi8zpb:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[int]'
+      right: '14'
+      operator: greaterthan
+      type: value
+  Flow_1c7qc2e:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[my_certificate_item_count]'
+      right: '0'
+      operator: greaterthan
+      type: value
+  Flow_0dh7eif:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[my_certificate_item_count]'
+      right: '0'
+      operator: equal
+      type: value
+  Flow_0c63bro:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[count]'
+      right: '0'
+      operator: greaterthan
+      type: value
+  Flow_1wiafb0:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[count]'
+      right: '0'
+      operator: equal
+      type: value
+  Flow_1hejbyc:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[res2]'
+      right: '0'
+      operator: equal
+      type: value
+  Flow_1vb0ncv:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[res2]'
+      right: '0'
+      operator: lessthan
+      type: value
+  Flow_1h6enyf:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[res2]'
+      right: '[int]'
+      operator: lessthan
+      type: value
+  Flow_1qqlqqw:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[int]'
+      right: '14'
+      operator: equal
+      type: value
+  Flow_1fbdd6x:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[vacreq_day_count_item]'
+      right: '0'
+      operator: greaterthan
+      type: value
+  Flow_1ps0u6i:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[vacreq_day_count_item]'
+      right: '0'
+      operator: equal
+      type: value
+  Flow_07bc63g:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[balance]'
+      right: '[int]'
+      operator: lessthan
+      type: value
+  Flow_0c4gg6w:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[res2]'
+      right: '0'
+      operator: greaterthan
+      type: value
+gateways:
+  Gateway_1b6xqp8:
+    type: 0
+    successors:
+      -
+        id: Activity_023odc4
+        condition: ''
+  Gateway_00fnbwq:
+    type: 0
+    successors:
+      -
+        id: Activity_14qsqit
+        condition: Flow_1rf1z7e
+      -
+        id: Gateway_1b6xqp8
+        condition: Flow_1ql2ha0
+      -
+        id: Activity_0wu45i3
+        condition: Flow_012xkzv
+  Gateway_00larlw:
+    type: 0
+    successors:
+      -
+        id: Activity_0fr53tv
+        condition: Flow_1q5xqma
+      -
+        id: Gateway_0zd3py2
+        condition: Flow_1j5zskf
+      -
+        id: Activity_0fr53tv
+        condition: Flow_1rh6or1
+  Gateway_16yv5gz:
+    type: 0
+    successors:
+      -
+        id: Activity_0qkocg8
+        condition: Flow_01ka2kb
+      -
+        id: Activity_0qkocg8
+        condition: Flow_07afybf
+      -
+        id: Activity_1yp7knb
+        condition: Flow_1f9r1al
+  Gateway_1benukx:
+    type: 0
+    successors:
+      -
+        id: Activity_1egd85o
+        condition: Flow_13p97uo
+      -
+        id: Activity_1egd85o
+        condition: Flow_1thdss4
+      -
+        id: Activity_07oez1t
+        condition: Flow_02jxldj
+  Gateway_0zd3py2:
+    type: 0
+    successors:
+      -
+        id: Activity_10o8lb2
+        condition: Flow_1dr9ive
+      -
+        id: Activity_1x0htbv
+        condition: Flow_1wi8zpb
+      -
+        id: Activity_10o8lb2
+        condition: Flow_1qqlqqw
+  Gateway_0o24mli:
+    type: 0
+    successors:
+      -
+        id: Activity_0mk7m9l
+        condition: ''
+  Gateway_03o4ki5:
+    type: 0
+    successors:
+      -
+        id: Activity_0o6h6zc
+        condition: Flow_1c7qc2e
+      -
+        id: Activity_0ukq2w6
+        condition: Flow_0dh7eif
+  Gateway_04s886l:
+    type: 0
+    successors:
+      -
+        id: Activity_0e0b1g1
+        condition: Flow_0c63bro
+      -
+        id: Activity_0qpl0oe
+        condition: Flow_1wiafb0
+  Gateway_0zg7inb:
+    type: 0
+    successors:
+      -
+        id: Activity_0o60ojx
+        condition: Flow_1hejbyc
+      -
+        id: Activity_0o60ojx
+        condition: Flow_1vb0ncv
+      -
+        id: Gateway_0jy2xjj
+        condition: Flow_0c4gg6w
+  Gateway_0jy2xjj:
+    type: 0
+    successors:
+      -
+        id: Activity_1gj2nbc
+        condition: Flow_1h6enyf
+  Gateway_0rp239e:
+    type: 0
+    successors:
+      -
+        id: Activity_04tp2xx
+        condition: Flow_1fbdd6x
+      -
+        id: Gateway_1fym87u
+        condition: Flow_1ps0u6i
+  Gateway_1fym87u:
+    type: 0
+    successors:
+      -
+        id: Activity_1mmrpab
+        condition: Flow_07bc63g
+actions:
+  Activity_0ukq2w6:
+    plugin: eca_form_field_get_value
+    label: Activity_0ukq2w6
+    configuration:
+      token_name: start_day
+      field_name: 'field_range_of_vacation_days[0][value][date]'
+      strip_tags: true
+      trim: true
+      xss_filter: true
+    successors:
+      -
+        id: Activity_072iebd
+        condition: ''
+  Activity_17z270z:
+    plugin: eca_form_field_get_value
+    label: Activity_17z270z
+    configuration:
+      token_name: end_day
+      field_name: 'field_range_of_vacation_days[0][end_value][date]'
+      strip_tags: true
+      trim: true
+      xss_filter: true
+    successors:
+      -
+        id: Activity_1b2rwxf
+        condition: ''
+  Activity_0wu45i3:
+    plugin: eca_form_field_set_error
+    label: Activity_0wu45i3
+    configuration:
+      message: 'You cannot take paid vacation today'
+      field_name: submit
+    successors: {  }
+  Activity_072iebd:
+    plugin: 'eca_tamper:strtotime'
+    label: Activity_072iebd
+    configuration:
+      eca_data: '[start_day]'
+      eca_token_name: start_day_ts
+    successors:
+      -
+        id: Activity_17z270z
+        condition: ''
+  Activity_1b2rwxf:
+    plugin: 'eca_tamper:strtotime'
+    label: Activity_1b2rwxf
+    configuration:
+      eca_data: '[end_day]'
+      eca_token_name: end_day_ts
+    successors:
+      -
+        id: Activity_1rl1yb9
+        condition: ''
+  Activity_14qsqit:
+    plugin: eca_form_field_set_error
+    label: Activity_14qsqit
+    configuration:
+      message: 'You cannot take a vacation earlier than today'
+      field_name: submit
+    successors: {  }
+  Activity_1rl1yb9:
+    plugin: 'eca_tamper:strtotime'
+    label: Activity_1rl1yb9
+    configuration:
+      eca_data: '[current-date:html_date]'
+      eca_token_name: current_ts
+    successors:
+      -
+        id: Gateway_00fnbwq
+        condition: ''
+  Activity_023odc4:
+    plugin: 'eca_tamper:math'
+    label: Activity_023odc4
+    configuration:
+      operation: subtraction
+      flip: false
+      value: '[start_day_ts]'
+      eca_data: '[end_day_ts]'
+      eca_token_name: vac_day_ts
+    successors:
+      -
+        id: Activity_0xqv3wk
+        condition: ''
+  Activity_0xqv3wk:
+    plugin: 'eca_tamper:math'
+    label: Activity_0xqv3wk
+    configuration:
+      operation: division
+      flip: false
+      value: '86400'
+      eca_data: '[vac_day_ts]'
+      eca_token_name: res
+    successors:
+      -
+        id: Activity_0uc2h43
+        condition: ''
+  Activity_0uc2h43:
+    plugin: 'eca_tamper:cast_to_int'
+    label: Activity_0uc2h43
+    configuration:
+      eca_data: '[res]'
+      eca_token_name: '[int]'
+    successors:
+      -
+        id: Activity_09bnknf
+        condition: ''
+  Activity_0fr53tv:
+    plugin: 'eca_tamper:timetodate'
+    label: Activity_0fr53tv
+    configuration:
+      date_format: D
+      eca_data: '[start_day_ts]'
+      eca_token_name: start_day_d
+    successors:
+      -
+        id: Activity_0p0nj3s
+        condition: ''
+  Activity_0p0nj3s:
+    plugin: 'eca_tamper:timetodate'
+    label: Activity_0p0nj3s
+    configuration:
+      date_format: D
+      eca_data: '[end_day_ts]'
+      eca_token_name: end_day_d
+    successors:
+      -
+        id: Gateway_16yv5gz
+        condition: ''
+  Activity_1yp7knb:
+    plugin: eca_void_and_condition
+    label: Activity_1yp7knb
+    configuration: {  }
+    successors:
+      -
+        id: Gateway_1benukx
+        condition: ''
+  Activity_0qkocg8:
+    plugin: eca_form_field_set_error
+    label: Activity_0qkocg8
+    configuration:
+      message: 'Start date falls on a weekend'
+      field_name: submit
+    successors: {  }
+  Activity_1egd85o:
+    plugin: eca_form_field_set_error
+    label: Activity_1egd85o
+    configuration:
+      message: 'End date falls on a weekend'
+      field_name: submit
+    successors: {  }
+  Activity_07oez1t:
+    plugin: eca_void_and_condition
+    label: Activity_07oez1t
+    configuration: {  }
+    successors:
+      -
+        id: Activity_10o8lb2
+        condition: Flow_1sj4xcb
+  Activity_1x0htbv:
+    plugin: eca_form_field_set_error
+    label: Activity_1x0htbv
+    configuration:
+      message: 'The number of vacation days cannot exceed 14 days'
+      field_name: submit
+    successors: {  }
+  Activity_0wpzdok:
+    plugin: eca_views_query
+    label: Activity_0wpzdok
+    configuration:
+      token_name: my_certificate
+      view_id: my_certificate
+      display_id: balance_sheet_for_calculations
+      arguments: '[user]'
+    successors:
+      -
+        id: Gateway_0o24mli
+        condition: ''
+  Activity_0mk7m9l:
+    plugin: eca_count
+    label: Activity_0mk7m9l
+    configuration:
+      token_name: my_certificate_item_count
+      list_token: my_certificate
+    successors:
+      -
+        id: Gateway_03o4ki5
+        condition: ''
+  Activity_16ndblp:
+    plugin: 'eca_tamper:math'
+    label: Activity_16ndblp
+    configuration:
+      operation: addition
+      flip: false
+      value: '[balance]'
+      eca_data: '[my_balance:field_number_of_accrued_days]'
+      eca_token_name: balance
+    successors:
+      -
+        id: Gateway_0o24mli
+        condition: ''
+  Activity_0g4w28q:
+    plugin: eca_token_set_value
+    label: Activity_0g4w28q
+    configuration:
+      token_name: balance
+      token_value: '0'
+      use_yaml: false
+    successors:
+      -
+        id: Activity_0wpzdok
+        condition: ''
+  Activity_1fhvrio:
+    plugin: eca_token_load_user_current
+    label: Activity_1fhvrio
+    configuration:
+      token_name: user
+    successors:
+      -
+        id: Activity_0g4w28q
+        condition: ''
+  Activity_0o6h6zc:
+    plugin: eca_list_remove
+    label: Activity_0o6h6zc
+    configuration:
+      value: ''
+      token_name: my_balance
+      method: first
+      index: ''
+      list_token: my_certificate
+    successors:
+      -
+        id: Activity_16ndblp
+        condition: ''
+  Activity_0lh3gj4:
+    plugin: eca_views_query
+    label: Activity_0lh3gj4
+    configuration:
+      token_name: my_vacreq
+      view_id: vacation_request
+      display_id: with_status_of_paid
+      arguments: '[user]'
+    successors:
+      -
+        id: Activity_12xqfg0
+        condition: ''
+  Activity_10o8lb2:
+    plugin: eca_token_set_value
+    label: Activity_10o8lb2
+    configuration:
+      token_name: vacreq_day
+      token_value: '0'
+      use_yaml: false
+    successors:
+      -
+        id: Activity_0lh3gj4
+        condition: ''
+  Activity_12xqfg0:
+    plugin: eca_count
+    label: Activity_12xqfg0
+    configuration:
+      token_name: vacreq_day_count_item
+      list_token: my_vacreq
+    successors:
+      -
+        id: Gateway_0rp239e
+        condition: ''
+  Activity_0e0b1g1:
+    plugin: eca_list_remove
+    label: Activity_0e0b1g1
+    configuration:
+      value: ''
+      token_name: my_vacreq_day
+      method: first
+      index: ''
+      list_token: my_vacreq
+    successors:
+      -
+        id: Activity_0zrx86m
+        condition: ''
+  Activity_0qpl0oe:
+    plugin: 'eca_tamper:math'
+    label: Activity_0qpl0oe
+    configuration:
+      operation: subtraction
+      flip: false
+      value: '[vacreq_day]'
+      eca_data: '[balance]'
+      eca_token_name: res2
+    successors:
+      -
+        id: Gateway_0zg7inb
+        condition: ''
+  Activity_1wcf5g2:
+    plugin: 'eca_tamper:math'
+    label: Activity_1wcf5g2
+    configuration:
+      operation: subtraction
+      flip: false
+      value: '[vac_start]'
+      eca_data: '[vac_end]'
+      eca_token_name: my_vacreq_day
+    successors:
+      -
+        id: Activity_13jdihx
+        condition: ''
+  Activity_13wk155:
+    plugin: 'eca_tamper:cast_to_int'
+    label: Activity_13wk155
+    configuration:
+      eca_data: '[res1]'
+      eca_token_name: int1
+    successors:
+      -
+        id: Activity_1ijocmm
+        condition: ''
+  Activity_13jdihx:
+    plugin: 'eca_tamper:math'
+    label: Activity_13jdihx
+    configuration:
+      operation: division
+      flip: false
+      value: '86400'
+      eca_data: '[my_vacreq_day]'
+      eca_token_name: res1
+    successors:
+      -
+        id: Activity_13wk155
+        condition: ''
+  Activity_0zrx86m:
+    plugin: 'eca_tamper:strtotime'
+    label: Activity_0zrx86m
+    configuration:
+      eca_data: '[my_vacreq_day:field_range_of_vacation_days:value]'
+      eca_token_name: vac_start
+    successors:
+      -
+        id: Activity_02csq7d
+        condition: ''
+  Activity_02csq7d:
+    plugin: 'eca_tamper:strtotime'
+    label: Activity_02csq7d
+    configuration:
+      eca_data: '[my_vacreq_day:field_range_of_vacation_days:end_value]'
+      eca_token_name: vac_end
+    successors:
+      -
+        id: Activity_1wcf5g2
+        condition: ''
+  Activity_0o60ojx:
+    plugin: eca_form_field_set_error
+    label: Activity_0o60ojx
+    configuration:
+      message: 'There are not enough days on your balance'
+      field_name: submit
+    successors: {  }
+  Activity_1gj2nbc:
+    plugin: eca_form_field_set_error
+    label: Activity_1gj2nbc
+    configuration:
+      message: 'The number of vacation days exceeds your balance. You can take a vacation for [res2] days'
+      field_name: submit
+    successors: {  }
+  Activity_1ijocmm:
+    plugin: 'eca_tamper:math'
+    label: Activity_1ijocmm
+    configuration:
+      operation: addition
+      flip: false
+      value: '[vacreq_day]'
+      eca_data: '[int1]'
+      eca_token_name: vacreq_day
+    successors:
+      -
+        id: Activity_1wtpgbj
+        condition: ''
+  Activity_1wtpgbj:
+    plugin: 'eca_tamper:math'
+    label: Activity_1wtpgbj
+    configuration:
+      operation: addition
+      flip: false
+      value: '1'
+      eca_data: '[vacreq_day]'
+      eca_token_name: vacreq_day
+    successors:
+      -
+        id: Activity_10saz9y
+        condition: ''
+  Activity_09bnknf:
+    plugin: 'eca_tamper:math'
+    label: Activity_09bnknf
+    configuration:
+      operation: addition
+      flip: false
+      value: '1'
+      eca_data: '[int]'
+      eca_token_name: int
+    successors:
+      -
+        id: Gateway_00larlw
+        condition: ''
+  Activity_10saz9y:
+    plugin: 'eca_tamper:math'
+    label: Activity_10saz9y
+    configuration:
+      operation: subtraction
+      flip: false
+      value: '1'
+      eca_data: '[count]'
+      eca_token_name: count
+    successors:
+      -
+        id: Gateway_04s886l
+        condition: ''
+  Activity_04tp2xx:
+    plugin: eca_token_set_value
+    label: Activity_04tp2xx
+    configuration:
+      token_name: count
+      token_value: '[vacreq_day_count_item]'
+      use_yaml: false
+    successors:
+      -
+        id: Gateway_04s886l
+        condition: ''
+  Activity_1mmrpab:
+    plugin: eca_form_field_set_error
+    label: Activity_1mmrpab
+    configuration:
+      message: 'You can take a vacation for no more than [balance] day'
+      field_name: submit
+    successors: {  }

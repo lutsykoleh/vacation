@@ -1,0 +1,14 @@
+uuid: 0c1034bc-1837-4a27-8efe-18596166b8e3
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.pm
+  module:
+    - user
+id: user_remove_role_action.pm
+label: 'Remove the PM role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: pm

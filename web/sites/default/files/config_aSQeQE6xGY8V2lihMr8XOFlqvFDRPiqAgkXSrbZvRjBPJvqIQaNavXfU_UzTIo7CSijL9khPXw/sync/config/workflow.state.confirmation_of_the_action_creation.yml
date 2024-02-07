@@ -1,0 +1,12 @@
+uuid: 9c33f562-f217-4b75-b432-e886fd9da64f
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.workflow.confirmation_of_the_action
+id: confirmation_of_the_action_creation
+label: Creation
+module: workflow
+wid: confirmation_of_the_action
+weight: -11
+sysid: 1

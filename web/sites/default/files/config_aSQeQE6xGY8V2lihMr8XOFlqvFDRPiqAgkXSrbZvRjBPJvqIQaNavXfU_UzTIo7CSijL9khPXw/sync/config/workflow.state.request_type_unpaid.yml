@@ -1,0 +1,12 @@
+uuid: 48f59880-6a01-48b9-924e-8755d4cac335
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.workflow.request_type
+id: request_type_unpaid
+label: Unpaid
+module: workflow
+wid: request_type
+weight: -8
+sysid: 0

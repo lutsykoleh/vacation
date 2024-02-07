@@ -1,0 +1,14 @@
+uuid: 16b155c3-793e-4c4f-809b-d06d5b7cb7d8
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.senior
+  module:
+    - user
+id: user_add_role_action.senior
+label: 'Add the Senior role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: senior

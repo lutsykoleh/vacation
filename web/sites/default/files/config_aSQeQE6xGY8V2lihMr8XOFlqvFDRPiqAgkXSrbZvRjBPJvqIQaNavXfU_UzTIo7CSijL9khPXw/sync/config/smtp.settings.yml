@@ -1,0 +1,21 @@
+_core:
+  default_config_hash: HENvUIeX6xNPGRB1w3z6rT9a71LM_hKXATF6XrM9WvM
+smtp_on: true
+smtp_host: smtp.gmail.com
+smtp_hostbackup: ''
+smtp_port: '587'
+smtp_protocol: tls
+smtp_autotls: true
+smtp_timeout: 30
+smtp_username: trewos53@gmail.com
+smtp_password: cdrtsltpngwonjha
+smtp_from: trewos53@gmail.com
+smtp_fromname: Site
+smtp_client_hostname: ''
+smtp_client_helo: ''
+smtp_allowhtml: '0'
+smtp_test_address: lza120503@gmail.com
+smtp_reroute_address: ''
+smtp_debugging: false
+prev_mail_system: php_mail
+smtp_keepalive: false

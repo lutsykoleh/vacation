@@ -1,0 +1,836 @@
+uuid: a7785738-b495-453e-a7d1-2a5730a5c5f3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.request.field_range_for_unpaid_days
+    - field.field.node.request.field_range_of_unpaid_time
+    - field.field.node.request.field_range_of_vacation_days
+    - field.field.node.request.field_vacation_status
+    - field.storage.node.field_range_for_unpaid_days
+    - field.storage.node.field_range_of_unpaid_time
+    - field.storage.node.field_range_of_vacation_days
+    - field.storage.node.field_vacation_status
+    - node.type.request
+    - views.view.people_who_are_expecting_or_on_vacation
+  module:
+    - eca_base
+    - eca_content
+    - eca_queue
+    - eca_tamper
+    - eca_user
+    - eca_views
+id: process_ragswnt
+modeller: bpmn_io
+label: 'Main view'
+version: ''
+weight: -3
+events:
+  Event_1r58j67:
+    plugin: 'content_entity:update'
+    label: Event_1r58j67
+    configuration:
+      type: 'node request'
+    successors:
+      -
+        id: Activity_0po9flx
+        condition: ''
+  Event_0ybyj40:
+    plugin: 'eca_queue:processing_task'
+    label: Event_0ybyj40
+    configuration:
+      distribute: false
+      task_name: Check
+      task_value: '1'
+      cron: ''
+    successors:
+      -
+        id: Activity_0ik3131
+        condition: ''
+conditions:
+  Flow_04tuvd0:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[main_view_item_count]'
+      right: '0'
+      operator: greaterthan
+      type: value
+  Flow_1aepwzf:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[unpaid_day]'
+      right: '[current-date:raw]'
+      operator: equal
+      type: value
+  Flow_002zey3:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[main_view_checked:field_request_type]'
+      right: Paid
+      operator: equal
+      type: value
+  Flow_1bp20bf:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[main_view_checked:field_request_type]'
+      right: Unpaid
+      operator: equal
+      type: value
+  Flow_1yk7zx6:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[main_view_checked:field_unpaid_type]'
+      right: 'Not a full day'
+      operator: equal
+      type: value
+  Flow_0pnxwly:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[main_view_checked:field_unpaid_type]'
+      right: 'Full day'
+      operator: equal
+      type: value
+  Flow_0svthhn:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[unpaid_day]'
+      right: '[current-date:raw]'
+      operator: greaterthan
+      type: value
+  Flow_121akfw:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[unpaid_day]'
+      right: '[current-date:raw]'
+      operator: lessthan
+      type: value
+  Flow_1gx8h4s:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[main_view_item_count]'
+      right: '0'
+      operator: equal
+      type: value
+  Flow_1g1akus:
+    plugin: eca_entity_field_value
+    configuration:
+      negate: false
+      case: false
+      expected_value: '1'
+      field_name: status.value
+      operator: equal
+      type: value
+      entity: '[vacreq_check]'
+  Flow_0xllv3u:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[vacreq_check:field_vacation_status:value]'
+      right: vacation_status_relevant
+      operator: equal
+      type: value
+  Flow_10epz80:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[vacreq_check:field_request_status:value]'
+      right: request_status_approve
+      operator: equal
+      type: value
+  Flow_0g0p7tw:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_unpaid_day]'
+      right: '[current-date:raw]'
+      operator: lessthan
+      type: value
+  Flow_0othkd4:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_unpaid_day]'
+      right: '[current-date:raw]'
+      operator: greaterthan
+      type: value
+  Flow_0zufic1:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_unpaid_day]'
+      right: '[current-date:raw]'
+      operator: equal
+      type: value
+  Flow_1jy46ot:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[paid_day]'
+      right: '[current-date:raw]'
+      operator: equal
+      type: value
+  Flow_0afoqey:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[paid_day]'
+      right: '[current-date:raw]'
+      operator: greaterthan
+      type: value
+  Flow_0phrx3e:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[paid_day]'
+      right: '[current-date:raw]'
+      operator: lessthan
+      type: value
+  Flow_03cdufq:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_paid_day]'
+      right: '[current-date:raw]'
+      operator: equal
+      type: value
+  Flow_0y5tqsf:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_paid_day]'
+      right: '[current-date:raw]'
+      operator: greaterthan
+      type: value
+  Flow_11nlzbo:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_paid_day]'
+      right: '[current-date:raw]'
+      operator: lessthan
+      type: value
+  Flow_1r7eiop:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[unpaid_time]'
+      right: '[current-date:raw]'
+      operator: equal
+      type: value
+  Flow_0iq837k:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[unpaid_time]'
+      right: '[current-date:raw]'
+      operator: greaterthan
+      type: value
+  Flow_1a4vdbv:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[unpaid_time]'
+      right: '[current-date:raw]'
+      operator: lessthan
+      type: value
+  Flow_005zy2u:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_unpaid_time]'
+      right: '[current-date:raw]'
+      operator: equal
+      type: value
+  Flow_0xnf941:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_unpaid_time]'
+      right: '[current-date:raw]'
+      operator: greaterthan
+      type: value
+  Flow_0b0bmfh:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_unpaid_time]'
+      right: '[current-date:raw]'
+      operator: lessthan
+      type: value
+gateways:
+  Gateway_1uz59oh:
+    type: 0
+    successors:
+      -
+        id: Activity_1xvxpjz
+        condition: Flow_04tuvd0
+      -
+        id: Activity_19dmm7u
+        condition: Flow_1gx8h4s
+  Gateway_0j94m4q:
+    type: 0
+    successors:
+      -
+        id: Activity_0unqdec
+        condition: ''
+  Gateway_14t29mg:
+    type: 0
+    successors:
+      -
+        id: Gateway_0617frh
+        condition: Flow_1aepwzf
+      -
+        id: Activity_1sd9kht
+        condition: Flow_0svthhn
+      -
+        id: Gateway_1wwptzz
+        condition: Flow_121akfw
+  Gateway_0idrq52:
+    type: 0
+    successors:
+      -
+        id: Activity_1oyc2to
+        condition: Flow_002zey3
+      -
+        id: Gateway_1x0556k
+        condition: Flow_1bp20bf
+  Gateway_1x0556k:
+    type: 0
+    successors:
+      -
+        id: Activity_0qul3hc
+        condition: Flow_1yk7zx6
+      -
+        id: Activity_0d7yq0a
+        condition: Flow_0pnxwly
+  Gateway_0bl14vt:
+    type: 0
+    successors:
+      -
+        id: Gateway_0j94m4q
+        condition: ''
+  Gateway_0nltxfi:
+    type: 0
+    successors:
+      -
+        id: Gateway_0bl14vt
+        condition: ''
+  Gateway_1aeshfm:
+    type: 0
+    successors:
+      -
+        id: Gateway_1rnke1i
+        condition: Flow_10epz80
+  Gateway_1rnke1i:
+    type: 0
+    successors:
+      -
+        id: Activity_0wem87r
+        condition: Flow_0xllv3u
+  Gateway_1wwptzz:
+    type: 0
+    successors:
+      -
+        id: Activity_1704hzs
+        condition: Flow_0g0p7tw
+      -
+        id: Gateway_0c38lff
+        condition: Flow_0othkd4
+      -
+        id: Gateway_0c38lff
+        condition: Flow_0zufic1
+  Gateway_0617frh:
+    type: 0
+    successors:
+      -
+        id: Activity_07y8o1x
+        condition: ''
+  Gateway_0c38lff:
+    type: 0
+    successors:
+      -
+        id: Gateway_0617frh
+        condition: ''
+  Gateway_0sza71x:
+    type: 0
+    successors:
+      -
+        id: Gateway_1n6mjso
+        condition: Flow_1jy46ot
+      -
+        id: Activity_1bar5ku
+        condition: Flow_0afoqey
+      -
+        id: Gateway_0x3zb37
+        condition: Flow_0phrx3e
+  Gateway_1n6mjso:
+    type: 0
+    successors:
+      -
+        id: Activity_0b2xixi
+        condition: ''
+  Gateway_0od5o8p:
+    type: 0
+    successors:
+      -
+        id: Gateway_1n6mjso
+        condition: ''
+  Gateway_0x3zb37:
+    type: 0
+    successors:
+      -
+        id: Gateway_0od5o8p
+        condition: Flow_03cdufq
+      -
+        id: Gateway_0od5o8p
+        condition: Flow_0y5tqsf
+      -
+        id: Activity_0hwpc2e
+        condition: Flow_11nlzbo
+  Gateway_0bafhjq:
+    type: 0
+    successors:
+      -
+        id: Gateway_003mznu
+        condition: Flow_1r7eiop
+      -
+        id: Activity_08ys8hi
+        condition: Flow_0iq837k
+      -
+        id: Gateway_1ushen0
+        condition: Flow_1a4vdbv
+  Gateway_003mznu:
+    type: 0
+    successors:
+      -
+        id: Activity_1hoqxkv
+        condition: ''
+  Gateway_0gyh4wu:
+    type: 0
+    successors:
+      -
+        id: Gateway_003mznu
+        condition: ''
+  Gateway_1ushen0:
+    type: 0
+    successors:
+      -
+        id: Gateway_0gyh4wu
+        condition: Flow_005zy2u
+      -
+        id: Gateway_0gyh4wu
+        condition: Flow_0xnf941
+      -
+        id: Activity_0xmvrya
+        condition: Flow_0b0bmfh
+  Gateway_02hilgs:
+    type: 0
+    successors:
+      -
+        id: Gateway_0nltxfi
+        condition: ''
+  Gateway_1cvvq29:
+    type: 0
+    successors:
+      -
+        id: Gateway_0nltxfi
+        condition: ''
+  Gateway_1siv5bz:
+    type: 0
+    successors:
+      -
+        id: Gateway_0bl14vt
+        condition: ''
+actions:
+  Activity_1xvxpjz:
+    plugin: eca_list_remove
+    label: Activity_1xvxpjz
+    configuration:
+      value: ''
+      token_name: main_view_checked
+      method: first
+      index: ''
+      list_token: main_view
+    successors:
+      -
+        id: Gateway_0idrq52
+        condition: ''
+  Activity_0wem87r:
+    plugin: eca_views_query
+    label: Activity_0wem87r
+    configuration:
+      token_name: main_view
+      view_id: people_who_are_expecting_or_on_vacation
+      display_id: calculation_of_available_vacations
+      arguments: ''
+    successors:
+      -
+        id: Gateway_0j94m4q
+        condition: ''
+  Activity_0unqdec:
+    plugin: eca_count
+    label: Activity_0unqdec
+    configuration:
+      token_name: main_view_item_count
+      list_token: main_view
+    successors:
+      -
+        id: Gateway_1uz59oh
+        condition: ''
+  Activity_00a1dvy:
+    plugin: 'eca_tamper:strtotime'
+    label: Activity_00a1dvy
+    configuration:
+      eca_data: '[main_view_checked:field_range_of_vacation_days:value]'
+      eca_token_name: paid_day
+    successors:
+      -
+        id: Gateway_0sza71x
+        condition: ''
+  Activity_0r4hfbv:
+    plugin: 'eca_tamper:strtotime'
+    label: Activity_0r4hfbv
+    configuration:
+      eca_data: '[main_view_checked:field_range_of_unpaid_time:value]'
+      eca_token_name: unpaid_time
+    successors:
+      -
+        id: Gateway_0bafhjq
+        condition: ''
+  Activity_04nhytg:
+    plugin: 'eca_tamper:strtotime'
+    label: Activity_04nhytg
+    configuration:
+      eca_data: '[main_view_checked:field_range_for_unpaid_days:value]'
+      eca_token_name: unpaid_day
+    successors:
+      -
+        id: Gateway_14t29mg
+        condition: ''
+  Activity_1oyc2to:
+    plugin: 'eca_tamper:strtotime'
+    label: Activity_1oyc2to
+    configuration:
+      eca_data: '[main_view_checked:field_range_of_vacation_days:end_value]'
+      eca_token_name: end_paid_day
+    successors:
+      -
+        id: Activity_00a1dvy
+        condition: ''
+  Activity_0qul3hc:
+    plugin: 'eca_tamper:strtotime'
+    label: Activity_0qul3hc
+    configuration:
+      eca_data: '[main_view_checked:field_range_of_unpaid_time:end_value]'
+      eca_token_name: end_unpaid_time
+    successors:
+      -
+        id: Activity_0r4hfbv
+        condition: ''
+  Activity_0d7yq0a:
+    plugin: 'eca_tamper:strtotime'
+    label: Activity_0d7yq0a
+    configuration:
+      eca_data: '[main_view_checked:field_range_for_unpaid_days:end_value]'
+      eca_token_name: end_unpaid_day
+    successors:
+      -
+        id: Activity_04nhytg
+        condition: ''
+  Activity_1csv8z4:
+    plugin: eca_token_load_entity
+    label: Activity_1csv8z4
+    configuration:
+      token_name: vacreq_check
+      from: current
+      entity_type: _none
+      entity_id: ''
+      revision_id: ''
+      properties: ''
+      langcode: _interface
+      latest_revision: false
+      unchanged: false
+      object: ''
+    successors:
+      -
+        id: Gateway_1aeshfm
+        condition: Flow_1g1akus
+  Activity_0po9flx:
+    plugin: eca_switch_account
+    label: Activity_0po9flx
+    configuration:
+      user_id: '1'
+    successors:
+      -
+        id: Activity_1csv8z4
+        condition: ''
+  Activity_0kvgnlo:
+    plugin: eca_save_entity
+    label: Activity_0kvgnlo
+    configuration:
+      object: '[main_view_checked]'
+    successors:
+      -
+        id: Gateway_1siv5bz
+        condition: ''
+  Activity_1704hzs:
+    plugin: eca_set_field_value
+    label: Activity_1704hzs
+    configuration:
+      field_name: field_vacation_status
+      field_value: vacation_status_not_relevant
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: '[main_view_checked]'
+    successors:
+      -
+        id: Activity_0kvgnlo
+        condition: ''
+  Activity_0hwpc2e:
+    plugin: eca_set_field_value
+    label: Activity_0hwpc2e
+    configuration:
+      field_name: field_vacation_status
+      field_value: vacation_status_not_relevant
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: '[main_view_checked]'
+    successors:
+      -
+        id: Activity_09ewv9d
+        condition: ''
+  Activity_0xmvrya:
+    plugin: eca_set_field_value
+    label: Activity_0xmvrya
+    configuration:
+      field_name: field_vacation_status
+      field_value: vacation_status_not_relevant
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: '[main_view_checked]'
+    successors:
+      -
+        id: Activity_0b2px1m
+        condition: ''
+  Activity_09ewv9d:
+    plugin: eca_save_entity
+    label: Activity_09ewv9d
+    configuration:
+      object: '[main_view_checked]'
+    successors:
+      -
+        id: Gateway_1cvvq29
+        condition: ''
+  Activity_0b2px1m:
+    plugin: eca_save_entity
+    label: Activity_0b2px1m
+    configuration:
+      object: '[main_view_checked]'
+    successors:
+      -
+        id: Gateway_02hilgs
+        condition: ''
+  Activity_19dmm7u:
+    plugin: eca_enqueue_task_delayed
+    label: Check
+    configuration:
+      delay_value: '1'
+      delay_unit: '60'
+      task_name: Check
+      task_value: '1'
+      tokens: ''
+    successors: {  }
+  Activity_0ik3131:
+    plugin: eca_switch_account
+    label: Activity_0ik3131
+    configuration:
+      user_id: '1'
+    successors:
+      -
+        id: Activity_0wem87r
+        condition: ''
+  Activity_1sd9kht:
+    plugin: eca_set_field_value
+    label: Activity_1sd9kht
+    configuration:
+      field_name: field_vacation_status
+      field_value: vacation_status_expecting
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: '[main_view_checked]'
+    successors:
+      -
+        id: Activity_0m8nm20
+        condition: ''
+  Activity_0m8nm20:
+    plugin: eca_save_entity
+    label: Activity_0m8nm20
+    configuration:
+      object: '[main_view_checked]'
+    successors:
+      -
+        id: Gateway_1siv5bz
+        condition: ''
+  Activity_08ys8hi:
+    plugin: eca_set_field_value
+    label: Activity_08ys8hi
+    configuration:
+      field_name: field_vacation_status
+      field_value: vacation_status_expecting
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: '[main_view_checked]'
+    successors:
+      -
+        id: Activity_0trkexz
+        condition: ''
+  Activity_1bar5ku:
+    plugin: eca_set_field_value
+    label: Activity_1bar5ku
+    configuration:
+      field_name: field_vacation_status
+      field_value: vacation_status_expecting
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: '[main_view_checked]'
+    successors:
+      -
+        id: Activity_1njexev
+        condition: ''
+  Activity_1njexev:
+    plugin: eca_save_entity
+    label: Activity_1njexev
+    configuration:
+      object: '[main_view_checked]'
+    successors:
+      -
+        id: Gateway_1cvvq29
+        condition: ''
+  Activity_0trkexz:
+    plugin: eca_save_entity
+    label: Activity_0trkexz
+    configuration:
+      object: '[main_view_checked]'
+    successors:
+      -
+        id: Gateway_02hilgs
+        condition: ''
+  Activity_07y8o1x:
+    plugin: eca_set_field_value
+    label: Activity_07y8o1x
+    configuration:
+      field_name: field_vacation_status
+      field_value: vacation_status_relevant
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: '[main_view_checked]'
+    successors:
+      -
+        id: Activity_05bmbpn
+        condition: ''
+  Activity_05bmbpn:
+    plugin: eca_save_entity
+    label: Activity_05bmbpn
+    configuration:
+      object: '[main_view_checked]'
+    successors:
+      -
+        id: Gateway_1siv5bz
+        condition: ''
+  Activity_0b2xixi:
+    plugin: eca_set_field_value
+    label: Activity_0b2xixi
+    configuration:
+      field_name: field_vacation_status
+      field_value: vacation_status_relevant
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: '[main_view_checked]'
+    successors:
+      -
+        id: Activity_0elnj4x
+        condition: ''
+  Activity_0elnj4x:
+    plugin: eca_save_entity
+    label: Activity_0elnj4x
+    configuration:
+      object: '[main_view_checked]'
+    successors:
+      -
+        id: Gateway_1cvvq29
+        condition: ''
+  Activity_1hoqxkv:
+    plugin: eca_set_field_value
+    label: Activity_1hoqxkv
+    configuration:
+      field_name: field_vacation_status
+      field_value: vacation_status_relevant
+      method: 'set:clear'
+      strip_tags: false
+      trim: false
+      save_entity: false
+      object: '[main_view_checked]'
+    successors:
+      -
+        id: Activity_0xovoiy
+        condition: ''
+  Activity_0xovoiy:
+    plugin: eca_save_entity
+    label: Activity_0xovoiy
+    configuration:
+      object: '[main_view_checked]'
+    successors:
+      -
+        id: Gateway_02hilgs
+        condition: ''

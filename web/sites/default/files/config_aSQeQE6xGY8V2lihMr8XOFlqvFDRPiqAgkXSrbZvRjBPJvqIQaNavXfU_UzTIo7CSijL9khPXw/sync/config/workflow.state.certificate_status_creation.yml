@@ -1,0 +1,12 @@
+uuid: 27c388fa-2a65-4493-b599-2d64efd3e8b9
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.workflow.certificate_status
+id: certificate_status_creation
+label: Creation
+module: workflow
+wid: certificate_status
+weight: -11
+sysid: 1

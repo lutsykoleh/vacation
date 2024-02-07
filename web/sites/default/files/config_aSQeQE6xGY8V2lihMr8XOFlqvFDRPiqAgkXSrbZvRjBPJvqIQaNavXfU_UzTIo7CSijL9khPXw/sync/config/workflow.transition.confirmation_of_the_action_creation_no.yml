@@ -1,0 +1,25 @@
+uuid: 72c16aa2-f43c-416d-8bb4-81937bd83894
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.state.confirmation_of_the_action_creation
+    - workflow.state.confirmation_of_the_action_no
+id: confirmation_of_the_action_creation_no
+label: null
+module: workflow
+from_sid: confirmation_of_the_action_creation
+to_sid: confirmation_of_the_action_no
+roles:
+  workflow_author: workflow_author
+  authenticated: authenticated
+  anonymous: '0'
+  administrator: '0'
+  junior: '0'
+  middle: '0'
+  senior: '0'
+  pm: '0'
+  shief_pm: '0'
+  teamlead: '0'
+  seo: '0'
+  client: '0'

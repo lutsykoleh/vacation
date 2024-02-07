@@ -1,0 +1,20 @@
+uuid: 164644c1-d4d5-40e8-b614-a2564a20c925
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.state.request_status_disapprove
+    - workflow.state.request_status_waiting
+id: request_status_disapprove_waiting
+label: null
+module: workflow
+from_sid: request_status_disapprove
+to_sid: request_status_waiting
+roles:
+  workflow_author: '0'
+  administrator: '0'
+  pm: '0'
+  shief_pm: '0'
+  teamlead: '0'
+  seo: '0'
+  client: '0'

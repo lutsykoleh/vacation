@@ -1,0 +1,22 @@
+uuid: 229806ca-2810-49a4-bccf-dbaeac6a6442
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - workflow
+id: node.field_cancellation
+field_name: field_cancellation
+entity_type: node
+type: workflow
+settings:
+  workflow_type: cancellation
+  allowed_values: {  }
+  allowed_values_function: ''
+module: workflow
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

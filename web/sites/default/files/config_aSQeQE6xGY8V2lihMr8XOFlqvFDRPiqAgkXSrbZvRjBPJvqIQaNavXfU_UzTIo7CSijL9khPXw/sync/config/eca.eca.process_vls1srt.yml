@@ -1,0 +1,1429 @@
+uuid: 7bb6379b-e510-475f-9712-9e340539a2b8
+langcode: en
+status: true
+dependencies:
+  module:
+    - eca_base
+    - eca_form
+    - eca_tamper
+    - eca_user
+id: process_vls1srt
+modeller: bpmn_io
+label: 'Validation for Unpaid'
+version: ''
+weight: -5
+events:
+  Event_1dfwyif:
+    plugin: 'form:form_validate'
+    label: Event_1dfwyif
+    configuration:
+      form_id: node-request-form
+      entity_type_id: node
+      bundle: request
+      operation: 'default, save, delete, edit'
+    successors:
+      -
+        id: Activity_13q8x6c
+        condition: Flow_0cjdgj1
+conditions:
+  Flow_0cjdgj1:
+    plugin: eca_form_field_value
+    configuration:
+      negate: false
+      case: false
+      field_value: Unpaid
+      field_name: field_request_type
+      strip_tags: true
+      trim: true
+      xss_filter: true
+      operator: equal
+      type: value
+  Flow_16epzzm:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_ts]'
+      right: '[current_ts]'
+      operator: lessthan
+      type: value
+  Flow_1ijw1vi:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_ts]'
+      right: '[current_ts]'
+      operator: equal
+      type: value
+  Flow_0rbds0m:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_ts]'
+      right: '[current_ts]'
+      operator: greaterthan
+      type: value
+  Flow_0orxzxv:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_time_g]'
+      right: '[min_time]'
+      operator: lessthan
+      type: value
+  Flow_049o6wa:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_time_g]'
+      right: '[min_time]'
+      operator: greaterthan
+      type: value
+  Flow_018wwns:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_time_g]'
+      right: '[min_time]'
+      operator: equal
+      type: value
+  Flow_0ef0skd:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_time_g]'
+      right: '[max_time]'
+      operator: greaterthan
+      type: value
+  Flow_04r8xq3:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_time_g]'
+      right: '[max_time]'
+      operator: lessthan
+      type: value
+  Flow_1ln8lgn:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_time_g]'
+      right: '[min_time]'
+      operator: lessthan
+      type: value
+  Flow_1j1cdnz:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_time_g]'
+      right: '[min_time]'
+      operator: greaterthan
+      type: value
+  Flow_1co4dvx:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_time_g]'
+      right: '[min_time]'
+      operator: equal
+      type: value
+  Flow_1vfx3iv:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_time_g]'
+      right: '[max_time]'
+      operator: greaterthan
+      type: value
+  Flow_0oztvaz:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_time_g]'
+      right: '[max_time]'
+      operator: equal
+      type: value
+  Flow_0tgacak:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_time_g]'
+      right: '[max_time]'
+      operator: lessthan
+      type: value
+  Flow_1bma5s8:
+    plugin: eca_form_field_value
+    configuration:
+      negate: false
+      case: false
+      field_value: 'Not a full day'
+      field_name: field_unpaid_type
+      strip_tags: true
+      trim: true
+      xss_filter: true
+      operator: equal
+      type: value
+  Flow_18vnf7f:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[int]'
+      right: '14'
+      operator: greaterthan
+      type: value
+  Flow_117k3ut:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_d]'
+      right: Sun
+      operator: equal
+      type: value
+  Flow_0cbjcwh:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_day_d]'
+      right: Sat
+      operator: equal
+      type: value
+  Flow_12d86t6:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_day_d]'
+      right: Sun
+      operator: equal
+      type: value
+  Flow_0thdmmj:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_d]'
+      right: Sat
+      operator: equal
+      type: value
+  Flow_07k6ykk:
+    plugin: eca_form_field_value
+    configuration:
+      negate: false
+      case: false
+      field_value: 'Full day'
+      field_name: field_unpaid_type
+      strip_tags: true
+      trim: true
+      xss_filter: true
+      operator: equal
+      type: value
+  Flow_030vvl3:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_d]'
+      right: Sun
+      operator: equal
+      type: value
+  Flow_0eiq3mq:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_d]'
+      right: Sat
+      operator: equal
+      type: value
+  Flow_1grf2d0:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_day_d]'
+      right: Sat
+      operator: equal
+      type: value
+  Flow_040fvcp:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_day_d]'
+      right: Sun
+      operator: equal
+      type: value
+  Flow_0nztts0:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_ts]'
+      right: '[current_ts]'
+      operator: lessthan
+      type: value
+  Flow_0xtvlm3:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_ts]'
+      right: '[current_ts]'
+      operator: equal
+      type: value
+  Flow_0gaxvfj:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_ts]'
+      right: '[current_ts]'
+      operator: greaterthan
+      type: value
+  Flow_1se8ulu:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[int]'
+      right: '14'
+      operator: greaterthan
+      type: value
+  Flow_0b8arcr:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[int]'
+      right: '14'
+      operator: equal
+      type: value
+  Flow_1pssxbq:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[int]'
+      right: '14'
+      operator: lessthan
+      type: value
+  Flow_1iejgfg:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[int]'
+      right: '1'
+      operator: equal
+      type: value
+  Flow_0r07ik8:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[int]'
+      right: '1'
+      operator: greaterthan
+      type: value
+  Flow_18l3d5o:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_time_i]'
+      right: '00'
+      operator: greaterthan
+      type: value
+  Flow_0kyfi0v:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_time_i]'
+      right: '00'
+      operator: equal
+      type: value
+  Flow_048uozl:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_time_s]'
+      right: '00'
+      operator: greaterthan
+      type: value
+  Flow_1q33mk0:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_time_s]'
+      right: '00'
+      operator: equal
+      type: value
+  Flow_1ghikv2:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_time_g]'
+      right: '[max_time]'
+      operator: equal
+      type: value
+  Flow_04aoolt:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_time_i]'
+      right: '00'
+      operator: greaterthan
+      type: value
+  Flow_00krejd:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_time_i]'
+      right: '00'
+      operator: equal
+      type: value
+  Flow_0fo3c6t:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_time_s]'
+      right: '00'
+      operator: greaterthan
+      type: value
+  Flow_0q11zpu:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[end_time_s]'
+      right: '00'
+      operator: equal
+      type: value
+  Flow_01zg251:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_time_g]'
+      right: '[current_date_g]'
+      operator: equal
+      type: value
+  Flow_0c1rf3h:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_time_g]'
+      right: '[current_date_g]'
+      operator: lessthan
+      type: value
+  Flow_01nx0qc:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_time_i]'
+      right: '[current_date_i]'
+      operator: equal
+      type: value
+  Flow_0c77w2v:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_time_i]'
+      right: '[current_date_i]'
+      operator: lessthan
+      type: value
+  Flow_0aq3no1:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_time_s]'
+      right: '[current_date_s]'
+      operator: lessthan
+      type: value
+  Flow_00iqix8:
+    plugin: eca_scalar
+    configuration:
+      case: false
+      left: '[end_day_d]'
+      right: Sat
+      operator: equal
+      type: value
+      negate: true
+  Flow_1ii1l2q:
+    plugin: eca_scalar
+    configuration:
+      case: false
+      left: '[end_day_d]'
+      right: Sun
+      operator: equal
+      type: value
+      negate: true
+  Flow_17x33gl:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_number_day]'
+      right: '[end_number_day]'
+      operator: equal
+      type: value
+  Flow_1i4p462:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[start_day_month]'
+      right: '[end_day_month]'
+      operator: equal
+      type: value
+  Flow_1b90pi6:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[current_number_day]'
+      right: '[start_number_day]'
+      operator: equal
+      type: value
+  Flow_1pm7hzr:
+    plugin: eca_scalar
+    configuration:
+      negate: false
+      case: false
+      left: '[current_day_month]'
+      right: '[start_day_month]'
+      operator: equal
+      type: value
+gateways:
+  Gateway_0b175a4:
+    type: 0
+    successors:
+      -
+        id: Activity_1nawx6b
+        condition: Flow_16epzzm
+      -
+        id: Activity_0zofm09
+        condition: Flow_1ijw1vi
+      -
+        id: Activity_0zofm09
+        condition: Flow_0rbds0m
+  Gateway_1wphp8x:
+    type: 0
+    successors:
+      -
+        id: Activity_0u74k5c
+        condition: Flow_0orxzxv
+      -
+        id: Gateway_157z312
+        condition: Flow_049o6wa
+      -
+        id: Gateway_157z312
+        condition: Flow_018wwns
+  Gateway_1hen53h:
+    type: 0
+    successors:
+      -
+        id: Activity_15aonjv
+        condition: Flow_0ef0skd
+      -
+        id: Gateway_0qllip3
+        condition: Flow_04r8xq3
+      -
+        id: Gateway_1oa5j4c
+        condition: Flow_1ghikv2
+  Gateway_0qllip3:
+    type: 0
+    successors:
+      -
+        id: Gateway_1q766c3
+        condition: ''
+  Gateway_157z312:
+    type: 0
+    successors:
+      -
+        id: Gateway_1hen53h
+        condition: ''
+  Gateway_1q766c3:
+    type: 0
+    successors:
+      -
+        id: Activity_1ewztsn
+        condition: Flow_1ln8lgn
+      -
+        id: Gateway_1eslquk
+        condition: Flow_1j1cdnz
+      -
+        id: Gateway_1eslquk
+        condition: Flow_1co4dvx
+  Gateway_1eslquk:
+    type: 0
+    successors:
+      -
+        id: Gateway_1jdmvtq
+        condition: ''
+  Gateway_1jdmvtq:
+    type: 0
+    successors:
+      -
+        id: Activity_08ne9vk
+        condition: Flow_1vfx3iv
+      -
+        id: Gateway_1pn27lo
+        condition: Flow_0oztvaz
+      -
+        id: Gateway_1qw2nqw
+        condition: Flow_0tgacak
+  Gateway_1qw2nqw:
+    type: 0
+    successors:
+      -
+        id: Activity_0k07elf
+        condition: ''
+  Gateway_0gil7f1:
+    type: 0
+    successors:
+      -
+        id: Activity_0hj5m0g
+        condition: Flow_1bma5s8
+      -
+        id: Activity_1allhpl
+        condition: Flow_07k6ykk
+  Gateway_06huwqd:
+    type: 0
+    successors:
+      -
+        id: Activity_1qkdg3h
+        condition: Flow_18vnf7f
+  Gateway_1hebos3:
+    type: 0
+    successors:
+      -
+        id: Activity_1557fll
+        condition: Flow_117k3ut
+      -
+        id: Activity_1557fll
+        condition: Flow_0thdmmj
+      -
+        id: Gateway_1pngvb7
+        condition: ''
+  Gateway_1pngvb7:
+    type: 0
+    successors:
+      -
+        id: Activity_0h2qwgl
+        condition: Flow_0cbjcwh
+      -
+        id: Activity_0h2qwgl
+        condition: Flow_12d86t6
+      -
+        id: Gateway_0df4mhx
+        condition: ''
+  Gateway_1gfxmq2:
+    type: 0
+    successors:
+      -
+        id: Activity_1a0w7en
+        condition: Flow_0nztts0
+      -
+        id: Activity_1a2d88d
+        condition: Flow_0xtvlm3
+      -
+        id: Activity_1da537x
+        condition: Flow_0gaxvfj
+  Gateway_0xjnmaq:
+    type: 0
+    successors:
+      -
+        id: Activity_0b6ayny
+        condition: Flow_1se8ulu
+      -
+        id: Activity_0cjsknh
+        condition: Flow_0b8arcr
+      -
+        id: Activity_0cjsknh
+        condition: Flow_1pssxbq
+  Gateway_12jonwl:
+    type: 0
+    successors:
+      -
+        id: Activity_1bhfhkc
+        condition: Flow_030vvl3
+      -
+        id: Activity_1bhfhkc
+        condition: Flow_0eiq3mq
+      -
+        id: Gateway_1xh29ef
+        condition: ''
+  Gateway_1xh29ef:
+    type: 0
+    successors:
+      -
+        id: Activity_1mnjv10
+        condition: Flow_1grf2d0
+      -
+        id: Activity_1mnjv10
+        condition: Flow_040fvcp
+  Gateway_1qlq4tx:
+    type: 0
+    successors:
+      -
+        id: Gateway_0ba4yvz
+        condition: Flow_1b90pi6
+  Gateway_184e902:
+    type: 0
+    successors:
+      -
+        id: Activity_15aonjv
+        condition: Flow_18l3d5o
+      -
+        id: Gateway_14z5pss
+        condition: Flow_0kyfi0v
+  Gateway_0lpy1at:
+    type: 0
+    successors:
+      -
+        id: Activity_15aonjv
+        condition: Flow_048uozl
+      -
+        id: Gateway_0qllip3
+        condition: Flow_1q33mk0
+  Gateway_1td9qc8:
+    type: 0
+    successors:
+      -
+        id: Activity_08ne9vk
+        condition: Flow_04aoolt
+      -
+        id: Gateway_0ip2c6d
+        condition: Flow_00krejd
+  Gateway_0gihol1:
+    type: 0
+    successors:
+      -
+        id: Activity_08ne9vk
+        condition: Flow_0fo3c6t
+      -
+        id: Gateway_1qw2nqw
+        condition: Flow_0q11zpu
+  Gateway_1ahdejl:
+    type: 0
+    successors:
+      -
+        id: Gateway_06zohfs
+        condition: Flow_01zg251
+      -
+        id: Activity_0co3ox5
+        condition: Flow_0c1rf3h
+  Gateway_06zohfs:
+    type: 0
+    successors:
+      -
+        id: Gateway_0te888c
+        condition: Flow_01nx0qc
+      -
+        id: Activity_1rwux5y
+        condition: Flow_0c77w2v
+  Gateway_0te888c:
+    type: 0
+    successors:
+      -
+        id: Activity_0z2s1bo
+        condition: Flow_0aq3no1
+  Gateway_1oyytui:
+    type: 0
+    successors:
+      -
+        id: Activity_1pve33s
+        condition: Flow_1iejgfg
+      -
+        id: Gateway_06huwqd
+        condition: Flow_0r07ik8
+  Gateway_1pn27lo:
+    type: 0
+    successors:
+      -
+        id: Gateway_1td9qc8
+        condition: ''
+  Gateway_0ip2c6d:
+    type: 0
+    successors:
+      -
+        id: Gateway_0gihol1
+        condition: ''
+  Gateway_14z5pss:
+    type: 0
+    successors:
+      -
+        id: Gateway_0lpy1at
+        condition: ''
+  Gateway_1oa5j4c:
+    type: 0
+    successors:
+      -
+        id: Gateway_184e902
+        condition: ''
+  Gateway_0df4mhx:
+    type: 0
+    successors:
+      -
+        id: Gateway_0356bc5
+        condition: Flow_00iqix8
+      -
+        id: Gateway_0356bc5
+        condition: Flow_1ii1l2q
+  Gateway_0356bc5:
+    type: 0
+    successors:
+      -
+        id: Gateway_1oyytui
+        condition: ''
+  Gateway_0ba4yvz:
+    type: 0
+    successors:
+      -
+        id: Activity_05uidtm
+        condition: Flow_1pm7hzr
+actions:
+  Activity_1668vhe:
+    plugin: eca_form_field_get_value
+    label: Activity_1668vhe
+    configuration:
+      token_name: start_day
+      field_name: 'field_range_of_unpaid_time[0][value][date]'
+      strip_tags: true
+      trim: true
+      xss_filter: true
+    successors:
+      -
+        id: Activity_18je8as
+        condition: ''
+  Activity_18je8as:
+    plugin: 'eca_tamper:strtotime'
+    label: Activity_18je8as
+    configuration:
+      eca_data: '[start_day]'
+      eca_token_name: start_day_ts
+    successors:
+      -
+        id: Activity_1c8wbc2
+        condition: ''
+  Activity_174f2p3:
+    plugin: 'eca_tamper:strtotime'
+    label: Activity_174f2p3
+    configuration:
+      eca_data: '[end_day]'
+      eca_token_name: end_day_ts
+    successors:
+      -
+        id: Activity_1t6bitq
+        condition: ''
+  Activity_1t6bitq:
+    plugin: eca_form_field_get_value
+    label: Activity_1t6bitq
+    configuration:
+      token_name: start_time
+      field_name: 'field_range_of_unpaid_time[0][value][time]'
+      strip_tags: true
+      trim: true
+      xss_filter: true
+    successors:
+      -
+        id: Activity_15cvbgo
+        condition: ''
+  Activity_0tudy4o:
+    plugin: 'eca_tamper:strtotime'
+    label: Activity_0tudy4o
+    configuration:
+      eca_data: '[end_time]'
+      eca_token_name: end_time_ts
+    successors:
+      -
+        id: Gateway_0b175a4
+        condition: ''
+  Activity_13q8x6c:
+    plugin: 'eca_tamper:strtotime'
+    label: Activity_13q8x6c
+    configuration:
+      eca_data: '[current-date:html_date]'
+      eca_token_name: current_ts
+    successors:
+      -
+        id: Gateway_0gil7f1
+        condition: ''
+  Activity_1j7cslc:
+    plugin: 'eca_tamper:strtotime'
+    label: Activity_1j7cslc
+    configuration:
+      eca_data: '[start_time]'
+      eca_token_name: start_time_ts
+    successors:
+      -
+        id: Activity_1w6a0iv
+        condition: ''
+  Activity_0hj5m0g:
+    plugin: eca_token_load_user_current
+    label: Activity_0hj5m0g
+    configuration:
+      token_name: user
+    successors:
+      -
+        id: Activity_1668vhe
+        condition: ''
+  Activity_1nawx6b:
+    plugin: eca_form_field_set_error
+    label: Activity_1nawx6b
+    configuration:
+      message: 'You can''t take the release earlier than today'
+      field_name: submit
+    successors: {  }
+  Activity_0zofm09:
+    plugin: 'eca_tamper:timetodate'
+    label: Activity_0zofm09
+    configuration:
+      date_format: G
+      eca_data: '32400'
+      eca_token_name: min_time
+    successors:
+      -
+        id: Activity_1ct21vm
+        condition: ''
+  Activity_1ct21vm:
+    plugin: 'eca_tamper:timetodate'
+    label: Activity_1ct21vm
+    configuration:
+      date_format: G
+      eca_data: '64800'
+      eca_token_name: max_time
+    successors:
+      -
+        id: Activity_0cufxgo
+        condition: ''
+  Activity_0u74k5c:
+    plugin: eca_form_field_set_error
+    label: Activity_0u74k5c
+    configuration:
+      message: 'The start time cannot be less than 09:00'
+      field_name: submit
+    successors: {  }
+  Activity_15aonjv:
+    plugin: eca_form_field_set_error
+    label: Activity_15aonjv
+    configuration:
+      message: 'The start time cannot be more than 18:00'
+      field_name: submit
+    successors: {  }
+  Activity_1ewztsn:
+    plugin: eca_form_field_set_error
+    label: Activity_1ewztsn
+    configuration:
+      message: 'The end time cannot be less than 09:00'
+      field_name: submit
+    successors: {  }
+  Activity_08ne9vk:
+    plugin: eca_form_field_set_error
+    label: Activity_08ne9vk
+    configuration:
+      message: 'The end time cannot be more than 18:00'
+      field_name: submit
+    successors: {  }
+  Activity_0cufxgo:
+    plugin: 'eca_tamper:timetodate'
+    label: Activity_0cufxgo
+    configuration:
+      date_format: G
+      eca_data: '[start_time_ts]'
+      eca_token_name: start_time_g
+    successors:
+      -
+        id: Activity_1kkllpk
+        condition: ''
+  Activity_1kkllpk:
+    plugin: 'eca_tamper:timetodate'
+    label: Activity_1kkllpk
+    configuration:
+      date_format: G
+      eca_data: '[end_time_ts]'
+      eca_token_name: end_time_g
+    successors:
+      -
+        id: Activity_0uwvw83
+        condition: ''
+  Activity_1c8wbc2:
+    plugin: eca_form_field_get_value
+    label: Activity_1c8wbc2
+    configuration:
+      token_name: end_day
+      field_name: 'field_range_of_unpaid_time[0][end_value][date]'
+      strip_tags: true
+      trim: true
+      xss_filter: true
+    successors:
+      -
+        id: Activity_174f2p3
+        condition: ''
+  Activity_1w6a0iv:
+    plugin: eca_form_field_get_value
+    label: Activity_1w6a0iv
+    configuration:
+      token_name: end_time
+      field_name: 'field_range_of_unpaid_time[0][end_value][time]'
+      strip_tags: true
+      trim: true
+      xss_filter: true
+    successors:
+      -
+        id: Activity_0tudy4o
+        condition: ''
+  Activity_15cvbgo:
+    plugin: eca_form_field_require
+    label: Activity_15cvbgo
+    configuration:
+      flag: true
+      field_name: 'field_range_of_unpaid_time[0][value][date]'
+    successors:
+      -
+        id: Activity_1j7cslc
+        condition: ''
+  Activity_0k07elf:
+    plugin: 'eca_tamper:math'
+    label: Activity_0k07elf
+    configuration:
+      operation: subtraction
+      flip: false
+      value: '[start_day_ts]'
+      eca_data: '[end_day_ts]'
+      eca_token_name: res
+    successors:
+      -
+        id: Activity_0baew28
+        condition: ''
+  Activity_0baew28:
+    plugin: 'eca_tamper:math'
+    label: Activity_0baew28
+    configuration:
+      operation: division
+      flip: false
+      value: '86400'
+      eca_data: '[res]'
+      eca_token_name: vac_day
+    successors:
+      -
+        id: Activity_19it6ri
+        condition: ''
+  Activity_19it6ri:
+    plugin: 'eca_tamper:cast_to_int'
+    label: Activity_19it6ri
+    configuration:
+      eca_data: '[vac_day]'
+      eca_token_name: int
+    successors:
+      -
+        id: Activity_0plprb0
+        condition: ''
+  Activity_1ds7f76:
+    plugin: 'eca_tamper:timetodate'
+    label: Activity_1ds7f76
+    configuration:
+      date_format: D
+      eca_data: '[start_day_ts]'
+      eca_token_name: start_day_d
+    successors:
+      -
+        id: Activity_0ru0oig
+        condition: ''
+  Activity_1qkdg3h:
+    plugin: eca_form_field_set_error
+    label: Activity_1qkdg3h
+    configuration:
+      message: 'You cannot take a vacation for more than 14 days'
+      field_name: submit
+    successors: {  }
+  Activity_0ru0oig:
+    plugin: 'eca_tamper:timetodate'
+    label: Activity_0ru0oig
+    configuration:
+      date_format: D
+      eca_data: '[end_day_ts]'
+      eca_token_name: end_day_d
+    successors:
+      -
+        id: Gateway_1hebos3
+        condition: ''
+  Activity_1557fll:
+    plugin: eca_form_field_set_error
+    label: Activity_1557fll
+    configuration:
+      message: 'The start date falls on a weekend'
+      field_name: submit
+    successors: {  }
+  Activity_0h2qwgl:
+    plugin: eca_form_field_set_error
+    label: Activity_0h2qwgl
+    configuration:
+      message: 'The end date falls on a weekend'
+      field_name: submit
+    successors: {  }
+  Activity_1allhpl:
+    plugin: eca_form_field_get_value
+    label: Activity_1allhpl
+    configuration:
+      token_name: start_day
+      field_name: 'field_range_for_unpaid_days[0][value][date]'
+      strip_tags: true
+      trim: true
+      xss_filter: true
+    successors:
+      -
+        id: Activity_0kk8pzl
+        condition: ''
+  Activity_0kk8pzl:
+    plugin: 'eca_tamper:strtotime'
+    label: Activity_0kk8pzl
+    configuration:
+      eca_data: '[start_day]'
+      eca_token_name: start_day_ts
+    successors:
+      -
+        id: Activity_0nrbhdn
+        condition: ''
+  Activity_0nrbhdn:
+    plugin: eca_form_field_get_value
+    label: Activity_0nrbhdn
+    configuration:
+      token_name: end_day
+      field_name: 'field_range_for_unpaid_days[0][end_value][date]'
+      strip_tags: true
+      trim: true
+      xss_filter: true
+    successors:
+      -
+        id: Activity_0f2ckj3
+        condition: ''
+  Activity_0f2ckj3:
+    plugin: 'eca_tamper:strtotime'
+    label: Activity_0f2ckj3
+    configuration:
+      eca_data: '[end_day]'
+      eca_token_name: end_day_ts
+    successors:
+      -
+        id: Gateway_1gfxmq2
+        condition: ''
+  Activity_1a0w7en:
+    plugin: eca_form_field_set_error
+    label: Activity_1a0w7en
+    configuration:
+      message: 'You can''t take the release earlier than today'
+      field_name: submit
+    successors: {  }
+  Activity_1da537x:
+    plugin: 'eca_tamper:math'
+    label: Activity_1da537x
+    configuration:
+      operation: subtraction
+      flip: false
+      value: '[start_day_ts]'
+      eca_data: '[end_day_ts]'
+      eca_token_name: vac_day
+    successors:
+      -
+        id: Activity_0elly6w
+        condition: ''
+  Activity_0elly6w:
+    plugin: 'eca_tamper:math'
+    label: Activity_0elly6w
+    configuration:
+      operation: division
+      flip: false
+      value: '86400'
+      eca_data: '[vac_day]'
+      eca_token_name: res
+    successors:
+      -
+        id: Activity_1f810lw
+        condition: ''
+  Activity_1f810lw:
+    plugin: 'eca_tamper:cast_to_int'
+    label: Activity_1f810lw
+    configuration:
+      eca_data: '[res]'
+      eca_token_name: int
+    successors:
+      -
+        id: Activity_0vbw1b5
+        condition: ''
+  Activity_0b6ayny:
+    plugin: eca_form_field_set_error
+    label: Activity_0b6ayny
+    configuration:
+      message: 'You cannot take a vacation for more than 14 days'
+      field_name: submit
+    successors: {  }
+  Activity_0cjsknh:
+    plugin: 'eca_tamper:timetodate'
+    label: Activity_0cjsknh
+    configuration:
+      date_format: D
+      eca_data: '[start_day_ts]'
+      eca_token_name: start_day_d
+    successors:
+      -
+        id: Activity_06gc1jf
+        condition: ''
+  Activity_1bhfhkc:
+    plugin: eca_form_field_set_error
+    label: Activity_1bhfhkc
+    configuration:
+      message: 'The start date falls on a weekend'
+      field_name: submit
+    successors: {  }
+  Activity_1mnjv10:
+    plugin: eca_form_field_set_error
+    label: Activity_1mnjv10
+    configuration:
+      message: 'The end date falls on a weekend'
+      field_name: submit
+    successors: {  }
+  Activity_0plprb0:
+    plugin: 'eca_tamper:math'
+    label: Activity_0plprb0
+    configuration:
+      operation: addition
+      flip: false
+      value: '1'
+      eca_data: '[int]'
+      eca_token_name: int
+    successors:
+      -
+        id: Activity_1ds7f76
+        condition: ''
+  Activity_0vbw1b5:
+    plugin: 'eca_tamper:math'
+    label: Activity_0vbw1b5
+    configuration:
+      operation: addition
+      flip: false
+      value: '1'
+      eca_data: '[int]'
+      eca_token_name: int
+    successors:
+      -
+        id: Gateway_0xjnmaq
+        condition: ''
+  Activity_06gc1jf:
+    plugin: 'eca_tamper:timetodate'
+    label: Activity_06gc1jf
+    configuration:
+      date_format: D
+      eca_data: '[end_day_ts]'
+      eca_token_name: end_day_d
+    successors:
+      -
+        id: Gateway_12jonwl
+        condition: ''
+  Activity_15j5u84:
+    plugin: 'eca_tamper:timetodate'
+    label: Activity_15j5u84
+    configuration:
+      date_format: i
+      eca_data: '[start_time_ts]'
+      eca_token_name: start_time_i
+    successors:
+      -
+        id: Gateway_1wphp8x
+        condition: ''
+  Activity_1hoin0t:
+    plugin: 'eca_tamper:timetodate'
+    label: Activity_1hoin0t
+    configuration:
+      date_format: s
+      eca_data: '[start_time_ts]'
+      eca_token_name: start_time_s
+    successors:
+      -
+        id: Activity_15j5u84
+        condition: ''
+  Activity_1a2d88d:
+    plugin: eca_form_field_set_error
+    label: Activity_1a2d88d
+    configuration:
+      message: 'You cannot take a vacation today. You may need to use the "Not a full day" service'
+      field_name: submit
+    successors: {  }
+  Activity_0tswslt:
+    plugin: 'eca_tamper:timetodate'
+    label: Activity_0tswslt
+    configuration:
+      date_format: i
+      eca_data: '[end_time_ts]'
+      eca_token_name: end_time_i
+    successors:
+      -
+        id: Activity_1hoin0t
+        condition: ''
+  Activity_0uwvw83:
+    plugin: 'eca_tamper:timetodate'
+    label: Activity_0uwvw83
+    configuration:
+      date_format: s
+      eca_data: '[end_time_ts]'
+      eca_token_name: end_time_s
+    successors:
+      -
+        id: Activity_0tswslt
+        condition: ''
+  Activity_05uidtm:
+    plugin: 'eca_tamper:timetodate'
+    label: Activity_05uidtm
+    configuration:
+      date_format: G
+      eca_data: '[current-date:raw]'
+      eca_token_name: current_date_g
+    successors:
+      -
+        id: Activity_1kub2hx
+        condition: ''
+  Activity_1kub2hx:
+    plugin: 'eca_tamper:timetodate'
+    label: Activity_1kub2hx
+    configuration:
+      date_format: i
+      eca_data: '[current-date:raw]'
+      eca_token_name: current_date_i
+    successors:
+      -
+        id: Activity_12ihamv
+        condition: ''
+  Activity_12ihamv:
+    plugin: 'eca_tamper:timetodate'
+    label: Activity_12ihamv
+    configuration:
+      date_format: s
+      eca_data: '[current-date:raw]'
+      eca_token_name: current_date_s
+    successors:
+      -
+        id: Gateway_1ahdejl
+        condition: ''
+  Activity_0co3ox5:
+    plugin: eca_form_field_set_error
+    label: Activity_0co3ox5
+    configuration:
+      message: 'You cannot take your vacation earlier than the current time'
+      field_name: submit
+    successors: {  }
+  Activity_1rwux5y:
+    plugin: eca_form_field_set_error
+    label: Activity_1rwux5y
+    configuration:
+      message: 'You cannot take your vacation earlier than the current time'
+      field_name: submit
+    successors: {  }
+  Activity_0z2s1bo:
+    plugin: eca_form_field_set_error
+    label: Activity_0z2s1bo
+    configuration:
+      message: 'You cannot take your vacation earlier than the current time'
+      field_name: submit
+    successors: {  }
+  Activity_1l97s2a:
+    plugin: 'eca_tamper:timetodate'
+    label: Activity_1l97s2a
+    configuration:
+      date_format: m
+      eca_data: '[start_day_ts]'
+      eca_token_name: start_day_month
+    successors:
+      -
+        id: Activity_0w2wts7
+        condition: ''
+  Activity_1pve33s:
+    plugin: 'eca_tamper:timetodate'
+    label: Activity_1pve33s
+    configuration:
+      date_format: d
+      eca_data: '[start_day_ts]'
+      eca_token_name: start_number_day
+    successors:
+      -
+        id: Activity_1l97s2a
+        condition: ''
+  Activity_1wg84u1:
+    plugin: 'eca_tamper:timetodate'
+    label: Activity_1wg84u1
+    configuration:
+      date_format: m
+      eca_data: '[end_day_ts]'
+      eca_token_name: end_day_month
+    successors:
+      -
+        id: Activity_12cssoo
+        condition: ''
+  Activity_0w2wts7:
+    plugin: 'eca_tamper:timetodate'
+    label: Activity_0w2wts7
+    configuration:
+      date_format: d
+      eca_data: '[end_day_ts]'
+      eca_token_name: end_number_day
+    successors:
+      -
+        id: Activity_1wg84u1
+        condition: ''
+  Activity_1mr3vic:
+    plugin: eca_void_and_condition
+    label: Activity_1mr3vic
+    configuration: {  }
+    successors:
+      -
+        id: Gateway_1qlq4tx
+        condition: Flow_1i4p462
+  Activity_12cssoo:
+    plugin: 'eca_tamper:timetodate'
+    label: Activity_12cssoo
+    configuration:
+      date_format: d
+      eca_data: '[current_ts]'
+      eca_token_name: current_number_day
+    successors:
+      -
+        id: Activity_0mpn4eq
+        condition: ''
+  Activity_0mpn4eq:
+    plugin: 'eca_tamper:timetodate'
+    label: Activity_0mpn4eq
+    configuration:
+      date_format: m
+      eca_data: '[current_ts]'
+      eca_token_name: current_day_month
+    successors:
+      -
+        id: Activity_1mr3vic
+        condition: Flow_17x33gl

@@ -1,0 +1,24 @@
+uuid: c94b30fd-ee23-43b0-867e-064a77c225ac
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.request
+  module:
+    - node
+    - workflow
+id: junior
+label: Junior
+weight: 4
+is_admin: null
+permissions:
+  - 'bypass request_status workflow_transition access'
+  - 'create calculations workflow_transition'
+  - 'create cancellation workflow_transition'
+  - 'create confirmation_of_the_action workflow_transition'
+  - 'create request content'
+  - 'create request workflow_transition'
+  - 'create request_type workflow_transition'
+  - 'create user_status workflow_transition'
+  - 'create vacation_status workflow_transition'
+  - 'view own unpublished content'

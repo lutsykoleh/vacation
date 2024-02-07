@@ -1,0 +1,22 @@
+uuid: 7119e9e4-0640-4686-847b-9bdd81150590
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - workflow
+id: node.field_vacation_status
+field_name: field_vacation_status
+entity_type: node
+type: workflow
+settings:
+  workflow_type: vacation_status
+  allowed_values: {  }
+  allowed_values_function: ''
+module: workflow
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

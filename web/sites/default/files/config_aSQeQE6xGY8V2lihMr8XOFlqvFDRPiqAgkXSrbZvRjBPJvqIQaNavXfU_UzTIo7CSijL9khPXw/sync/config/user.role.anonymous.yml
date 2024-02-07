@@ -1,0 +1,21 @@
+uuid: 7296da47-5a72-4488-888a-3ae2e579d490
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.restricted_html
+  module:
+    - contact
+    - filter
+_core:
+  default_config_hash: 6WavjUYXIegP9AAg2zXGx54MWIVoomC3SZhNiqe-Dyk
+id: anonymous
+label: 'Anonymous user'
+weight: 0
+is_admin: false
+permissions:
+  - 'access site-wide contact form'
+  - 'create calculations workflow_transition'
+  - 'create request workflow_transition'
+  - 'create user_status workflow_transition'
+  - 'use text format restricted_html'

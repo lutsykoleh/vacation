@@ -1,0 +1,25 @@
+uuid: b1d4cfb8-4b49-4438-abb4-6484b0b49eb6
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.state.cancellation_creation
+    - workflow.state.cancellation_not_cancel
+id: cancellation_creation_not_cancel
+label: null
+module: workflow
+from_sid: cancellation_creation
+to_sid: cancellation_not_cancel
+roles:
+  workflow_author: workflow_author
+  authenticated: authenticated
+  anonymous: '0'
+  administrator: '0'
+  junior: '0'
+  middle: '0'
+  senior: '0'
+  pm: '0'
+  shief_pm: '0'
+  teamlead: '0'
+  seo: '0'
+  client: '0'

@@ -1,0 +1,39 @@
+uuid: 0f6f8e65-b41e-4ef6-8756-3df38b36c0c9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_user_memory
+    - node.type.request
+id: node.request.field_user_memory
+field_name: field_user_memory
+entity_type: node
+bundle: request
+label: 'Prover`s memory'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    filter:
+      type: role
+      role:
+        pm: pm
+        shief_pm: shief_pm
+        teamlead: teamlead
+        seo: seo
+        client: client
+        administrator: '0'
+        junior: '0'
+        middle: '0'
+        senior: '0'
+    include_anonymous: true
+field_type: entity_reference

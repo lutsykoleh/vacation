@@ -1,0 +1,25 @@
+uuid: 1b326bb1-cb91-4572-9152-6bdfd54eeede
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.state.vacation_status_not_relevant
+    - workflow.state.vacation_status_relevant
+id: vacation_status_relevant_not_relevant
+label: null
+module: workflow
+from_sid: vacation_status_relevant
+to_sid: vacation_status_not_relevant
+roles:
+  administrator: administrator
+  workflow_author: '0'
+  anonymous: '0'
+  authenticated: '0'
+  junior: '0'
+  middle: '0'
+  senior: '0'
+  pm: '0'
+  shief_pm: '0'
+  teamlead: '0'
+  seo: '0'
+  client: '0'

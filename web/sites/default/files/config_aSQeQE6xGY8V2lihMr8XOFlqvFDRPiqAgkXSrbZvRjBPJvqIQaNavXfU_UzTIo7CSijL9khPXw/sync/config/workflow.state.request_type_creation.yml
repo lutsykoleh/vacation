@@ -1,0 +1,12 @@
+uuid: a36b9e63-5a1a-4f33-89a3-2e8fc6bbffc3
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.workflow.request_type
+id: request_type_creation
+label: Creation
+module: workflow
+wid: request_type
+weight: -11
+sysid: 1

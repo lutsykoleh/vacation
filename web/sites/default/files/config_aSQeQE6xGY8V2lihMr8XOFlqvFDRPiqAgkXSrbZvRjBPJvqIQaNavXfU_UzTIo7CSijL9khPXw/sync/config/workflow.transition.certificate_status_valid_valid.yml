@@ -1,0 +1,12 @@
+uuid: 343a6023-ca15-4539-95e0-b0821b1d7f6d
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.state.certificate_status_valid
+id: certificate_status_valid_valid
+label: null
+module: workflow
+from_sid: certificate_status_valid
+to_sid: certificate_status_valid
+roles: {  }

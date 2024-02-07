@@ -1,0 +1,12 @@
+uuid: d0e32159-1934-44c7-8ee0-d624c38b4a7b
+langcode: en
+status: true
+dependencies:
+  config:
+    - workflow.workflow.cancellation
+id: cancellation_cancel
+label: Cancel
+module: workflow
+wid: cancellation
+weight: -8
+sysid: 0

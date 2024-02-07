@@ -1,0 +1,20 @@
+uuid: 9a03901b-2aaa-467a-8553-e4bd3eee586b
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_number_of_accrued_days
+field_name: field_number_of_accrued_days
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
