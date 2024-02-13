@@ -1,0 +1,11 @@
+# Schema for the configuration files of the ups_import_csv module.
+field.widget.settings.time_range:
+  type: mapping
+  label: 'Time Range widget configuration'
+  mapping:
+    start_label:
+      type: label
+      label: 'Start time label'
+    end_label:
+      type: label
+      label: 'End time label'

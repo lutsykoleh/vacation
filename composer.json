@@ -27,6 +27,7 @@
         "drupal/eca_tamper": "^1.0",
         "drupal/masquerade": "^2.0@RC",
         "drupal/tamper": "^1.0@alpha",
+        "drupal/time_range": "^9.0",
         "drupal/token": "^1.13",
         "drupal/views_bulk_operations": "^4.2",
         "drupal/workflow": "^1.7",
